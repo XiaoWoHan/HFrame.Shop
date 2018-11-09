@@ -1,6 +1,7 @@
 ﻿using HFrame.Common.Cache;
 using HFrame.Common.Helper;
 using HFrame.Common.Model;
+using HFrame.CommonBS.Helper;
 using HFrame.DAL;
 using HFrame.Web.Default.Model;
 using System;
@@ -82,7 +83,7 @@ namespace HFrame.Web.Default.Service
                         MemberNickName=User.Name,
                         LoginType=Common.Model.Enum.EnumLoginType.Account
                     };
-                    CookieHelper.AddCookies("CurrentMumber", Member.ToJson());
+                    LoginHelper.SetLoginStatus(Member);//添加登陆状态
                     result.CallbackPage = "/Main/Main";
                     return true;
                 }

@@ -1,6 +1,6 @@
 ﻿@model HFrame.Web.Default.Model.RegisterModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -9,9 +9,11 @@
 <head>
     <meta charset="utf-8" />
     <title>注册</title>
+    @Styles.Render("~/Css/Login");
+    @Scripts.Render("~/Js/Login");
 </head>
 <body class="background">
-    <div>
+    <div class="container">
         <div class="row">
             @using (Html.BeginForm("Register", "Default", FormMethod.Post, new { @class = "col-md-6 center loginbord" }))
             {
@@ -45,6 +47,7 @@
 
                 <div class="form-group">
                     <input type="submit" value="注册" class="btn btn-primary btn-block" />
+                    <a class="btn btn-primary btn-block" href="@Url.Action("Login")">已有账号？返回登陆</a>
                 </div>
             }
         </div>

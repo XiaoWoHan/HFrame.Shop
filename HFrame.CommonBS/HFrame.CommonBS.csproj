@@ -45,8 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CookieHelper.cs" />
+    <Compile Include="CheckLoginAttribute.cs" />
+    <Compile Include="Helper\CookieHelper.cs" />
     <Compile Include="DefaultController.cs" />
+    <Compile Include="Helper\LoginHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
