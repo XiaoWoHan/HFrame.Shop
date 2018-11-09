@@ -150,6 +150,7 @@
     <Compile Include="Controllers\Default\DefaultController.cs" />
     <Compile Include="Controllers\Default\Model\LoginModel.cs" />
     <Compile Include="Controllers\Default\Model\RegisterModel.cs" />
+    <Compile Include="Controllers\Main\MainController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -313,8 +314,13 @@
     <None Include="packages.config" />
     <Content Include="Views\Default\Login.cshtml" />
     <Content Include="Views\Default\Register.cshtml" />
+    <Content Include="Views\Main\Main.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HFrame.CommonBS\HFrame.CommonBS.csproj">
+      <Project>{23be5f8d-eedd-4d1a-bd84-73867889c7b7}</Project>
+      <Name>HFrame.CommonBS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HFrame.Common\HFrame.Common.csproj">
       <Project>{c025578c-464e-46e3-a0b7-fd3c85a8e77c}</Project>
       <Name>HFrame.Common</Name>

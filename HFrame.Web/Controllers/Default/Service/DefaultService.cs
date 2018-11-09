@@ -65,12 +65,25 @@ namespace HFrame.Web.Default.Service
             #endregion
             if (valid)
             {
+#if DEBUG
+                var User = Data_User.Current.GetFirst();
+#else
                 var User = Data_User.Current.GetFirst(m => m.UserName == Model.UserName);
+#endif
+
                 var EncryptPass = EncryptionHelper.HMACSMD5Encrypt(Model.Password, User.OID, Encoding.ASCII);
                 if (EncryptPass == User.Password)
                 {
                     result.ErrorCode = 0;
                     result.ErrorMsg = $"登陆成功";
+                    var Member = new MemberModel {
+                        MemberOID=User.OID,
+                        MemberName=User.UserName,
+                        MemberNickName=User.Name,
+                        LoginType=Common.Model.Enum.EnumLoginType.Account
+                    };
+                    CookieHelper.AddCookies("CurrentMumber", Member.ToJson());
+                    result.CallbackPage = "/Main/Main";
                     return true;
                 }
                 else
@@ -88,6 +101,6 @@ namespace HFrame.Web.Default.Service
             }
         }
         //UNDONE （未添加当前登陆状态验证，存储登陆状态）
-        #endregion
+#endregion
     }
 }

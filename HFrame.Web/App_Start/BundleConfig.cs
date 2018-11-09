@@ -22,7 +22,11 @@ namespace HFrame.Web
             //Common
             bundles.Add(new StyleBundle("~/Css/Common").Include(
             "~/Content/Plugin/HFrame/css/public.css",
-            "~/Content/Plugin/bootstrap/css/bootstrap.css"));
+            "~/Content/Plugin/bootstrap/css/bootstrap.css",
+            //< !--Main CSS-- >
+            "~/Content/Plugin/assets/css/material-dashboard.css",
+            //< !--Fonts and icons-- >
+            "~/Content/Plugin/css/font-css.css"));
 
             BundleTable.EnableOptimizations = true;
         }

@@ -23,7 +23,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace CommonLib
+namespace HFrame.Common.Helper
 {
     /// <summary>
     /// Http Get Post Put Delete 请求帮助类

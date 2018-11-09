@@ -19,6 +19,10 @@ namespace HFrame.Common.Model
         /// 返回参数
         /// </summary>
         public Dictionary<string, object> Data { get; set; } = new Dictionary<string, object>();
+        /// <summary>
+        /// 跳转页面
+        /// </summary>
+        public string CallbackPage { get; set; }
         #region 私有属性
         /// <summary>
         /// 是否成功
