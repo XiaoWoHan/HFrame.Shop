@@ -1,0 +1,53 @@
+﻿@model HFrame.Web.Default.Model.RegisterModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>注册</title>
+</head>
+<body class="background">
+    <div>
+        <div class="row">
+            @using (Html.BeginForm("Register", "Default", FormMethod.Post, new { @class = "col-md-6 center loginbord" }))
+            {
+                <h2 class="loginText">注册</h2>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "请输入用户名" })
+                </div>
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "请输入密码" })
+                </div>
+
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.RePassword, new { @class = "form-control", placeholder = "请再次输入密码" })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Telephone, new { @class = "form-control", placeholder = "请输入手机号" })
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-9">
+
+                            @Html.TextBoxFor(m => m.VerisonCode, new { @class = "form-control", placeholder = "请输入验证码" })
+                        </div>
+                        <div class="col-sm-3" style="padding-left:0px;">
+                            <img border="0" style="cursor:pointer;" alt="点击刷新验证码" src="@Url.Action("ValidateCodeImg")">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="注册" class="btn btn-primary btn-block" />
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
