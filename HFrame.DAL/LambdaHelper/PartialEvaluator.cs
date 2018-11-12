@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HFrame.DAL.Model
+namespace HFrame.CommonDal.Model
 {
     /// <summary>
     ///

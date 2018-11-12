@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HFrame.DAL
+namespace HFrame.CommonDal
 {
     /// <summary>
     /// 当前类属性

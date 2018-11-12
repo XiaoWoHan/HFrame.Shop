@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
 
-namespace HFrame.DAL.Model
+namespace HFrame.CommonDal.Model
 {
     /// <summary>
     /// 脚本生成实体

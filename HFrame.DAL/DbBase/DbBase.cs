@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using HFrame.DAL.Sql;
+using HFrame.CommonDal.Sql;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace HFrame.DAL
+namespace HFrame.CommonDal
 {
     /// <summary>
     /// 实体类基类

@@ -7,8 +7,8 @@
     <ProjectGuid>{396DFA0B-A6EC-4E45-A833-BD47080810E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HFrame.DAL</RootNamespace>
-    <AssemblyName>HFrame.DAL</AssemblyName>
+    <RootNamespace>HFrame.CommonDal</RootNamespace>
+    <AssemblyName>HFrame.CommonDal</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

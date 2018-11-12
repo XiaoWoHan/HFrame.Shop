@@ -1,14 +1,10 @@
-﻿using HFrame.DAL.Model;
-using System;
+﻿using HFrame.CommonDal.Model;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace HFrame.DAL.Sql
+namespace HFrame.CommonDal.Sql
 {
     internal class LambdaRouter
     {

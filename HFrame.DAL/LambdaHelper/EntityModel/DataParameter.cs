@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 
-namespace HFrame.DAL.Model
+namespace HFrame.CommonDal.Model
 {
     /// <summary>
     /// 参数化查询 最后转换成 对应的参数化参数

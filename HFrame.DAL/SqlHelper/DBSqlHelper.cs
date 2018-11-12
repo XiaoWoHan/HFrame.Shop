@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HFrame.DAL.Sql
+namespace HFrame.CommonDal.Sql
 {
     /// <summary>
     /// SQL语句帮助类

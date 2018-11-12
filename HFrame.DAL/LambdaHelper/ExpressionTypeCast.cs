@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace HFrame.DAL.Model
+namespace HFrame.CommonDal.Model
 {
     internal class ExpressionTypeCast
     {

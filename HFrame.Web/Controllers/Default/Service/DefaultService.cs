@@ -1,7 +1,7 @@
 ﻿using HFrame.Common.Helper;
 using HFrame.Common.Model;
 using HFrame.CommonBS.Helper;
-using HFrame.DAL.Model;
+using HFrame.CommonDal.Model;
 using HFrame.Web.Model;
 using System;
 using System.Collections.Generic;
