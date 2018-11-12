@@ -59,49 +59,35 @@ namespace HFrame.Web.Default.Service
         #region 登陆
         public static bool Login(ResultModel result, LoginModel Model)
         {
-            #region 模型表单验证
-            ValidationContext context = new ValidationContext(Model, null, null);
-            List<ValidationResult> results = new List<ValidationResult>();
-            var valid = Validator.TryValidateObject(Model, context, results, true);
-            #endregion
-            if (valid)
-            {
 #if DEBUG
-                var User = Data_User.Current.GetFirst();
+            var User = Data_User.Current.GetFirst();
 #else
                 var User = Data_User.Current.GetFirst(m => m.UserName == Model.UserName);
 #endif
 
-                var EncryptPass = EncryptionHelper.HMACSMD5Encrypt(Model.Password, User.OID, Encoding.ASCII);
-                if (EncryptPass == User.Password)
+            var EncryptPass = EncryptionHelper.HMACSMD5Encrypt(Model.Password, User.OID, Encoding.ASCII);
+            if (EncryptPass == User.Password)
+            {
+                result.ErrorCode = 0;
+                result.ErrorMsg = $"登陆成功";
+                var Member = new MemberModel
                 {
-                    result.ErrorCode = 0;
-                    result.ErrorMsg = $"登陆成功";
-                    var Member = new MemberModel {
-                        MemberOID=User.OID,
-                        MemberName=User.UserName,
-                        MemberNickName=User.Name,
-                        LoginType=Common.Model.Enum.EnumLoginType.Account
-                    };
-                    LoginHelper.SetLoginStatus(Member);//添加登陆状态
-                    result.CallbackPage = "/Main/Main";
-                    return true;
-                }
-                else
-                {
-                    result.ErrorCode = -1;
-                    result.ErrorMsg = $"登陆失败 密码错误";
-                    return false;
-                }
+                    MemberOID = User.OID,
+                    MemberName = User.UserName,
+                    MemberNickName = User.Name,
+                    LoginType = Common.Model.Enum.EnumLoginType.Account
+                };
+                LoginHelper.SetLoginStatus(Member);//添加登陆状态
+                result.CallbackPage = "/Main/Main";
+                return true;
             }
             else
             {
                 result.ErrorCode = -1;
-                result.ErrorMsg = $"登陆失败 {results.FirstOrDefault()?.ErrorMessage}";
+                result.ErrorMsg = $"登陆失败 密码错误";
                 return false;
             }
-        }
-        //UNDONE （未添加当前登陆状态验证，存储登陆状态）
-#endregion
+        }//UNDONE （未添加当前登陆状态验证，存储登陆状态）
+        #endregion
     }
 }
