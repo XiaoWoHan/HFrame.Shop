@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HFrame.Web.Controllers.Main
+namespace HFrame.Web.Controllers
 {
     public class MainController : BaseController
     {

@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-
-namespace HFrame.CommonBS
+/// <summary>
+/// 登陆验证过滤器
+/// </summary>
+namespace HFrame.CommonBS.Filter
 {
     /// <summary>
     /// 登陆验证帮助

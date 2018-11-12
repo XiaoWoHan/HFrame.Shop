@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LambdaToSql.LambdaParser
+namespace HFrame.DAL.Model
 {
     /// <summary>
     ///

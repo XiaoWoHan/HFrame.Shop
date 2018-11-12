@@ -1,13 +1,7 @@
-﻿using HFrame.Common.Cache;
-using HFrame.Common.Helper;
+﻿using HFrame.Common.Helper;
 using HFrame.Common.Model;
-using HFrame.Web.Default.Model;
-using HFrame.Web.Default.Service;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using HFrame.Web.Model;
+using HFrame.Web.Service;
 using System.Web.Mvc;
 
 namespace HFrame.Web.Controllers

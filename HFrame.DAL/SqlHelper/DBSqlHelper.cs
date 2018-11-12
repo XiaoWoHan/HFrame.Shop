@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HFrame.DAL
+namespace HFrame.DAL.Sql
 {
     /// <summary>
     /// SQL语句帮助类
@@ -133,7 +133,7 @@ namespace HFrame.DAL
         {
             lock (_WhereSqlLocker)
             {
-                var itemLambda = new LambdaToSql.LambdaRouter();
+                var itemLambda = new LambdaRouter();
                 var Str= itemLambda.ExpressionRouter(expression);
                 return Str;
             }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace LambdaToSql.LambdaParser
+namespace HFrame.DAL.Model
 {
     internal class ExpressionTypeCast
     {

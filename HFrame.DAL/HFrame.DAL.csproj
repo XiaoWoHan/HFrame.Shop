@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data_User.cs" />
+    <Compile Include="Models\Data_User.cs" />
     <Compile Include="DbBase\DbBase.cs" />
     <Compile Include="SqlHelper\DBSqlHelper.cs" />
     <Compile Include="DbBase\DBTablePropertie.cs" />

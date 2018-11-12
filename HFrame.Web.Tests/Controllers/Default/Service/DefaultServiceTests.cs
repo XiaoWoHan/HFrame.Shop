@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HFrame.Common.Model;
 using HFrame.Common.Helper;
+using HFrame.Web.Service;
 
 namespace HFrame.Web.Default.Service.Tests
 {

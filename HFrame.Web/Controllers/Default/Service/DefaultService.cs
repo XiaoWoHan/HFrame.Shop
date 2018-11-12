@@ -1,17 +1,15 @@
-﻿using HFrame.Common.Cache;
-using HFrame.Common.Helper;
+﻿using HFrame.Common.Helper;
 using HFrame.Common.Model;
 using HFrame.CommonBS.Helper;
-using HFrame.DAL;
-using HFrame.Web.Default.Model;
+using HFrame.DAL.Model;
+using HFrame.Web.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Web;
 
-namespace HFrame.Web.Default.Service
+namespace HFrame.Web.Service
 {
     public class DefaultService
     {

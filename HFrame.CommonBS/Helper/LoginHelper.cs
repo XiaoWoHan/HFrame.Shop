@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace HFrame.CommonBS.Helper
 {
+    /// <summary>
+    /// 登陆帮助类
+    /// </summary>
     public class LoginHelper
     {
         public const string CookieName = "CurrentLogin";

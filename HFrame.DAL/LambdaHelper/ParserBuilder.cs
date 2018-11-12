@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
 
-namespace LambdaToSql.LambdaParser
+namespace HFrame.DAL.Model
 {
     /// <summary>
     /// 脚本生成实体

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HFrame.DAL.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace LambdaToSql
+namespace HFrame.DAL.Sql
 {
     internal class LambdaRouter
     {
@@ -19,18 +20,18 @@ namespace LambdaToSql
         /// <summary>
         /// sql参数集合
         /// </summary>
-        public List<LambdaToSql.EntityModel.DataParameter> Parameters { get; set; }
+        public List<DataParameter> Parameters { get; set; }
 
         /// <summary>
         /// 带sql参数的构造函数
         /// </summary>
         /// <param name="parameters"></param>
-        public LambdaRouter(List<LambdaToSql.EntityModel.DataParameter> parameters = null)
+        public LambdaRouter(List<DataParameter> parameters = null)
         {
             this.Parameters = parameters;
             if (this.Parameters == null)
             {
-                this.Parameters = new List<LambdaToSql.EntityModel.DataParameter>();
+                this.Parameters = new List<DataParameter>();
             }
         }
 
@@ -41,7 +42,7 @@ namespace LambdaToSql
         /// <returns></returns>
         public string ExpressionRouter(Expression exp)
         {
-            var obj = new LambdaParser.ParserBuilder()
+            var obj = new ParserBuilder()
             {
                 ArgumentsStartIndex = this.Parameters.Count
             };
@@ -73,7 +74,7 @@ namespace LambdaToSql
                 }
                 else
                 {
-                    this.Parameters.Add(new LambdaToSql.EntityModel.DataParameter(item.Key.ToString(), item.Value));
+                    this.Parameters.Add(new DataParameter(item.Key.ToString(), item.Value));
                 }
             }
             return obj.Result;

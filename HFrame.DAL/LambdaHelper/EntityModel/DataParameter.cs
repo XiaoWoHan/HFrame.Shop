@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 
-namespace LambdaToSql.EntityModel
+namespace HFrame.DAL.Model
 {
     /// <summary>
     /// 参数化查询 最后转换成 对应的参数化参数

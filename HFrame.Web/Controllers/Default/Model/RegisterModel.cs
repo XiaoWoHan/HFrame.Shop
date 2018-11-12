@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace HFrame.Web.Default.Model
+namespace HFrame.Web.Model
 {
     /// <summary>
     /// 注册表单

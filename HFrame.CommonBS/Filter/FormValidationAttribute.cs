@@ -8,8 +8,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-
-namespace HFrame.CommonBS.Validation
+/// <summary>
+/// 表单验证过滤器
+/// </summary>
+namespace HFrame.CommonBS.Filter
 {
     public class FormValidationAttribute: ActionFilterAttribute
     {

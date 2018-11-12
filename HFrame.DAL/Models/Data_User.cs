@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HFrame.DAL
+namespace HFrame.DAL.Model
 {
     public class Data_User: DbBase<Data_User>
     {

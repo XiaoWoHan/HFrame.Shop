@@ -9,7 +9,7 @@ namespace HFrame.Web
         {
             filters.Add(new HandleErrorAttribute());
 
-            filters.Add(new CommonBS.Validation.FormValidationAttribute());
+            filters.Add(new CommonBS.Filter.FormValidationAttribute());
         }
     }
 }
