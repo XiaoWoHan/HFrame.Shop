@@ -73,7 +73,7 @@ namespace HFrame.CommonDal.Sql
                     {
                         conditionBuilder.Arguments[i] = ce.ToString();
                     }
-                }
+                }//TODO 测试bool其他数据库是否正确
                 else if (ce is ValueType)
                 {
                     conditionBuilder.Arguments[i] = ce.ToString();
