@@ -1,32 +1,18 @@
-﻿using HFrame.Common.Helper;
-using HFrame.Common.Model;
-using HFrame.Web.Model;
-using HFrame.Web.Service;
+﻿using HFrame.Common.Model;
+using HFrame.CommonBS.Model;
+using HFrame.CommonBS.Service;
 using System.Web.Mvc;
 
 namespace HFrame.Web.Controllers
 {
     public class DefaultController : Controller
     {
-        #region 公共方法
-        /// <summary>
-        /// 获取验证码图片
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult ValidateCodeImg()
-        {
-            var Code = ValidateCodeHelper.GetRandomCode(7);
-            ValidateCodeHelper.SetCodeString(Code);
-            return File(ValidateCodeHelper.GetVerifyCodeImg(Code), "image/Jpeg");
-        }
-        #endregion
-
         [HttpGet]
         public ActionResult Login() => View();
         public ActionResult Login(LoginModel Model)
         {
             var result = new ResultModel();
-            var Status = DefaultService.Login(result, Model);
+            var Status = LoginHelper.Login(result, Model);
             return Json(result);
         }
         [HttpGet]
@@ -35,7 +21,7 @@ namespace HFrame.Web.Controllers
         public ActionResult Register(RegisterModel Model)
         {
             var result = new ResultModel();
-            var Status = DefaultService.Register(result, Model);
+            var Status = RegisterHelper.Register(result, Model);
             return Json(result);
         }
     }

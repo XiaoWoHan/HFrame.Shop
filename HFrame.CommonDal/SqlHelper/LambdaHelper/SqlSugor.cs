@@ -58,9 +58,21 @@ namespace HFrame.CommonDal.Sql
                 {
                     conditionBuilder.Arguments[i] = string.Format("'{0}'", ce.ToString());
                 }
-                else if (ce is int || ce is long || ce is short || ce is decimal || ce is double || ce is float || ce is bool || ce is byte || ce is sbyte)
+                else if (ce is int || ce is long || ce is short || ce is decimal || ce is float || ce is double || ce is byte || ce is sbyte)
                 {
                     conditionBuilder.Arguments[i] = ce.ToString();
+                }
+                else if (ce is bool)
+                {
+
+                    if (databaseType.Equals(DataBaseType.SqlServer))
+                    {
+                        conditionBuilder.Arguments[i] = Convert.ToInt32(ce).ToString();///SQLSERVER是以0，1来做判断，其他数据库需要测试
+                    }
+                    else
+                    {
+                        conditionBuilder.Arguments[i] = ce.ToString();
+                    }
                 }
                 else if (ce is ValueType)
                 {

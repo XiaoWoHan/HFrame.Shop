@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace HFrame.Web.Model
+namespace HFrame.CommonBS.Model
 {
     /// <summary>
     /// 注册表单
@@ -17,11 +17,13 @@ namespace HFrame.Web.Model
         /// 用户名
         /// </summary>
         [Required(ErrorMessage ="请输入用户名")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "账户名必须大于3且不大于50个字符")]
         public string UserName { get; set; }
         /// <summary>
         /// 密码
         /// </summary>
         [Required(ErrorMessage = "请输入密码")]
+        [StringLength(32, MinimumLength = 3, ErrorMessage = "密码必须大于3且不大于32个字符")]
         public string Password { get; set; }
         /// <summary>
         /// 重复密码

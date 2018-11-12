@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HFrame.CommonBS", "HFrame.C
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HFrame.DB", "HFrame.DB\HFrame.DB.sqlproj", "{277A2FA9-3525-44B3-9E18-66856927C8D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HFrame.Common.Tests", "HFrame.Common.Tests\HFrame.Common.Tests.csproj", "{9AC5B0B8-9625-4F12-8378-A13DDC2B65A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HFrame.CommonBS.Tests", "HFrame.CommonBS.Tests\HFrame.CommonBS.Tests.csproj", "{C24EEB4B-8DC5-4EFB-8C15-2C7788E1A3F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,14 @@ Global
 		{277A2FA9-3525-44B3-9E18-66856927C8D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{277A2FA9-3525-44B3-9E18-66856927C8D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{277A2FA9-3525-44B3-9E18-66856927C8D3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9AC5B0B8-9625-4F12-8378-A13DDC2B65A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AC5B0B8-9625-4F12-8378-A13DDC2B65A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AC5B0B8-9625-4F12-8378-A13DDC2B65A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AC5B0B8-9625-4F12-8378-A13DDC2B65A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C24EEB4B-8DC5-4EFB-8C15-2C7788E1A3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C24EEB4B-8DC5-4EFB-8C15-2C7788E1A3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C24EEB4B-8DC5-4EFB-8C15-2C7788E1A3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C24EEB4B-8DC5-4EFB-8C15-2C7788E1A3F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

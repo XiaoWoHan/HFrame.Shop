@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace HFrame.Web.Model
+namespace HFrame.CommonBS.Model
 {
     public class LoginModel
     {
@@ -12,6 +12,7 @@ namespace HFrame.Web.Model
         /// 用户名
         /// </summary>
         [Required(ErrorMessage = "请输入用户名")]
+        [StringLength(50,MinimumLength =3,ErrorMessage ="用户名输入错误")]
         public string UserName { get; set; }
         /// <summary>
         /// 密码

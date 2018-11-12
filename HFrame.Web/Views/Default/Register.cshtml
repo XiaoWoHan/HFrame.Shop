@@ -40,7 +40,7 @@
                             @Html.TextBoxFor(m => m.VerisonCode, new { @class = "form-control", placeholder = "请输入验证码" })
                         </div>
                         <div class="col-sm-3" style="padding-left:0px;">
-                            <img border="0" style="cursor:pointer;" alt="点击刷新验证码" src="@Url.Action("ValidateCodeImg")">
+                            <img border="0" style="cursor:pointer;" alt="点击刷新验证码" src="@Url.Action("ValidateCodeImg","Common")">
                         </div>
                     </div>
                 </div>

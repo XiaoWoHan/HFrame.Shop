@@ -558,7 +558,11 @@ namespace HFrame.CommonDal.Sql
             this.Arguments = this.m_arguments.ToArray();
             this.Condition = this.m_conditionParts.Count > 0 ? this.m_conditionParts.Pop() : null;
         }
-
+        /// <summary>
+        /// 判断连接字符
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns></returns>
         protected override Expression VisitBinary(BinaryExpression b)
         {
             if (b == null) return b;
@@ -800,7 +804,8 @@ namespace HFrame.CommonDal.Sql
 
                 case "Equals":
                     // not in 或者  in 或 not like
-                    format = "({0} {1} )";
+                    format = "({0} = {1} )";
+                    //TODO 测试使用Equals或其他语句是否正确
                     break;
 
                 default:
