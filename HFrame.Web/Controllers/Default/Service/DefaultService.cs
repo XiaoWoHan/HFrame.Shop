@@ -57,12 +57,7 @@ namespace HFrame.Web.Service
         #region 登陆
         public static bool Login(ResultModel result, LoginModel Model)
         {
-#if DEBUG
-            var User = Data_User.Current.GetFirst();
-#else
-                var User = Data_User.Current.GetFirst(m => m.UserName == Model.UserName);
-#endif
-
+            var User = Data_User.Current.GetFirst(m => m.UserName == Model.UserName);
             var EncryptPass = EncryptionHelper.HMACSMD5Encrypt(Model.Password, User.OID, Encoding.ASCII);
             if (EncryptPass == User.Password)
             {

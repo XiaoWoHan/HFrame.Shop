@@ -53,6 +53,16 @@ namespace HFrame.CommonDal
             var SelectStr = GetTableSelectSql();
             return connection.Query<T>(SelectStr).ToList();
         }
+
+        /// <summary>
+        /// 获取所有
+        /// </summary>
+        /// <returns></returns>
+        public List<T> GetList(Expression<Func<T,bool>> where)
+        {
+            var SelectStr = GetTableSelectSql();
+            return connection.Query<T>(SelectStr).ToList();
+        }
         #endregion
 
         #region 添加

@@ -51,17 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SqlHelper\LambdaHelper\ExpressionVisitor35.cs" />
+    <Compile Include="SqlHelper\LambdaHelper\Model\DataBaseType.cs" />
+    <Compile Include="SqlHelper\LambdaHelper\SqlSugor.cs" />
     <Compile Include="Models\Data_User.cs" />
-    <Compile Include="DbBase\DbBase.cs" />
+    <Compile Include="SqlHelper\DbBase\DbBase.cs" />
     <Compile Include="SqlHelper\DBSqlHelper.cs" />
-    <Compile Include="DbBase\DBTablePropertie.cs" />
-    <Compile Include="LambdaHelper\EntityModel\DataParameter.cs" />
-    <Compile Include="LambdaHelper\ExpressionTypeCast.cs" />
-    <Compile Include="LambdaHelper\LambdaRouter.cs" />
-    <Compile Include="LambdaHelper\MsSqlHandle.cs" />
-    <Compile Include="LambdaHelper\Nominator.cs" />
-    <Compile Include="LambdaHelper\ParserBuilder.cs" />
-    <Compile Include="LambdaHelper\PartialEvaluator.cs" />
+    <Compile Include="SqlHelper\DbBase\DBTablePropertie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

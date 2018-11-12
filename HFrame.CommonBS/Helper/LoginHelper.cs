@@ -16,5 +16,6 @@ namespace HFrame.CommonBS.Helper
         public const string CookieName = "CurrentLogin";
         public static void SetLoginStatus(MemberModel Member) => CookieHelper.AddCookies(CookieName,Member.ToJson());
         public static MemberModel CurrentMember() => CookieHelper.GetCookies(CookieName)?.ParseJson<MemberModel>();
+        public 
     }///TODO 缺少加密解密操作 缺少登陆方法实现封装
 }

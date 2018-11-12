@@ -133,9 +133,7 @@ namespace HFrame.CommonDal.Sql
         {
             lock (_WhereSqlLocker)
             {
-                var itemLambda = new LambdaRouter();
-                var Str= itemLambda.ExpressionRouter(expression);
-                return Str;
+                return SqlSugor.GetWhereByLambda<T>(expression);
             }
         }
         #endregion
