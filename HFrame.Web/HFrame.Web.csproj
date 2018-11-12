@@ -158,10 +158,6 @@
     <Compile Include="Controllers\Default\Service\DefaultService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DataBase\HFrameDb.ldf">
-      <DependentUpon>HFrameDb.mdf</DependentUpon>
-    </Content>
-    <Content Include="App_Data\DataBase\HFrameDb.mdf" />
     <Content Include="Content\Image\login.jpg" />
     <Content Include="Content\Plugin\assets\css\material-dashboard-rtl.css" />
     <Content Include="Content\Plugin\assets\css\material-dashboard-rtl.min.css" />
@@ -316,6 +312,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
