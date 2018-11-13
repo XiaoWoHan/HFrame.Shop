@@ -14,64 +14,10 @@ namespace HFrame.CommonDal.Sql
     /// <typeparam name="T"></typeparam>
     public class DBSqlHelper<T>: DBTablePropertie<T> where T : class, new()
     {
-        #region 属性
-
-        #region SQL字段封装
-        private const string SELECT = " SELECT  ";
-        private const string FROM = "   FROM    ";
-        private const string WHERE = "  WHERE   ";
-
-        private const string INSERT = "   INSERT    INTO    ";
-        private const string VALUES = "   VALUES    ";
-
-        private const string DELETE = "   DELETE    ";
-
-        private const string UPDATE = "   UPDATE    ";
-        private const string SET = "   SET    ";
-        #endregion
-
-        #endregion
-
         #region 构造函数
         protected internal DBSqlHelper()
         {
 
-        }
-        #endregion
-
-        #region 查询操作
-        private static object _selectLocker = new object();
-        /// <summary>
-        /// 查询所有
-        /// </summary>
-        /// <returns></returns>
-        protected internal string GetTableSelectSql()
-        {
-            lock (_selectLocker)
-            {
-                StringBuilder SelectSql = new StringBuilder();
-                SelectSql.Append(SELECT);
-                SelectSql.Append(base.Columns);
-                SelectSql.Append(FROM);
-                SelectSql.Append(base.TableName);
-                return SelectSql.ToString();
-            }
-        }
-
-        private static object _whereSelectLocker = new object();
-        protected internal string GetTableWhereSelectSql(Expression<Func<T, bool>> expression)
-        {
-            lock (_whereSelectLocker)
-            {
-                StringBuilder SelectSql = new StringBuilder();
-                SelectSql.Append(SELECT);
-                SelectSql.Append(base.Columns);
-                SelectSql.Append(FROM);
-                SelectSql.Append(base.TableName);
-                SelectSql.Append(WHERE);
-                SelectSql.Append(GetTableWhereSql(expression));
-                return SelectSql.ToString();
-            }
         }
         #endregion
 
@@ -86,10 +32,10 @@ namespace HFrame.CommonDal.Sql
             lock (_InsertSqlLocker)
             {
                 StringBuilder InsertSql = new StringBuilder();
-                InsertSql.Append(INSERT);
+                InsertSql.Append(SqlModel.INSERT);
                 InsertSql.Append(base.TableName);
-                InsertSql.Append($" (   {base.Columns}  )    ");
-                InsertSql.Append(VALUES);
+                InsertSql.Append($" (   {base.TableColumnStr}  )    ");
+                InsertSql.Append(SqlModel.VALUES);
                 InsertSql.Append($" (   {base.Values}    )   ");
                 return InsertSql.ToString();
             }
@@ -103,8 +49,8 @@ namespace HFrame.CommonDal.Sql
             lock (_DeleteSqlLocker)
             {
                 var DeleteSqlBu = new StringBuilder();
-                DeleteSqlBu.Append(DELETE);
-                DeleteSqlBu.Append(FROM);
+                DeleteSqlBu.Append(SqlModel.DELETE);
+                DeleteSqlBu.Append(SqlModel.FROM);
                 DeleteSqlBu.Append(TableName);
                 return DeleteSqlBu.ToString();
             }
@@ -118,22 +64,11 @@ namespace HFrame.CommonDal.Sql
             lock (_UpdateSqlLocker)
             {
                 var UpdateSqlBu = new StringBuilder();
-                UpdateSqlBu.Append(UPDATE);
+                UpdateSqlBu.Append(SqlModel.UPDATE);
                 UpdateSqlBu.Append(TableName);
-                UpdateSqlBu.Append(SET);
+                UpdateSqlBu.Append(SqlModel.SET);
                 UpdateSqlBu.Append(ColumsAndValue);
                 return UpdateSqlBu.ToString();
-            }
-        }
-        #endregion
-
-        #region 查询条件
-        private static object _WhereSqlLocker = new object();
-        protected internal string GetTableWhereSql(Expression<Func<T, bool>> expression)
-        {
-            lock (_WhereSqlLocker)
-            {
-                return SqlSugor.GetWhereByLambda<T>(expression);
             }
         }
         #endregion

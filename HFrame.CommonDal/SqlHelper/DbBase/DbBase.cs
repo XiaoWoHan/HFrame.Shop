@@ -35,13 +35,21 @@ namespace HFrame.CommonDal
         /// <returns></returns>
         public T GetFirst()
         {
-            var SelectStr = GetTableSelectSql();
-            return connection.Query<T>(SelectStr).FirstOrDefault();
+            SelectSqlHelper<T> Select = new SelectSqlHelper<T>();
+            Select.SetTop(1);
+            return connection.Query<T>(Select.Sql).FirstOrDefault();
         }
-        public T GetFirst(Expression<Func<T,bool>> expression)
+        /// <summary>
+        /// 查询条件获取第一个
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public T GetFirst(Expression<Func<T,bool>> where)
         {
-            var SelectStr = GetTableWhereSelectSql(expression);
-            return connection.Query<T>(SelectStr).FirstOrDefault();
+            SelectSqlHelper<T> Select = new SelectSqlHelper<T>();
+            Select.SetTop(1);
+            Select.SetWhere(where);
+            return connection.Query<T>(Select.Sql).FirstOrDefault();
         }
 
         /// <summary>
@@ -50,19 +58,42 @@ namespace HFrame.CommonDal
         /// <returns></returns>
         public List<T> GetList()
         {
-            var SelectStr = GetTableSelectSql();
-            return connection.Query<T>(SelectStr).ToList();
+            SelectSqlHelper<T> Select = new SelectSqlHelper<T>();
+            return connection.Query<T>(Select.Sql).ToList();
         }
 
         /// <summary>
-        /// 获取所有
+        /// 查询条件获取所有
         /// </summary>
         /// <returns></returns>
         public List<T> GetList(Expression<Func<T,bool>> where)
         {
-            var SelectStr = GetTableSelectSql();
-            return connection.Query<T>(SelectStr).ToList();
+            SelectSqlHelper<T> Select = new SelectSqlHelper<T>();
+            Select.SetWhere(where);
+            return connection.Query<T>(Select.Sql).ToList();
         }
+
+        /// <summary>
+        /// 查询条件获取所有
+        /// </summary>
+        /// <returns></returns>
+        public List<T> GetList(Expression<Func<T, bool>> where,Expression<Func<T,object>> OrderBy,bool IsDesc=true)
+        {
+            SelectSqlHelper<T> Select = new SelectSqlHelper<T>();
+            Select.SetWhere(where);
+            Select.SetSorting(OrderBy, IsDesc);
+            return connection.Query<T>(Select.Sql).ToList();
+        }
+
+        /// <summary>
+        /// 查询条件获取所有
+        /// </summary>
+        /// <returns></returns>
+        //public List<T> GetList(object where)
+        //{
+        //    return connection.Query<T>(SelectStr, where).ToList();
+        //}
+        //TODO 根据Dapper语法写出查询
         #endregion
 
         #region 添加

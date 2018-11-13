@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HFrame.Common.Tests", "HFra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HFrame.CommonBS.Tests", "HFrame.CommonBS.Tests\HFrame.CommonBS.Tests.csproj", "{C24EEB4B-8DC5-4EFB-8C15-2C7788E1A3F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HFrame.CommonDal.Tests", "HFrame.CommonDal.Tests\HFrame.CommonDal.Tests.csproj", "{DB49BD50-0EBA-46AC-9C80-A74163F98720}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{C24EEB4B-8DC5-4EFB-8C15-2C7788E1A3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C24EEB4B-8DC5-4EFB-8C15-2C7788E1A3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C24EEB4B-8DC5-4EFB-8C15-2C7788E1A3F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB49BD50-0EBA-46AC-9C80-A74163F98720}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB49BD50-0EBA-46AC-9C80-A74163F98720}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB49BD50-0EBA-46AC-9C80-A74163F98720}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB49BD50-0EBA-46AC-9C80-A74163F98720}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

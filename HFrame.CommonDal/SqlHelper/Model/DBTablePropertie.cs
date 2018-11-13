@@ -31,7 +31,7 @@ namespace HFrame.CommonDal
         /// <summary>
         /// 所有字段名（以【,】分割）
         /// </summary>
-        protected internal string Columns => String.Join(",   ", ColumnsList);
+        protected internal string TableColumnStr => String.Join(",   ", ColumnsList);
         /// <summary>
         /// 实体类所有公共属性
         /// </summary>
