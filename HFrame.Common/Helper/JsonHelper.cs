@@ -50,7 +50,7 @@ namespace HFrame.Common.Helper
         /// </summary>
         /// <param name="JsonStr"></param>
         /// <returns></returns>
-        public static object ParsJson(this string JsonStr)
+        public static object ParseJson(this string JsonStr)
         {
             if (String.IsNullOrEmpty(JsonStr))
             {

@@ -28,14 +28,10 @@ namespace HFrame.Common.Cache
 
         public override object Get(string key)
         {
-            return Get<object>(key);
-        }
-
-        public override T Get<T>(string key)
-        {
             if (_cachemodel != null && Exists(key))
-                return _cachemodel[key] as T;
-            return default(T);
+                return _cachemodel[key];
+            else
+                return null;
         }
 
         public override bool Add(string key, object data)

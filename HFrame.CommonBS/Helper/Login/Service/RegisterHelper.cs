@@ -34,7 +34,7 @@ namespace HFrame.CommonBS.Service
                 result.ErrorMsg = $"注册失败 用户名已注册";
                 return false;
             }
-            var SameTelephone = Data_User.Current.GetFirst(m=>!m.IsDeleted&&m.Telephone.Equals(Model.Telephone));
+            var SameTelephone = Data_User.Current.GetFirst(m=>m.IsDeleted!=true&&m.Telephone.Equals(Model.Telephone));
 
             #region 注册方法
             var UserOID = Guid.NewGuid().ToString();
