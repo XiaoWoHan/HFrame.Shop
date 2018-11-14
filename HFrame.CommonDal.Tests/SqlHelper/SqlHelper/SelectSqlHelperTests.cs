@@ -10,7 +10,7 @@ using HFrame.CommonDal.Model;
 namespace HFrame.CommonDal.Sql.Tests
 {
     [TestClass()]
-    public class SelectSqlHelperTests
+    public class SelectSqlHelperTests:InsertSqlHelper<Data_User>
     {
         [TestMethod()]
         public void SelectSqlHelperTest1()
@@ -33,11 +33,7 @@ namespace HFrame.CommonDal.Sql.Tests
         [TestMethod()]
         public void AddSelectColumnTest2()
         {
-            SelectSqlHelper<Data_User> Item = new SelectSqlHelper<Data_User>();
-            Item.SetSelectColumn(m => m.IsDeleted);
-            Assert.IsNotNull(Item.Sql);
-            Item.SetSelectColumn(m => new { m.CreateTime, m.IsDeleted, m.Name });
-            Assert.IsNotNull(Item.Sql);
+            Assert.IsNotNull(this.Sql);
         }
 
         [TestMethod()]

@@ -2,7 +2,7 @@ common.Http = {
     ///内部参数
     _Data: {
         postlocker: false,//post锁
-        getlocker: false,
+        getlocker: false,//get锁
         ajaxlocker: false,//Ajax锁
     },
     ///发送post请求

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HFrame.CommonDal.Sql
 {
-    public class SelectSqlHelper<T>: DBTablePropertie<T> where T : class, new()
+    public class SelectSqlHelper<T>: DBSqlHelper<T> where T : class, new()
     {
         #region 属性
         /// <summary>
@@ -18,7 +18,7 @@ namespace HFrame.CommonDal.Sql
         /// <summary>
         /// Sql语句
         /// </summary>
-        public string Sql
+        protected internal override string Sql
         {
             get
             {
@@ -70,7 +70,7 @@ namespace HFrame.CommonDal.Sql
                     {
                         SELECTSql.Append(SqlModel.ORDERBY);
                         SELECTSql.Append(_SELECTSorting);
-                        SELECTSql.Append("  ");
+                        SELECTSql.Append("  ");//TODO   可以再次优化查询排序生成语句
                         SELECTSql.Append(_SELECTSortingType);
                     }
                     #endregion

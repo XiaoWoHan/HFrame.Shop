@@ -14,7 +14,7 @@ namespace HFrame.CommonDal
     /// 实体类基类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DbBase<T>:DBSqlHelper<T> where T : class, new()
+    public class DbBase<T> where T : class, new()
     {
         #region 属性
         private static IDbConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HFrameDB;Integrated Security=True;MultipleActiveResultSets=True");
@@ -24,6 +24,19 @@ namespace HFrame.CommonDal
         #region 构造函数
         public DbBase()
         {
+        }
+        #endregion
+
+        #region 内部方法
+        /// <summary>
+        /// 验证模型是否正确
+        /// </summary>
+        /// <returns></returns>
+        private bool IsValid()
+        {
+            ValidationContext context = new ValidationContext(this, null, null);
+            List<ValidationResult> results = new List<ValidationResult>();
+            return Validator.TryValidateObject(this, context, results, true);
         }
         #endregion
 
@@ -103,8 +116,15 @@ namespace HFrame.CommonDal
         /// <returns></returns>
         public bool Add()
         {
-            var InsertStr = GetTableInsertSql();
-            return connection.Execute(InsertStr)>0;
+            if (IsValid())
+            {
+                InsertSqlHelper<T> InsertModel = new InsertSqlHelper<T>();
+                return connection.Execute(InsertModel.Sql) > 0;
+            }
+            else
+            {
+                return false;
+            }
         }
         #endregion
 
@@ -113,8 +133,8 @@ namespace HFrame.CommonDal
         {
             if (IsValid())
             {
-                var InsertStr = GetTableUpDateSql();
-                return connection.Execute(InsertStr) > 0;
+                UpDateSqlHelper<T> UpDateModel = new UpDateSqlHelper<T>();
+                return connection.Execute(UpDateModel.Sql) > 0;
             }
             else
             {
@@ -126,19 +146,10 @@ namespace HFrame.CommonDal
         #region 删除
         public bool Deleted()
         {
-            var InsertStr = GetTableDeleteSql();
-            return connection.Execute(InsertStr) > 0;
+            DeleteSqlHelper<T> DeleteModel = new DeleteSqlHelper<T>();
+            return connection.Execute(DeleteModel.Sql) > 0;
         }
         #endregion
-        #endregion
-
-        #region 内部方法
-        private bool IsValid()
-        {
-            ValidationContext context = new ValidationContext(this, null, null);
-            List<ValidationResult> results = new List<ValidationResult>();
-            return Validator.TryValidateObject(this, context, results, true);
-        }
         #endregion
     }
 }
