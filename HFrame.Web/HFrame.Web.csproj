@@ -499,7 +499,7 @@
       <Project>{c025578c-464e-46e3-a0b7-fd3c85a8e77c}</Project>
       <Name>HFrame.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HFrame.DAL\HFrame.CommonDal.csproj">
+    <ProjectReference Include="..\HFrame.CommonDal\HFrame.CommonDal.csproj">
       <Project>{396dfa0b-a6ec-4e45-a833-bd47080810e5}</Project>
       <Name>HFrame.CommonDal</Name>
     </ProjectReference>
