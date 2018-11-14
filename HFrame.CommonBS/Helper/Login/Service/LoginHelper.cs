@@ -1,10 +1,10 @@
 ﻿using HFrame.Common.Helper;
 using HFrame.Common.Model;
-using HFrame.CommonBS.Helper;
+using HFrame.CommonBS.Cache;
 using HFrame.CommonBS.Model;
 using HFrame.CommonDal.Model;
 
-namespace HFrame.CommonBS.Service
+namespace HFrame.CommonBS.Helper
 {
     public class LoginHelper
     {

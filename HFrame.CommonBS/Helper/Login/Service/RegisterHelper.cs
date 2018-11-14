@@ -9,7 +9,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace HFrame.CommonBS.Service
+namespace HFrame.CommonBS.Helper
 {
     public class RegisterHelper
     {

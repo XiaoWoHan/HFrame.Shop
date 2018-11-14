@@ -1,4 +1,4 @@
-﻿using HFrame.CommonBS.Service;
+﻿using HFrame.CommonBS.Helper;
 using System.Web.Mvc;
 /// <summary>
 /// 登陆验证过滤器

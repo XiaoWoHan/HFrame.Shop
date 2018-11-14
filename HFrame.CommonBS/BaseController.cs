@@ -1,6 +1,6 @@
 ﻿using HFrame.Common.Model;
 using HFrame.CommonBS.Filter;
-using HFrame.CommonBS.Service;
+using HFrame.CommonBS.Helper;
 using System.Web.Mvc;
 /// <summary>
 /// 默认登陆后控制器

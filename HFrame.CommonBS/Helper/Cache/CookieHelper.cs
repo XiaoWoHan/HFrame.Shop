@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace HFrame.CommonBS.Helper
+namespace HFrame.CommonBS.Cache
 {
     /// <summary>
     /// Cookie帮助类
