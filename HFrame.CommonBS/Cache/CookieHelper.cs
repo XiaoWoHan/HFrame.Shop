@@ -49,6 +49,8 @@ namespace HFrame.CommonBS.Cache
 
         public override object Get(string key)
         {
+            if (String.IsNullOrEmpty(key)) return null;
+            if (!Exists(key)) return null;
             return HttpContext.Current.Request.Cookies[key].Value.ParseJson<object>();
         }
 

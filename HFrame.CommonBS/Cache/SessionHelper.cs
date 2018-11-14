@@ -23,12 +23,15 @@ namespace HFrame.CommonBS.Cache
 
         public override object Get(string key)
         {
+            if (String.IsNullOrEmpty(key)) return null;
             return HttpContext.Current.Session[key];
         }
 
         public override bool Remove(string key)
         {
-            HttpContext.Current.Session.Remove(key);
+            if (String.IsNullOrEmpty(key)) return false;
+            if (Exists(key))
+                HttpContext.Current.Session.Remove(key);
             return !Exists(key);
         }
         /// <summary>
@@ -46,8 +49,6 @@ namespace HFrame.CommonBS.Cache
         {
             HttpContext.Current.Session.Timeout = timeout;
         }
-
-
         /// <summary>
         /// 获取session超时时间
         /// </summary>

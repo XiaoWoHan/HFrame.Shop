@@ -80,7 +80,7 @@ namespace HFrame.Common.Cache
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public virtual T1 Get<T1>(string key) where T1 : class, new()
+        public virtual T1 Get<T1>(string key) where T1 : class
         {
             return Get(key) as T1;
         }

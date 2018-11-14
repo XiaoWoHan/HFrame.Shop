@@ -47,13 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Filter\CheckLoginAttribute.cs" />
-    <Compile Include="Helper\Cache\CookieHelper.cs" />
+    <Compile Include="Cache\CookieHelper.cs" />
     <Compile Include="BaseController.cs" />
     <Compile Include="Helper\Login\Model\LoginModel.cs" />
     <Compile Include="Helper\Login\Model\RegisterModel.cs" />
     <Compile Include="Helper\Login\Service\RegisterHelper.cs" />
     <Compile Include="Helper\Login\Service\LoginHelper.cs" />
-    <Compile Include="Helper\Cache\SessionHelper.cs" />
+    <Compile Include="Cache\SessionHelper.cs" />
     <Compile Include="Helper\ValidateCodeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Filter\FormValidationAttribute.cs" />

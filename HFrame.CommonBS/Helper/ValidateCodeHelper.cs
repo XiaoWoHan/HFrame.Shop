@@ -16,7 +16,7 @@ namespace HFrame.CommonBS.Helper
         #region 属性
         private const string CACHECODENAME = "LoginValidateCode";
 
-        public static string CurrentCodeString => SessionHelper.Current.Get(CACHECODENAME)?.ToString()?.ToLower();
+        public static string CurrentCodeString => SessionHelper.Current.Get<string>(CACHECODENAME)?.ToLower();
         public static bool SetCodeString(string Code) => SessionHelper.Current.Add(CACHECODENAME, Code);
         public static bool DeleteCodeString() => SessionHelper.Current.Remove(CACHECODENAME);
         #endregion
