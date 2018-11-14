@@ -42,23 +42,12 @@ namespace HFrame.Common.Cache
         /// <returns></returns>
         public override object Get(string key)
         {
-            return Get<object>(key);
-        }
-        /// <summary>
-        /// 获取对象
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public override T Get<T>(string key)
-        {
-            var value = default(T);///默认返回值
             var cacheValue = DataBase.StringGet(key);
             if (!cacheValue.IsNull && cacheValue.HasValue)
             {
-                value = JsonHelper.ParseJson<T>(cacheValue.ToString());
+                return JsonHelper.ParseJson(cacheValue.ToString());
             }
-            return value;
+            return null;
         }
         #endregion
 
@@ -118,27 +107,6 @@ namespace HFrame.Common.Cache
         public override bool Exists(string key)
         {
             return DataBase.KeyExists(key);
-        }
-        #endregion
-
-        #region 添加或更新
-        public override bool AddOrUpdate(string key, object data)
-        {
-            lock (_lockeder)
-            {
-                if (String.IsNullOrEmpty(key)) return false;
-                if (Exists(key))
-                {
-                    return Add(key, data);
-                }
-                else
-                {
-                    Remove(key);
-                    Add(key,data);
-                    return Exists(key);
-                }
-                    
-            }
         }
         #endregion
         #endregion

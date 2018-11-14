@@ -22,6 +22,7 @@ namespace HFrame.CommonBS.Model
         /// <summary>
         /// 验证码
         /// </summary>
+        [Required(ErrorMessage = "请输入验证码")]
         public string VerisonCode { get; set; }
     }
 }

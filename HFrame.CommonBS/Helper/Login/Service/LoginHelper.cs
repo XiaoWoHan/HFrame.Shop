@@ -1,10 +1,10 @@
 ﻿using HFrame.Common.Helper;
 using HFrame.Common.Model;
-using HFrame.CommonBS.Helper;
+using HFrame.CommonBS.Cache;
 using HFrame.CommonBS.Model;
 using HFrame.CommonDal.Model;
 
-namespace HFrame.CommonBS.Service
+namespace HFrame.CommonBS.Helper
 {
     public class LoginHelper
     {
@@ -16,12 +16,12 @@ namespace HFrame.CommonBS.Service
         /// 获取当前登陆状态
         /// </summary>
         /// <returns></returns>
-        public static MemberModel CurrentMember => CookieHelper.GetCookies(CookieName)?.ParseJson<MemberModel>();
+        protected internal static MemberModel CurrentMember => CookieHelper.Current.Get<MemberModel>(CookieName);
         /// <summary>
         /// 添加登陆状态
         /// </summary>
         /// <param name="Member"></param>
-        public static void SetLoginStatus(MemberModel Member) => CookieHelper.AddCookies(CookieName, Member.ToJson());
+        private static void SetLoginStatus(MemberModel Member) => CookieHelper.Current.Add(CookieName, Member.ToJson());
 
         #region 登陆
         public static bool Login(ResultModel result, LoginModel Model)
@@ -35,7 +35,7 @@ namespace HFrame.CommonBS.Service
             }
             //TODO 登陆失败次数限制
 
-            var User = Data_User.Current.GetFirst(m => m.UserName == Model.UserName && !m.IsDeleted);//根据用户名获取当前用户
+            var User = Data_User.Current.GetFirst(m => m.UserName == Model.UserName && m.IsDeleted!=true);//根据用户名获取当前用户
             if (User == null)
             {
                 result.ErrorCode = -1;

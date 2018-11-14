@@ -1,6 +1,6 @@
 ﻿using HFrame.Common.Model;
+using HFrame.CommonBS.Helper;
 using HFrame.CommonBS.Model;
-using HFrame.CommonBS.Service;
 using System.Web.Mvc;
 
 namespace HFrame.Web.Controllers

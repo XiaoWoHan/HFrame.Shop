@@ -36,23 +36,11 @@ namespace HFrame.Common.Cache
         /// <returns></returns>
         public abstract object Get(string key);
         /// <summary>
-        /// 获取对象
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public abstract T1 Get<T1>(string key) where T1:class,new();
-        /// <summary>
         /// 插入对象
         /// </summary>
         /// <param name="key"></param>
         /// <param name="data"></param>
         public abstract bool Add(string key, object data);
-        /// <summary>
-        /// 插入对象
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="data"></param>
-        public abstract bool AddOrUpdate(string key, object data);
         /// <summary>
         /// 删除对象
         /// </summary>
@@ -62,6 +50,40 @@ namespace HFrame.Common.Cache
         /// 判断key是否存在
         /// </summary>
         public abstract bool Exists(string key);
+        #endregion
+
+        #region 公共方法
+        /// <summary>
+        /// 更新对象
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="data"></param>
+        public virtual bool AddOrUpdate(string key, object data)
+        {
+            lock (_lockeder)
+            {
+                if (String.IsNullOrEmpty(key)) return false;
+                var HaveKey = this.Exists(key);
+                if (HaveKey)
+                {
+                    this.Remove(key);
+                    return this.Add(key, data);
+                }
+                else
+                {
+                    return this.Add(key, data);
+                }
+            }
+        }
+        /// <summary>
+        /// 获取对象
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public virtual T1 Get<T1>(string key) where T1 : class
+        {
+            return Get(key) as T1;
+        }
         #endregion
     }
 }

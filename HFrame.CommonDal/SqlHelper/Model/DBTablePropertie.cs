@@ -31,7 +31,7 @@ namespace HFrame.CommonDal
         /// <summary>
         /// 所有字段名（以【,】分割）
         /// </summary>
-        protected internal string Columns => String.Join(",   ", ColumnsList);
+        protected internal string TableColumnStr => String.Join(",   ", ColumnsList);
         /// <summary>
         /// 实体类所有公共属性
         /// </summary>
@@ -55,7 +55,7 @@ namespace HFrame.CommonDal
         /// <param name="entity">实体</param>
         /// <param name="propertyName">属性名称</param>
         /// <returns></returns>
-        private object GetPropertyValue(string propertyName)=> typeof(T).GetProperty(propertyName).GetValue(this);
+        private object GetPropertyValue(string propertyName)=> this.GetType().InvokeMember("Name", System.Reflection.BindingFlags.GetProperty, null, this, null) as string;
         /// <summary>
         /// 获取当前字段插入语句格式
         /// </summary>
