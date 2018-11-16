@@ -13,12 +13,12 @@ namespace HFrame.Web
                 "~/Content/Plugin/Jquery/jquery-{version}.js",
                 "~/Content/Plugin/popper/popper.js",
                 "~/Content/Plugin/Bootstrap/js/bootstrap.js",
+                "~/Content/Plugin/SeaJs/sea.js",
                 "~/Content/Plugin/HFrameJS/js/CommonJS.js"));
 
             bundles.Add(new StyleBundle("~/Css/Common").Include(
                 "~/Content/Plugin/HFrameJS/css/public.css",
-                "~/Content/Plugin/bootstrap/css/bootstrap.css",
-                "~/Content/Plugin/SeaJs/sea.js"
+                "~/Content/Plugin/bootstrap/css/bootstrap.css"
             ));
             #endregion
 
