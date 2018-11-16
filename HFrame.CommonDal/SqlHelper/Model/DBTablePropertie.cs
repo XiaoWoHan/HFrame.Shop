@@ -21,10 +21,6 @@ namespace HFrame.CommonDal
         /// </summary>
         protected internal string TableName => typeof(T).Name;
         /// <summary>
-        /// 实体类所有公共属性
-        /// </summary>
-        protected internal PropertyInfo[] PropInfo => typeof(T).GetProperties();
-        /// <summary>
         /// 字段名集合
         /// </summary>
         protected internal List<string> ColumnsList => PropInfo.Select(m => m.Name).ToList();
@@ -46,6 +42,12 @@ namespace HFrame.CommonDal
         protected internal string ColumsAndValue => String.Join("   ,", PropInfo.Select(m => $"   {m.Name}={FormatValue(m.GetValue(this))}"));
         #endregion
 
+        #region 私有属性
+        /// <summary>
+        /// 实体类所有公共属性
+        /// </summary>
+        private PropertyInfo[] PropInfo => typeof(T).GetProperties();
+        #endregion
         #endregion
 
         #region 内部方法

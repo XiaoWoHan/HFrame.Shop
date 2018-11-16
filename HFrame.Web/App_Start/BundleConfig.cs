@@ -8,38 +8,30 @@ namespace HFrame.Web
         // 有关捆绑的详细信息，请访问 https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            ///Js
-            
-            //common
+            #region 全局
             bundles.Add(new ScriptBundle("~/Js/Common").Include(
                 "~/Content/Plugin/Jquery/jquery-{version}.js",
                 "~/Content/Plugin/popper/popper.js",
                 "~/Content/Plugin/Bootstrap/js/bootstrap.js",
-                "~/Content/Plugin/HFrame/js/common.js"));
+                "~/Content/Plugin/HFrameJS/js/CommonJS.js"));
 
-            bundles.Add(new ScriptBundle("~/Js/Login").Include(
-                "~/Content/Plugin/Jquery/jquery-{version}.js",
-                "~/Content/Plugin/popper/popper.js",
-                "~/Content/Plugin/Bootstrap/js/bootstrap.js",
-                "~/Content/Plugin/bootstrap/js/bootstrap-material-design.min",
-                "~/Content/Plugin/HFrame/js/common.js"
-                ));
-            ///Css
-
-            bundles.Add(new StyleBundle("~/Css/Login").Include(
-                "~/Content/Plugin/HFrame/css/public.css",
-            "~/Content/Plugin/bootstrap/css/bootstrap.css"
-                ));
-
-            //Common
             bundles.Add(new StyleBundle("~/Css/Common").Include(
-            "~/Content/Plugin/HFrame/css/public.css",
-            "~/Content/Plugin/bootstrap/css/bootstrap.css",
-            //< !--Main CSS-- >
-            "~/Content/Plugin/assets/css/material-dashboard.css",
-            //< !--Fonts and icons-- >
-            "~/Content/Plugin/css/font-css.css"));
+                "~/Content/Plugin/HFrameJS/css/public.css",
+                "~/Content/Plugin/bootstrap/css/bootstrap.css",
+                "~/Content/Plugin/SeaJs/sea.js"
+            ));
+            #endregion
 
+            #region 管理界面引用
+            bundles.Add(
+                new ScriptBundle("~/Js/Main").Include()
+                
+                );
+
+            bundles.Add(new StyleBundle("~/Css/Main").Include(
+            "~/Content/Plugin/assets/css/material-dashboard.css",
+            "~/Content/Plugin/css/font-css.css"));
+            #endregion
             BundleTable.EnableOptimizations = true;
         }
     }

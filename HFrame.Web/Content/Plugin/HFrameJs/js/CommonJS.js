@@ -3,13 +3,12 @@ $(function() {
 })
 
 var common = {}
-
 common = {
-	_Data: {},
 	ready: function() {
 		common.importJs('/Content/Plugin/layer/layer.js'); //默认引入Layer
-		common.importJs('/Content/Plugin/HFrame/js/module/HttpHelper.js'); //默认引入Http模块
+		common.importJs('/Content/Plugin/HFrameJs/js/module/HttpHelper.js'); //默认引入Http模块
 		common.interceptform(); //默认拦截表单
+		console.log(common)
 	},
 	interceptform: function(callback) { //拦截表单
 		$(":submit").click(function(check) {

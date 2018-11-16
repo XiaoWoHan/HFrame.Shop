@@ -79,7 +79,7 @@ namespace HFrame.CommonDal.Sql
             }
         }
 
-        #region 隐藏属性
+        #region 私有属性
         private string _SELECTLimit;//查询限制 如 TOP...
         private string _SELECTFunction;//搜索函数
         private string _SELECTColumn;//搜索列名
