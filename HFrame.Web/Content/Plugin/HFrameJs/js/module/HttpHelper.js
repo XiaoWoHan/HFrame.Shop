@@ -67,6 +67,7 @@ function ajax(url, data, method, callback) {
 }
 
 define(function(require, exports) {
+	require("layer");
 	exports.get = get;
 	exports.post = post;
 	exports.ajax = ajax;
