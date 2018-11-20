@@ -6,28 +6,22 @@ using System.Threading.Tasks;
 
 namespace HFrame.CommonDal.Sql
 {
-    public class InsertSqlHelper<T>: DBSqlHelper<T> where T : class, new()
+    public class InsertSqlHelper: IDBSqlHelper
     {
         #region 插入操作
         private static object _InsertSqlLocker = new object();
-        /// <summary>
-        /// 插入数据
-        /// </summary>
-        /// <returns></returns>
-        protected internal override string Sql
+
+        public string GetSql<T>(DBTablePropertie<T> Entity) where T : class
         {
-            get
+            lock (_InsertSqlLocker)
             {
-                lock (_InsertSqlLocker)
-                {
-                    StringBuilder InsertSql = new StringBuilder();
-                    InsertSql.Append(SqlModel.INSERT);
-                    InsertSql.Append(base.TableName);
-                    InsertSql.Append($" (   {base.TableColumnStr}  )    ");
-                    InsertSql.Append(SqlModel.VALUES);
-                    InsertSql.Append($" (   {base.Values}    )   ");
-                    return InsertSql.ToString();
-                }
+                StringBuilder InsertSql = new StringBuilder();
+                InsertSql.Append(SqlModel.INSERT);
+                InsertSql.Append(Entity.TableName);
+                InsertSql.Append($" (   {String.Join("  , ", Entity.ColumnsList)}  )    ");
+                InsertSql.Append(SqlModel.VALUES);
+                InsertSql.Append($" (   {String.Join("  ,   ", Entity.Attributes.Values)}    )   ");
+                return InsertSql.ToString();
             }
         }
         #endregion

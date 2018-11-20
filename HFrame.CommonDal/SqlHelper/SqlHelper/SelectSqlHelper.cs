@@ -8,76 +8,13 @@ using System.Threading.Tasks;
 
 namespace HFrame.CommonDal.Sql
 {
-    public class SelectSqlHelper<T>: DBSqlHelper<T> where T : class, new()
+    public class SelectSqlHelper<T> :IDBSqlHelper
     {
         #region 属性
         /// <summary>
         /// Sql锁
         /// </summary>
         private static object _selectLocker = new object();
-        /// <summary>
-        /// Sql语句
-        /// </summary>
-        protected internal override string Sql
-        {
-            get
-            {
-                lock (_selectLocker)
-                {
-                    StringBuilder SELECTSql = new StringBuilder();
-
-                    #region 插入SELECT字段
-                    SELECTSql.Append(SqlModel.SELECT);
-                    #endregion
-
-                    #region 插入{TOP或其他}字段
-                    SELECTSql.Append(_SELECTLimit);
-                    #endregion
-
-                    #region 插入查询字段
-                    if (String.IsNullOrWhiteSpace(_SELECTColumn))
-                    {
-                        _SELECTColumn = TableColumnStr;
-                    }
-                    #region 添加函数
-                    if (!String.IsNullOrWhiteSpace(_SELECTFunction))
-                    {
-                        SELECTSql.Append(_SELECTFunction);
-                        _SELECTColumn = $"({_SELECTColumn})";
-                    }
-                    #endregion
-                    SELECTSql.Append(_SELECTColumn);
-                    #endregion
-
-                    #region 插入FROM
-                    SELECTSql.Append(SqlModel.FROM);
-                    SELECTSql.Append(TableName);
-                    #endregion
-
-                    #region 插入WHERE条件
-                    if (!String.IsNullOrEmpty(_SELECTWhere))
-                    {
-                        if (!_SELECTWhere.Trim().StartsWith(SqlModel.WHERE))
-                        {
-                            SELECTSql.Append(SqlModel.WHERE);
-                        }
-                        SELECTSql.Append(_SELECTWhere);
-                    }
-                    #endregion
-
-                    #region 插入排序
-                    if (!String.IsNullOrWhiteSpace(_SELECTSorting))
-                    {
-                        SELECTSql.Append(SqlModel.ORDERBY);
-                        SELECTSql.Append(_SELECTSorting);
-                        SELECTSql.Append("  ");//TODO   可以再次优化查询排序生成语句
-                        SELECTSql.Append(_SELECTSortingType);
-                    }
-                    #endregion
-                    return SELECTSql.ToString();
-                }
-            }
-        }
 
         #region 私有属性
         private string _SELECTLimit;//查询限制 如 TOP...
@@ -92,7 +29,6 @@ namespace HFrame.CommonDal.Sql
         #region 构造函数
         public SelectSqlHelper()
         {
-            _SELECTColumn = TableColumnStr;
         }
         #endregion
 
@@ -265,6 +201,66 @@ namespace HFrame.CommonDal.Sql
             var OrderByStr = LambdaHelper.GetPropertyNames(OrderBy);
             _SELECTSorting = String.Join("  ,   ",OrderByStr);
             _SELECTSortingType = ISDesc ? EnumSortingType.DESC : EnumSortingType.ASC;
+        }
+        #endregion
+
+        #region 公共方法
+        public string GetSql<T>(DBTablePropertie<T> Entity) where T : class
+        {
+            lock (_selectLocker)
+            {
+                StringBuilder SELECTSql = new StringBuilder();
+
+                #region 插入SELECT字段
+                SELECTSql.Append(SqlModel.SELECT);
+                #endregion
+
+                #region 插入{TOP或其他}字段
+                SELECTSql.Append(_SELECTLimit);
+                #endregion
+
+                #region 插入查询字段
+                if (String.IsNullOrWhiteSpace(_SELECTColumn))
+                {
+                    _SELECTColumn = String.Join("   ,   ", Entity.ColumnsList);
+                }
+                #region 添加函数
+                if (!String.IsNullOrWhiteSpace(_SELECTFunction))
+                {
+                    SELECTSql.Append(_SELECTFunction);
+                    _SELECTColumn = $"({_SELECTColumn})";
+                }
+                #endregion
+                SELECTSql.Append(_SELECTColumn);
+                #endregion
+
+                #region 插入FROM
+                SELECTSql.Append(SqlModel.FROM);
+                SELECTSql.Append(Entity.TableName);
+                #endregion
+
+                #region 插入WHERE条件
+                if (!String.IsNullOrEmpty(_SELECTWhere))
+                {
+                    if (!_SELECTWhere.Trim().StartsWith(SqlModel.WHERE))
+                    {
+                        SELECTSql.Append(SqlModel.WHERE);
+                    }
+                    SELECTSql.Append(_SELECTWhere);
+                }
+                #endregion
+
+                #region 插入排序
+                if (!String.IsNullOrWhiteSpace(_SELECTSorting))
+                {
+                    SELECTSql.Append(SqlModel.ORDERBY);
+                    SELECTSql.Append(_SELECTSorting);
+                    SELECTSql.Append("  ");//TODO   可以再次优化查询排序生成语句
+                    SELECTSql.Append(_SELECTSortingType);
+                }
+                #endregion
+                return SELECTSql.ToString();
+            }
         }
         #endregion
     }

@@ -11,11 +11,13 @@ namespace HFrame.CommonDal
     /// 当前类属性
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DBTablePropertie<T> where T : class, new()
+    public class DBTablePropertie<T> where T : class
     {
         #region 属性
-
-        #region 实体类属性
+        /// <summary>
+        /// 实体类所有公共属性
+        /// </summary>
+        private PropertyInfo[] PropInfo => typeof(T).GetProperties();
         /// <summary>
         /// 实体类名称（表名称）
         /// </summary>
@@ -25,29 +27,22 @@ namespace HFrame.CommonDal
         /// </summary>
         protected internal List<string> ColumnsList => PropInfo.Select(m => m.Name).ToList();
         /// <summary>
-        /// 所有字段名（以【,】分割）
+        /// 实体类所有属性
         /// </summary>
-        protected internal string TableColumnStr => String.Join(",   ", ColumnsList);
-        /// <summary>
-        /// 实体类所有公共属性
-        /// </summary>
-        protected internal List<object> ValueList => ColumnsList.Select(m=> GetPropertyValue(m)).ToList();
-        /// <summary>
-        /// 所有字段名（以【,】分割）
-        /// </summary>
-        protected internal string Values => String.Join(" ,", ValueList.Select(m => FormatValue(m)));
-        /// <summary>
-        /// 更新等号连接字段名和值
-        /// </summary>
-        protected internal string ColumsAndValue => String.Join("   ,", PropInfo.Select(m => $"   {m.Name}={FormatValue(m.GetValue(this))}"));
-        #endregion
-
-        #region 私有属性
-        /// <summary>
-        /// 实体类所有公共属性
-        /// </summary>
-        private PropertyInfo[] PropInfo => typeof(T).GetProperties();
-        #endregion
+        protected internal Dictionary<string,object> Attributes
+        {
+            get
+            {
+                var _Attributes = new Dictionary<string, object>();
+                foreach(var item in ColumnsList)
+                {
+                    var ItemValue = GetPropertyValue(item);
+                    var itemDBValue = FormatValue(ItemValue);
+                    _Attributes.Add(item, itemDBValue);
+                }
+                return _Attributes;
+            }
+        }
         #endregion
 
         #region 内部方法
@@ -57,13 +52,30 @@ namespace HFrame.CommonDal
         /// <param name="entity">实体</param>
         /// <param name="propertyName">属性名称</param>
         /// <returns></returns>
-        private object GetPropertyValue(string propertyName)=> this.GetType().InvokeMember("Name", System.Reflection.BindingFlags.GetProperty, null, this, null) as string;
+        private object GetPropertyValue(string propertyName)
+        {
+            try
+            {
+                var refVal= default(object);
+                var itemType = this.GetType();
+                var itemPrpoerty = itemType.GetProperty(propertyName);
+                if (itemPrpoerty != null)
+                {
+                    refVal = itemPrpoerty.GetValue(this);
+                }
+                return refVal;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         /// <summary>
         /// 获取当前字段插入语句格式
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        protected internal object FormatValue(object value)
+        private object FormatValue(object value)
         {
             if (value == null)
             {
@@ -116,7 +128,6 @@ namespace HFrame.CommonDal
             }
             return value;
         }
-
         #endregion
     }
 }

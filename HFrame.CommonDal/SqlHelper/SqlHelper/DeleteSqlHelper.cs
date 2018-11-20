@@ -6,22 +6,20 @@ using System.Threading.Tasks;
 
 namespace HFrame.CommonDal.Sql
 {
-    public class DeleteSqlHelper<T> : DBSqlHelper<T> where T : class, new()
+    public class DeleteSqlHelper :IDBSqlHelper
     {
         #region 删除操作
         private static object _DeleteSqlLocker = new object();
-        protected internal override string Sql
+
+        public string GetSql<T>(DBTablePropertie<T> Entity) where T : class
         {
-            get
+            lock (_DeleteSqlLocker)
             {
-                lock (_DeleteSqlLocker)
-                {
-                    var DeleteSqlBu = new StringBuilder();
-                    DeleteSqlBu.Append(SqlModel.DELETE);
-                    DeleteSqlBu.Append(SqlModel.FROM);
-                    DeleteSqlBu.Append(TableName);
-                    return DeleteSqlBu.ToString();
-                }
+                var DeleteSqlBu = new StringBuilder();
+                DeleteSqlBu.Append(SqlModel.DELETE);
+                DeleteSqlBu.Append(SqlModel.FROM);
+                DeleteSqlBu.Append(Entity.TableName);
+                return DeleteSqlBu.ToString();
             }
         }
         #endregion

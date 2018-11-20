@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace HFrame.CommonDal.Sql
 {
-    public class UpDateSqlHelper<T>: DBSqlHelper<T> where T : class, new()
+    public class UpDateSqlHelper : IDBSqlHelper
     {
         #region 更新操作
         private static object _UpdateSqlLocker = new object();
-        protected internal override string Sql
+
+        public string GetSql<T>(DBTablePropertie<T> Entity) where T : class
         {
-            get
+            lock (_UpdateSqlLocker)
             {
                 var UpdateSqlBu = new StringBuilder();
                 UpdateSqlBu.Append(SqlModel.UPDATE);
-                UpdateSqlBu.Append(TableName);
+                UpdateSqlBu.Append(Entity.TableName);
                 UpdateSqlBu.Append(SqlModel.SET);
-                UpdateSqlBu.Append(ColumsAndValue);
+                UpdateSqlBu.Append(Entity.Attributes.Select(m => $"{m.Key}  =   {m.Value}"));
                 return UpdateSqlBu.ToString();
             }
         }

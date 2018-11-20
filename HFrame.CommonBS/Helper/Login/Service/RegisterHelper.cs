@@ -35,6 +35,12 @@ namespace HFrame.CommonBS.Helper
                 return false;
             }
             var SameTelephone = Data_User.Current.GetFirst(m=>m.IsDeleted!=true&&m.Telephone.Equals(Model.Telephone));
+            if (SameTelephone != null)
+            {
+                result.ErrorCode = -1;
+                result.ErrorMsg = $"注册失败 手机号已注册";
+                return false;
+            }
 
             #region 注册方法
             var UserOID = Guid.NewGuid().ToString();

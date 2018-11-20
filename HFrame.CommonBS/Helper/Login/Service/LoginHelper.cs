@@ -21,7 +21,7 @@ namespace HFrame.CommonBS.Helper
         /// 添加登陆状态
         /// </summary>
         /// <param name="Member"></param>
-        private static void SetLoginStatus(MemberModel Member) => CookieHelper.Current.Add(CookieName, Member.ToJson());
+        private static void SetLoginStatus(MemberModel Member) => CookieHelper.Current.Add(CookieName, Member);
 
         #region 登陆
         public static bool Login(ResultModel result, LoginModel Model)

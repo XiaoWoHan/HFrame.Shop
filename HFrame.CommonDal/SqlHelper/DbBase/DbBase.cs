@@ -14,17 +14,11 @@ namespace HFrame.CommonDal
     /// 实体类基类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DbBase<T> where T : class, new()
+    public class DbBase<T> :DBTablePropertie<T> where T : class,new()
     {
         #region 属性
-        private static IDbConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HFrameDB;Integrated Security=True;MultipleActiveResultSets=True");
-        public static DbBase<T> Current = new DbBase<T>();
-        #endregion
-
-        #region 构造函数
-        public DbBase()
-        {
-        }
+        private static IDbConnection connection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=HFrameDB;Integrated Security=True;MultipleActiveResultSets=True");
+        public static T Current => new T();
         #endregion
 
         #region 内部方法
@@ -50,7 +44,7 @@ namespace HFrame.CommonDal
         {
             SelectSqlHelper<T> Select = new SelectSqlHelper<T>();
             Select.SetTop(1);
-            return connection.Query<T>(Select.Sql).FirstOrDefault();
+            return connection.Query<T>(Select.GetSql(this)).FirstOrDefault();
         }
         /// <summary>
         /// 查询条件获取第一个
@@ -62,7 +56,7 @@ namespace HFrame.CommonDal
             SelectSqlHelper<T> Select = new SelectSqlHelper<T>();
             Select.SetTop(1);
             Select.SetWhere(where);
-            return connection.Query<T>(Select.Sql).FirstOrDefault();
+            return connection.Query<T>(Select.GetSql(this)).FirstOrDefault();
         }
 
         /// <summary>
@@ -72,7 +66,7 @@ namespace HFrame.CommonDal
         public List<T> GetList()
         {
             SelectSqlHelper<T> Select = new SelectSqlHelper<T>();
-            return connection.Query<T>(Select.Sql).ToList();
+            return connection.Query<T>(Select.GetSql(this)).ToList();
         }
 
         /// <summary>
@@ -83,7 +77,7 @@ namespace HFrame.CommonDal
         {
             SelectSqlHelper<T> Select = new SelectSqlHelper<T>();
             Select.SetWhere(where);
-            return connection.Query<T>(Select.Sql).ToList();
+            return connection.Query<T>(Select.GetSql(this)).ToList();
         }
 
         /// <summary>
@@ -95,7 +89,7 @@ namespace HFrame.CommonDal
             SelectSqlHelper<T> Select = new SelectSqlHelper<T>();
             Select.SetWhere(where);
             Select.SetSorting(OrderBy, IsDesc);
-            return connection.Query<T>(Select.Sql).ToList();
+            return connection.Query<T>(Select.GetSql(this)).ToList();
         }
 
         /// <summary>
@@ -118,8 +112,8 @@ namespace HFrame.CommonDal
         {
             if (IsValid())
             {
-                InsertSqlHelper<T> InsertModel = new InsertSqlHelper<T>();
-                return connection.Execute(InsertModel.Sql) > 0;
+                InsertSqlHelper InsertModel = new InsertSqlHelper();
+                return connection.Execute(InsertModel.GetSql(this)) > 0;
             }
             else
             {
@@ -133,8 +127,8 @@ namespace HFrame.CommonDal
         {
             if (IsValid())
             {
-                UpDateSqlHelper<T> UpDateModel = new UpDateSqlHelper<T>();
-                return connection.Execute(UpDateModel.Sql) > 0;
+                UpDateSqlHelper UpDateModel = new UpDateSqlHelper();
+                return connection.Execute(UpDateModel.GetSql(this)) > 0;
             }
             else
             {
@@ -146,8 +140,8 @@ namespace HFrame.CommonDal
         #region 删除
         public bool Deleted()
         {
-            DeleteSqlHelper<T> DeleteModel = new DeleteSqlHelper<T>();
-            return connection.Execute(DeleteModel.Sql) > 0;
+            DeleteSqlHelper DeleteModel = new DeleteSqlHelper();
+            return connection.Execute(DeleteModel.GetSql(this)) > 0;
         }
         #endregion
         #endregion
