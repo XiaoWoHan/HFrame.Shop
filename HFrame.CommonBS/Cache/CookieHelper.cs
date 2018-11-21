@@ -53,7 +53,12 @@ namespace HFrame.CommonBS.Cache
             if (!Exists(key)) return null;
             return HttpContext.Current.Request.Cookies[key].Value.ParseJson<object>();
         }
-
+        public override T1 Get<T1>(string key)
+        {
+            if (String.IsNullOrEmpty(key)) return null;
+            if (!Exists(key)) return null;
+            return HttpContext.Current.Request.Cookies[key].Value.ParseJson<T1>();
+        }
         public override bool Remove(string key)
         {
             if (String.IsNullOrEmpty(key)) return false;

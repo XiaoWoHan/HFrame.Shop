@@ -37,7 +37,7 @@ namespace HFrame.Common.Helper
         /// <typeparam name="T"></typeparam>
         /// <param name="JsonStr"></param>
         /// <returns></returns>
-        public static T ParseJson<T>(this string JsonStr) where T : class, new()
+        public static T ParseJson<T>(this string JsonStr)
         {
             if (String.IsNullOrEmpty(JsonStr))
             {
