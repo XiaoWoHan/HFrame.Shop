@@ -23,14 +23,17 @@ namespace HFrame.Web
             #endregion
 
             #region 管理界面引用
-            bundles.Add(
-                new ScriptBundle("~/Js/Main").Include()
-                
-                );
+            bundles.Add(new ScriptBundle("~/Js/Main").Include(
+                "~/Content/Plugin/Jquery/jquery-{version}.js",
+                "~/Content/Plugin/popper/popper.js",
+                "~/Content/Plugin/Admin/Js/bootstrap-material-design.min.js",
+                "~/Content/Plugin/Admin/Js/perfect-scrollbar.jquery.min.js",
+                "~/Content/Plugin/Admin/Js/material-dashboard.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Css/Main").Include(
-            "~/Content/Plugin/assets/css/material-dashboard.css",
-            "~/Content/Plugin/css/font-css.css"));
+                "~/Content/Plugin/Admin/css/material-dashboard.css"
+                ));
             #endregion
             BundleTable.EnableOptimizations = true;
         }
