@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper\DbBase\DbBaseTests.cs" />
-    <Compile Include="SqlHelper\SqlHelper\SelectSqlHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -72,6 +71,9 @@
       <Project>{C025578C-464E-46E3-A0B7-FD3C85A8E77C}</Project>
       <Name>HFrame.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SqlHelper\SqlHelper\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
