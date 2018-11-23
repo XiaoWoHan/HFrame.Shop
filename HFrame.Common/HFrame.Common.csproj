@@ -85,7 +85,6 @@
     <Compile Include="Helper\EncryptionHelper.cs" />
     <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Helper\EventHelper.cs" />
-    <Compile Include="Helper\HttpHelper.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\LambdaHelper.cs" />

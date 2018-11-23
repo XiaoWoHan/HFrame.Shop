@@ -49,6 +49,8 @@
     <Compile Include="Filter\CheckLoginAttribute.cs" />
     <Compile Include="Cache\CookieHelper.cs" />
     <Compile Include="BaseController.cs" />
+    <Compile Include="Filter\ErrorAttribute.cs" />
+    <Compile Include="Helper\HttpHelper.cs" />
     <Compile Include="Helper\Login\Model\LoginModel.cs" />
     <Compile Include="Helper\Login\Model\RegisterModel.cs" />
     <Compile Include="Helper\Login\Service\RegisterHelper.cs" />
