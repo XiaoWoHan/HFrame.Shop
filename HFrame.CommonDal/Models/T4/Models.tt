@@ -1,0 +1,73 @@
+﻿<#@ template language="C#" debug="true" hostspecific="True" #>
+<#@ assembly name="System.Data" #> 
+<#@ assembly name="System.xml" #>
+<#@ assembly name="System.ComponentModel.DataAnnotations" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.ComponentModel.DataAnnotations" #>
+<#@include file="Model.ttinclude"#>  
+<# var manager = Manager.Create(Host, GenerationEnvironment); #>  
+<#@include file="SummaryHelper.ttinclude"#>  
+
+<#
+    string connectionString=@"Data Source=localhost\SQLEXPRESS;Initial Catalog=HFrameDB;Integrated Security=True;MultipleActiveResultSets=True";
+
+    SqlConnection conn = new SqlConnection(connectionString); 
+
+    conn.Open();
+
+    DataTable schema = conn.GetSchema("TABLES");
+
+    string strSql = "select * from @tableName";
+    SqlCommand command = new SqlCommand(strSql,conn);
+
+    SqlDataAdapter ad = new SqlDataAdapter(command);
+    
+    DataSet ds = new DataSet();        
+    
+    foreach(DataRow row in schema.Rows)
+    {  
+        var SummaryModel=new SummaryHelper(connectionString,row["TABLE_NAME"].ToString());
+#>
+
+<# manager.StartNewFile(row["TABLE_NAME"].ToString()+".cs"); #> 
+ using System;
+ using System.ComponentModel.DataAnnotations;
+/// <summary>
+/// 此模板为T4自动生成
+/// 生成时间为<#=DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")#>
+/// 请勿随意改动该模板
+/// </summary>
+namespace HFrame.CommonDal.Model
+{     
+    public class <#= row["TABLE_NAME"].ToString().Trim() #>:DbBase<<#= row["TABLE_NAME"].ToString().Trim() #>>                
+    {    
+         <#                
+           ds.Tables.Clear();
+    
+           command.CommandText = strSql.Replace("@tableName",row["TABLE_NAME"].ToString());
+    
+           ad.FillSchema(ds, SchemaType.Mapped, row["TABLE_NAME"].ToString());         
+        
+           foreach (DataColumn dc in ds.Tables[0].Columns)
+           {
+         #>
+
+        /// <summary>
+        /// <#=SummaryModel.GetSummary(dc.ColumnName)#>
+        /// </summary>
+<#if(!dc.AllowDBNull){#>
+        [Required(ErrorMessage="<#=SummaryModel.GetSummary(dc.ColumnName)#>不能为空")]
+<#}#>
+<#if(dc.DataType==typeof(String)){#>
+        [MaxLength(<#=dc.MaxLength#>, ErrorMessage = "<#=dc.ColumnName#>长度不得超过<#=dc.MaxLength#>")]
+<#}#>
+        <#=dc.AutoIncrement?"private":"public"#> <#=dc.DataType.Name #> <#= dc.ColumnName #> { get; <#=!dc.ReadOnly?"set;":String.Empty#> }
+        <#}#>         
+    }
+}
+<#} #>                
+<# conn.Close();#>
+<# manager.EndBlock(); #>  
+<# manager.Process(true); #>

@@ -32,6 +32,7 @@ namespace HFrame.Web
                 ));
 
             bundles.Add(new StyleBundle("~/Css/Main").Include(
+                "~/Content/Plugin/Admin/css/icon.css",
                 "~/Content/Plugin/Admin/css/material-dashboard.css"
                 ));
             #endregion

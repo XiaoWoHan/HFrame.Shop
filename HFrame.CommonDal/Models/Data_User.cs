@@ -1,31 +1,75 @@
-﻿using Dapper;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+ 
+ using System;
+ using System.ComponentModel.DataAnnotations;
+/// <summary>
+/// 此模板为T4自动生成
+/// 生成时间为2018-11-23 16:05:42
+/// 请勿随意改动该模板
+/// </summary>
 namespace HFrame.CommonDal.Model
-{
-    public class Data_User: DbBase<Data_User>
-    {
-        private int ID { get; set; }
-        [MaxLength(50,ErrorMessage ="字符串长度为0-50")]
-        public string OID { get; set; }
-        [MaxLength(500, ErrorMessage = "字符串长度为0-500")]
-        public string Name { get; set; }
-        [MaxLength(255, ErrorMessage = "字符串长度为0-255")]
-        public string UserName { get; set; }
-        [MaxLength(255, ErrorMessage = "字符串长度为0-255")]
-        public string Password { get; set; }
-        [Phone(ErrorMessage ="手机号格式不正确")]
-        [MaxLength(50, ErrorMessage = "字符串长度为0-50")]
-        public string Telephone { get; set; }
-        public bool IsDeleted { get; set; }
-        public bool IsLocked { get; set; }
+{     
+    public class Data_User:DbBase<Data_User>                
+    {    
+         
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessage="不能为空")]
+        private Int32 ID { get;  }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessage="不能为空")]
+        [MaxLength(50, ErrorMessage = "OID长度不得超过50")]
+        public String OID { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessage="不能为空")]
+        [MaxLength(500, ErrorMessage = "Name长度不得超过500")]
+        public String Name { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessage="不能为空")]
+        [MaxLength(255, ErrorMessage = "UserName长度不得超过255")]
+        public String UserName { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessage="不能为空")]
+        [MaxLength(255, ErrorMessage = "Password长度不得超过255")]
+        public String Password { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessage="不能为空")]
+        [MaxLength(50, ErrorMessage = "Telephone长度不得超过50")]
+        public String Telephone { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessage="不能为空")]
+        public Boolean IsDeleted { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessage="不能为空")]
+        public Boolean IsLocked { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required(ErrorMessage="不能为空")]
         public DateTime CreateTime { get; set; }
+                 
     }
 }
+                

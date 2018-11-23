@@ -148,6 +148,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Goods\Controllers\GoodsTypeController.cs" />
     <Compile Include="Areas\Goods\GoodsAreaRegistration.cs" />
+    <Compile Include="Areas\Goods\Models\UIGoodsType.cs" />
+    <Compile Include="Areas\Goods\Service\GoodsTypeService.cs" />
     <Compile Include="Controllers\Default\CommonController.cs" />
     <Compile Include="Controllers\Default\DefaultController.cs" />
     <Compile Include="Controllers\Main\MainController.cs" />
@@ -293,7 +295,6 @@
     <Content Include="Content\Plugin\layui\lay\modules\util.js" />
     <Content Include="Content\Plugin\popper\popper.js" />
     <Content Include="Content\Plugin\popper\popper.min.js" />
-    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -313,7 +314,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Goods\Models\" />
     <Folder Include="Areas\Goods\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -493,6 +493,7 @@
     <Content Include="Areas\Goods\Views\web.config" />
     <Content Include="Areas\Goods\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Goods\Views\GoodsType\List.cshtml" />
+    <Content Include="Areas\Goods\Views\GoodsType\Edit.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Default\Login.cshtml" />
     <Content Include="Views\Default\Register.cshtml" />
