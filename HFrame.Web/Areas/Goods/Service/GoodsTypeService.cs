@@ -32,6 +32,7 @@ namespace HFrame.Web.Areas.Goods.Service
         {
             var GoodsTypes = Data_GoodsType.Current.GetList();
             var UITypeList = GoodsTypes.Select(m => new UIGoodsType {
+                OID=m.OID,
                 GoodsType=m.TypeName,
                 CreateTime=m.CreateTime
             }).ToList();
@@ -39,26 +40,41 @@ namespace HFrame.Web.Areas.Goods.Service
         }
 
         /// <summary>
-        /// 查询分页商品类型
+        /// 更新/保存商品类型
         /// </summary>
         /// <returns></returns>
         public static bool SaveGoodsType(MemberModel result,UIGoodsType Model)
         {
             if (!String.IsNullOrEmpty(Model.OID))
             {
-                
+                var DbTypeModel = Data_GoodsType.Current.GetFirst(m=>m.OID.Equals(Model.OID));
+                if (DbTypeModel == null)
+                {
+                    result.ErrorCode = -1;
+                    result.ErrorMsg = "未找到商品类型";
+                    return false;
+                }
+                else
+                {
+                    DbTypeModel.TypeName = Model.GoodsType;
+                    DbTypeModel.Sort = Model.Sort;
+                    return DbTypeModel.Update(result);
+                }
             }
-            Data_GoodsType GoodsType = new Data_GoodsType
+            else
             {
-                OID = StringHelper.GuidStr,
-                TypeName = Model.GoodsType,
-                Sort = Model.Sort,
-                CreateTime = DateTime.Now,
-                CreateUserOID = result.MemberOID,
-                CreateUserName = result.MemberName,
-                ParentOID = ""
-            };
-            return GoodsType.Add(result);
+                Data_GoodsType GoodsType = new Data_GoodsType
+                {
+                    OID = StringHelper.GuidStr,
+                    TypeName = Model.GoodsType,
+                    Sort = Model.Sort,
+                    CreateTime = DateTime.Now,
+                    CreateUserOID = result.MemberOID,
+                    CreateUserName = result.MemberName,
+                    ParentOID = ""
+                };
+                return GoodsType.Add(result);
+            }
         }
     }
 }

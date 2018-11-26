@@ -28,6 +28,7 @@ namespace HFrame.Web.Areas.Goods.Controllers
         {
             var result = this.result;
             var Status = GoodsTypeService.SaveGoodsType(result,Model);
+            result.CallbackPage=Status?Url.Action("List"):String.Empty;
             return Json(result);
         }
     }

@@ -58,10 +58,10 @@ namespace HFrame.CommonDal.Model
         /// <#=SummaryModel.GetSummary(dc.ColumnName)#>
         /// </summary>
 <#if(!dc.AllowDBNull){#>
-        [Required(ErrorMessage="<#=SummaryModel.GetSummary(dc.ColumnName)#>不能为空")]
+        [Required(ErrorMessage="<#=String.IsNullOrEmpty(SummaryModel.GetSummary(dc.ColumnName))?dc.ColumnName:SummaryModel.GetSummary(dc.ColumnName)#>不能为空")]
 <#}#>
 <#if(dc.DataType==typeof(String)){#>
-        [MaxLength(<#=dc.MaxLength#>, ErrorMessage = "<#=dc.ColumnName#>长度不得超过<#=dc.MaxLength#>")]
+        [MaxLength(<#=dc.MaxLength#>, ErrorMessage = "<#=String.IsNullOrEmpty(SummaryModel.GetSummary(dc.ColumnName))?dc.ColumnName:SummaryModel.GetSummary(dc.ColumnName)#>长度不得超过<#=dc.MaxLength#>")]
 <#}#>
         <#=dc.AutoIncrement?"private":"public"#> <#=dc.DataType.Name #> <#= dc.ColumnName #> { get; <#=!dc.ReadOnly?"set;":String.Empty#> }
         <#}#>         

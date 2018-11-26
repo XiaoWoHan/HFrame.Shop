@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,10 @@ namespace HFrame.CommonDal
                 return _Attributes;
             }
         }
+        /// <summary>
+        /// 搜索条件
+        /// </summary>
+        protected internal string WHERE { get; set; }
         #endregion
 
         #region 内部方法

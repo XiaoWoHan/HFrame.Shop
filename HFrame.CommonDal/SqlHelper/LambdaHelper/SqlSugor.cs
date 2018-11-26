@@ -35,7 +35,14 @@ namespace HFrame.CommonDal.Sql
                 object ce = conditionBuilder.Arguments[i];
                 if (ce == null)
                 {
-                    conditionBuilder.Arguments[i] = DBNull.Value;
+                    if (databaseType == DataBaseType.SqlServer)
+                    {
+                        conditionBuilder.Arguments[i] = "N''";
+                    }
+                    else
+                    {
+                        conditionBuilder.Arguments[i] = DBNull.Value;
+                    }
                 }
                 else if (ce is string || ce is char)
                 {

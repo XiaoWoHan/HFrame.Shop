@@ -19,7 +19,7 @@ namespace HFrame.CommonDal.Sql
                 UpdateSqlBu.Append(SqlModel.UPDATE);
                 UpdateSqlBu.Append(Entity.TableName);
                 UpdateSqlBu.Append(SqlModel.SET);
-                UpdateSqlBu.Append(Entity.Attributes.Select(m => $"{m.Key}  =   {m.Value}"));
+                UpdateSqlBu.Append(String.Join("    ,   ", Entity.Attributes.Select(m => $"{m.Key.ToString()}  =   {m.Value.ToString()}")));
                 return UpdateSqlBu.ToString();
             }
         }
