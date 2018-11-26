@@ -9,11 +9,12 @@ define(function(require, exports) {
 
 //拦截表单
 function interceptform(HttpHelper) {
-	$(":submit").click(function(check) {
-		check.preventDefault(); //此处阻止提交表单
-		var d = $('form').serializeArray();
-		var u = $('form').attr("action");
-		var m = $('form').attr("method");
+	$("form").on("submit",function(event) {
+		event.preventDefault(); //此处阻止提交表单
+		let _Form=$(this);
+		let d = _Form.serializeArray();
+		let u = _Form.attr("action");
+		let m = _Form.attr("method");
 		HttpHelper.ajax(u, d, m, function(r) {
 			layer.msg(r.ErrorMsg, {
 				anim: 0

@@ -1,4 +1,6 @@
-﻿using HFrame.Web.Areas.Goods.Service;
+﻿using HFrame.CommonBS.Controllers;
+using HFrame.Web.Areas.Goods.Models;
+using HFrame.Web.Areas.Goods.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Web.Mvc;
 
 namespace HFrame.Web.Areas.Goods.Controllers
 {
-    public class GoodsTypeController : Controller
+    public class GoodsTypeController : BaseController
     {
         [HttpGet]
         public ActionResult List()
@@ -18,7 +20,15 @@ namespace HFrame.Web.Areas.Goods.Controllers
         [HttpGet]
         public ActionResult Edit(string OID=null)
         {
-            return View();
+            var Model = GoodsTypeService.GetPageGoodsType(OID);
+            return View(Model);
+        }
+        [HttpPost]
+        public ActionResult Save(UIGoodsType Model)
+        {
+            var result = this.result;
+            var Status = GoodsTypeService.SaveGoodsType(result,Model);
+            return Json(result);
         }
     }
 }

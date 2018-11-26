@@ -34,7 +34,6 @@ namespace HFrame.CommonDal.Model
         /// <summary>
         /// 父类标识
         /// </summary>
-        [Required(ErrorMessage="父类标识不能为空")]
         [MaxLength(50, ErrorMessage = "ParentOID长度不得超过50")]
         public String ParentOID { get; set; }
         

@@ -11,6 +11,20 @@ namespace HFrame.Web.Areas.Goods.Service
     public class GoodsTypeService
     {
         /// <summary>
+        /// 查询商品类型
+        /// </summary>
+        /// <returns></returns>
+        public static UIGoodsType GetPageGoodsType(string OID)
+        {
+            var GoodsTypes = Data_GoodsType.Current.GetFirst(m=>m.OID==OID);
+            var UIModel = new UIGoodsType {
+                OID=GoodsTypes?.OID,
+                GoodsType=GoodsTypes?.TypeName,
+                Sort=GoodsTypes?.Sort??default(int)
+            };
+            return UIModel;
+        }
+        /// <summary>
         /// 查询分页商品类型
         /// </summary>
         /// <returns></returns>
@@ -30,6 +44,10 @@ namespace HFrame.Web.Areas.Goods.Service
         /// <returns></returns>
         public static bool SaveGoodsType(MemberModel result,UIGoodsType Model)
         {
+            if (!String.IsNullOrEmpty(Model.OID))
+            {
+                
+            }
             Data_GoodsType GoodsType = new Data_GoodsType
             {
                 OID = StringHelper.GuidStr,
@@ -40,7 +58,7 @@ namespace HFrame.Web.Areas.Goods.Service
                 CreateUserName = result.MemberName,
                 ParentOID = ""
             };
-            return GoodsType.Add();
+            return GoodsType.Add(result);
         }
     }
 }

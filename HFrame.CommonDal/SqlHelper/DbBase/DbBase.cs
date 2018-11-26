@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using HFrame.Common.Model;
 using HFrame.CommonDal.Sql;
 using System;
 using System.Collections.Generic;
@@ -26,11 +27,17 @@ namespace HFrame.CommonDal
         /// 验证模型是否正确
         /// </summary>
         /// <returns></returns>
-        private bool IsValid()
+        private bool IsValid(ResultModel Msg)
         {
             ValidationContext context = new ValidationContext(this, null, null);
             List<ValidationResult> results = new List<ValidationResult>();
-            return Validator.TryValidateObject(this, context, results, true);
+            var FeedBack=Validator.TryValidateObject(this, context, results, true);
+            if (!FeedBack)
+            {
+                Msg.ErrorCode = -1;
+                Msg.ErrorMsg = results.FirstOrDefault()?.ErrorMessage;
+            }
+            return FeedBack;
         }
         #endregion
 
@@ -108,9 +115,9 @@ namespace HFrame.CommonDal
         /// 添加
         /// </summary>
         /// <returns></returns>
-        public bool Add()
+        public bool Add(ResultModel result)
         {
-            if (IsValid())
+            if (IsValid(result))
             {
                 InsertSqlHelper InsertModel = new InsertSqlHelper();
                 return connection.Execute(InsertModel.GetSql(this)) > 0;
@@ -123,9 +130,9 @@ namespace HFrame.CommonDal
         #endregion
 
         #region 更新
-        public bool Update()
+        public bool Update(ResultModel result)
         {
-            if (IsValid())
+            if (IsValid(result))
             {
                 UpDateSqlHelper UpDateModel = new UpDateSqlHelper();
                 return connection.Execute(UpDateModel.GetSql(this)) > 0;

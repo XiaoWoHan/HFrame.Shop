@@ -22,6 +22,10 @@ namespace HFrame.Web.Controllers
         {
             var result = new ResultModel();
             var Status = RegisterHelper.Register(result, Model);
+            if (Status)
+            {
+                result.CallbackPage = Url.Action("Login");
+            }
             return Json(result);
         }
     }

@@ -179,7 +179,7 @@ namespace HFrame.CommonDal.Sql
         }
         public void SetTop(int TopNum)
         {
-            _SELECTLimit = $"{SqlModel.TOP} {TopNum}";
+            _SELECTLimit = $"   {SqlModel.TOP} {TopNum}    ";
         }
         #endregion
 

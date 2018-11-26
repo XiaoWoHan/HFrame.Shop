@@ -1,4 +1,5 @@
-﻿<div class="content">
+﻿@model UIGoodsType
+<div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
@@ -8,12 +9,12 @@
                         <p class="card-category">Complete your profile</p>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="@Url.Action("Save","GoodsType")"method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">类型名称</label>
-                                        <input type="text" class="form-control">
+                                        @Html.TextBoxFor(m=>m.GoodsType,new { @class= "form-control" })
                                     </div>
                                 </div>
                             </div>
@@ -21,7 +22,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">类型排序</label>
-                                        <input type="text" class="form-control">
+                                        @Html.TextBoxFor(m => m.Sort, new { @class = "form-control" })
                                     </div>
                                 </div>
                             </div>

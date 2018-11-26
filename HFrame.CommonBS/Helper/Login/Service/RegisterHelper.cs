@@ -55,7 +55,7 @@ namespace HFrame.CommonBS.Helper
                 IsLocked = false,
                 CreateTime = DateTime.Now
             };
-            return UserModel.Add();
+            return UserModel.Add(result);
             #endregion
         }
         #endregion
