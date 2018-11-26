@@ -24,10 +24,6 @@ namespace HFrame.CommonDal.Tests
         [TestMethod()]
         public void AddTest()
         {
-            for (var i = 1; i <= 100; i++)
-            {
-                new Data_User() { Name = "132", CreateTime = DateTime.Now, IsDeleted = false, OID = StringHelper.GuidStr, IsLocked = false, Password = "a21d", Telephone = "35asd746a3", UserName = "?" }.Add();
-            }
         }
     }
 }
