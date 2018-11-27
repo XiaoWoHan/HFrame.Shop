@@ -18,6 +18,7 @@
                                 <thead class="text-primary">
                                     <tr>
                                         <th>商品类型名称</th>
+                                        <th>排序</th>
                                         <th>创造时间</th>
                                         <th>操作</th>
                                     </tr>
@@ -27,18 +28,21 @@
                                     {
                                         foreach (var item in Model)
                                         {
-                                            <tr>
-                                                <td>
-                                                    @item.GoodsType
-                                                </td>
-                                                <td>
-                                                    @item.CreateTime
-                                                </td>
-                                                <td>
-                                                    <a href="@Url.Action("Edit",new { OID=item.OID})" class="btn btn-primary pull-right">编辑</a>
-                                                    <a href="@Url.Action("Delete",new { OID=item.OID})" class="btn btn-danger pull-right delete">删除</a>
-                                                </td>
-                                            </tr>
+                                    <tr>
+                                        <td>
+                                            @item.GoodsType
+                                        </td>
+                                        <td>
+                                            @item.Sort
+                                        </td>
+                                        <td>
+                                            @item.CreateTime
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Edit",new { OID=item.OID})" class="btn btn-primary pull-right">编辑</a>
+                                            <a href="@Url.Action("Delete",new { OID=item.OID})" class="btn btn-danger pull-right delete">删除</a>
+                                        </td>
+                                    </tr>
                                         }
                                     }
                                 </tbody>
