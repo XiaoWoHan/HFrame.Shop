@@ -58,13 +58,13 @@
     <Compile Include="Models\Data_User.cs" />
     <Compile Include="SqlHelper\DbBase\DbBase.cs" />
     <Compile Include="SqlHelper\Helper\Interface\IDBSqlHelper.cs" />
-    <Compile Include="SqlHelper\Model\DBTablePropertie.cs" />
+    <Compile Include="SqlHelper\Helper\Model\DBTablePropertie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlHelper\Model\SqlModel.cs" />
-    <Compile Include="SqlHelper\Helper\DeleteSqlHelper.cs" />
-    <Compile Include="SqlHelper\Helper\InsertSqlHelper.cs" />
-    <Compile Include="SqlHelper\Helper\SelectSqlHelper.cs" />
-    <Compile Include="SqlHelper\Helper\UpDateSqlHelper.cs" />
+    <Compile Include="SqlHelper\Helper\Model\SqlModel.cs" />
+    <Compile Include="SqlHelper\Helper\Sql\DeleteSqlHelper.cs" />
+    <Compile Include="SqlHelper\Helper\Sql\InsertSqlHelper.cs" />
+    <Compile Include="SqlHelper\Helper\Sql\SelectSqlHelper.cs" />
+    <Compile Include="SqlHelper\Helper\Sql\UpDateSqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Models\T4\SummaryHelper.ttinclude">
