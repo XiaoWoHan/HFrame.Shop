@@ -119,7 +119,7 @@ namespace HFrame.CommonDal
         {
             if (IsValid(result))
             {
-                InsertSqlHelper InsertModel = new InsertSqlHelper();
+                InsertSqlHelper<T> InsertModel = new InsertSqlHelper<T>();
                 return connection.Execute(InsertModel.GetSql(this)) > 0;
             }
             else
@@ -134,7 +134,7 @@ namespace HFrame.CommonDal
         {
             if (IsValid(result))
             {
-                UpDateSqlHelper UpDateModel = new UpDateSqlHelper();
+                UpDateSqlHelper<T> UpDateModel = new UpDateSqlHelper<T>();
                 return connection.Execute(UpDateModel.GetSql(this)) > 0;
             }
             else
@@ -147,7 +147,7 @@ namespace HFrame.CommonDal
         #region 删除
         public bool Deleted()
         {
-            DeleteSqlHelper DeleteModel = new DeleteSqlHelper();
+            DeleteSqlHelper<T> DeleteModel = new DeleteSqlHelper<T>();
             return connection.Execute(DeleteModel.GetSql(this)) > 0;
         }
         #endregion

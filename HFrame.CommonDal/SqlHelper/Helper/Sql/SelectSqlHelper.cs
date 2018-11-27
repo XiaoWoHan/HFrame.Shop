@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace HFrame.CommonDal.Sql
 {
-    public class SelectSqlHelper<T> :IDBSqlHelper
+    public class SelectSqlHelper<T> :IDBSqlHelper<T>
+        where T:class
     {
         #region 属性
         /// <summary>
         /// Sql锁
         /// </summary>
-        private static object _selectLocker = new object();
+        private static readonly object _selectLocker = new object();
 
         #region 私有属性
         private string _SELECTLimit;//查询限制 如 TOP...
@@ -205,7 +206,7 @@ namespace HFrame.CommonDal.Sql
         #endregion
 
         #region 公共方法
-        public string GetSql<T>(DBTablePropertie<T> Entity) where T : class
+        public string GetSql(DBTablePropertie<T> Entity)
         {
             lock (_selectLocker)
             {

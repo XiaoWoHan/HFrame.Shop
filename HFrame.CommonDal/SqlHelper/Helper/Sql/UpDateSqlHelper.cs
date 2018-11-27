@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace HFrame.CommonDal.Sql
 {
-    public class UpDateSqlHelper : IDBSqlHelper
+    public class UpDateSqlHelper<T> : IDBSqlHelper<T>
+        where T:class
     {
         #region 更新操作
-        private static object _UpdateSqlLocker = new object();
+        private static readonly object _UpdateSqlLocker = new object();
 
-        public string GetSql<T>(DBTablePropertie<T> Entity) where T : class
+        public string GetSql(DBTablePropertie<T> Entity)
         {
+            if (String.IsNullOrEmpty(Entity.Key) || !Entity.Attributes.ContainsKey(Entity.Key))
+                throw new Exception("未找到主键");
+            if (Entity.Attributes[Entity.Key] == null)
+                throw new Exception("主键不可为空");
             lock (_UpdateSqlLocker)
             {
                 var UpdateSqlBu = new StringBuilder();

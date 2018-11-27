@@ -12,11 +12,12 @@ namespace HFrame.CommonDal.Sql
     /// SQL语句帮助类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IDBSqlHelper
+    public interface IDBSqlHelper<T>
+        where T:class
     {
         /// <summary>
         /// 执行的Sql语句
         /// </summary>
-        string GetSql<T>(DBTablePropertie<T> Entity)where T:class;
+        string GetSql(DBTablePropertie<T> Entity);
     }
 }

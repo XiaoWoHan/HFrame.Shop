@@ -37,7 +37,7 @@
 /// <summary>
 /// 此模板为T4自动生成
 /// 生成时间为<#=DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")#>
-/// 请勿随意改动该模板
+/// 请勿随意改动该模板 FROM HAN
 /// </summary>
 namespace HFrame.CommonDal.Model
 {     
@@ -57,6 +57,9 @@ namespace HFrame.CommonDal.Model
         /// <summary>
         /// <#=SummaryModel.GetSummary(dc.ColumnName)#>
         /// </summary>
+<#if(!dc.Unique){#>
+        [Key]
+<#}#>
 <#if(!dc.AllowDBNull){#>
         [Required(ErrorMessage="<#=String.IsNullOrEmpty(SummaryModel.GetSummary(dc.ColumnName))?dc.ColumnName:SummaryModel.GetSummary(dc.ColumnName)#>不能为空")]
 <#}#>
