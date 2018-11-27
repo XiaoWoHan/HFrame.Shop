@@ -14,6 +14,7 @@ namespace HFrame.CommonDal.Model
         /// <summary>
         /// 
         /// </summary>
+        [Key]
         [Required(ErrorMessage="不能为空")]
         private Int32 ID { get;  }
         

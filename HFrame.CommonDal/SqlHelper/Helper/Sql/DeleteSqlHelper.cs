@@ -9,7 +9,7 @@ namespace HFrame.CommonDal.Sql
     public class DeleteSqlHelper :IDBSqlHelper
     {
         #region 删除操作
-        private static object _DeleteSqlLocker = new object();
+        private static readonly object _DeleteSqlLocker = new object();
 
         public string GetSql<T>(DBTablePropertie<T> Entity) where T : class
         {
@@ -19,10 +19,13 @@ namespace HFrame.CommonDal.Sql
                 DeleteSqlBu.Append(SqlModel.DELETE);
                 DeleteSqlBu.Append(SqlModel.FROM);
                 DeleteSqlBu.Append(Entity.TableName);
+                DeleteSqlBu.Append(SqlModel.WHERE);
+                DeleteSqlBu.Append(Entity.Key);
+                DeleteSqlBu.Append("    =   ");
+                DeleteSqlBu.Append(Entity.Attributes[Entity.Key]);
                 return DeleteSqlBu.ToString();
             }
-        }
+        }//TODO 缺少WHERE组装判断
         #endregion
-        //TODO 缺少WHERE
     }
 }

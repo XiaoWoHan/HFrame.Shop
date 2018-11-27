@@ -16,10 +16,11 @@ namespace HFrame.CommonDal.Model
         /// </summary>
         [Required(ErrorMessage="不能为空")]
         private Int32 Id { get;  }
-        
+
         /// <summary>
         /// 类型标识
         /// </summary>
+        [Key]
         [Required(ErrorMessage="类型标识不能为空")]
         [MaxLength(50, ErrorMessage = "OID长度不得超过50")]
         public String OID { get; set; }

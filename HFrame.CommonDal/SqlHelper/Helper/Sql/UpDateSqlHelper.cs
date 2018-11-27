@@ -20,6 +20,11 @@ namespace HFrame.CommonDal.Sql
                 UpdateSqlBu.Append(Entity.TableName);
                 UpdateSqlBu.Append(SqlModel.SET);
                 UpdateSqlBu.Append(String.Join("    ,   ", Entity.Attributes.Select(m => $"{m.Key.ToString()}  =   {m.Value.ToString()}")));
+
+                UpdateSqlBu.Append(SqlModel.WHERE);
+                UpdateSqlBu.Append(Entity.Key);
+                UpdateSqlBu.Append("    =   ");
+                UpdateSqlBu.Append(Entity.Attributes[Entity.Key]);
                 return UpdateSqlBu.ToString();
             }
         }

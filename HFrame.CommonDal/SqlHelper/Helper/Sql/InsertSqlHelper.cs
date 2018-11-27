@@ -9,7 +9,7 @@ namespace HFrame.CommonDal.Sql
     public class InsertSqlHelper: IDBSqlHelper
     {
         #region 插入操作
-        private static object _InsertSqlLocker = new object();
+        private static readonly object _InsertSqlLocker = new object();
 
         public string GetSql<T>(DBTablePropertie<T> Entity) where T : class
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -42,6 +43,16 @@ namespace HFrame.CommonDal
                     _Attributes.Add(item, itemDBValue);
                 }
                 return _Attributes;
+            }
+        }
+        /// <summary>
+        /// 主键
+        /// </summary>
+        protected internal string Key
+        {
+            get
+            {
+                return PropInfo.Where(m => m.GetCustomAttributes(false).Any(x => x is KeyAttribute)).FirstOrDefault()?.Name;
             }
         }
         /// <summary>
