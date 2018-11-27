@@ -10,6 +10,8 @@ namespace HFrame.Web
             filters.Add(new HandleErrorAttribute());
             
             filters.Add(new CommonBS.Filter.FormValidationAttribute());
+
+            filters.Add(new CommonBS.Filter.ErrorAttribute());
         }
     }
 }

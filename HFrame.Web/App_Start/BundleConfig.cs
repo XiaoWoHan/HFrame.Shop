@@ -28,6 +28,7 @@ namespace HFrame.Web
                 "~/Content/Plugin/popper/popper.js",
                 "~/Content/Plugin/Admin/Js/bootstrap-material-design.min.js",
                 "~/Content/Plugin/Admin/Js/perfect-scrollbar.jquery.min.js",
+                "~/Content/Plugin/Admin/Js/bootstrap-notify.js",
                 "~/Content/Plugin/Admin/Js/material-dashboard.js",
                 "~/Content/Plugin/SeaJs/sea.js",
                 "~/Content/Plugin/HFrameJS/js/CommonJS.js"

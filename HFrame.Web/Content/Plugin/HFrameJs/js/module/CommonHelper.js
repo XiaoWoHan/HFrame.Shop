@@ -1,15 +1,17 @@
 define(function(require, exports) {
 	exports.ready = function() {
-		require.async(["HttpHelper", "layer"], function(HttpHelper) {
-			interceptform(HttpHelper);
-			interceptdelete(HttpHelper);
+		require.async(["HttpHelper", "MessageHelper"], function(HttpHelper,MessageHelper) {
+			interceptform(HttpHelper,MessageHelper);
+			interceptdelete(HttpHelper,MessageHelper);
+			MessageHelper.msg("1a3s5d43asd4");
 		}); //拦截表单
 	}
 	exports.IsNullOrEmpty = IsNullOrEmpty;
+	exports.getParam = getParam;
 });
 
 //拦截表单
-function interceptform(HttpHelper) {
+function interceptform(HttpHelper,MessageHelper) {
 	$("form").on("submit", function(event) {
 		event.preventDefault(); //此处阻止提交表单
 		let _Form = $(this);
@@ -17,9 +19,9 @@ function interceptform(HttpHelper) {
 		let u = _Form.attr("action");
 		let m = _Form.attr("method");
 		HttpHelper.ajax(u, d, m, function(r) {
-			layer.msg(r.ErrorMsg, {
+			MessageHelper.msg(r.ErrorMsg, {
 				anim: 0,
-				time:1000
+				time: 1000
 			}, function() {
 				if (r.ErrorCode == 0 && !IsNullOrEmpty(r.CallbackPage)) {
 					location.href = r.CallbackPage;
@@ -28,8 +30,8 @@ function interceptform(HttpHelper) {
 		});
 	});
 }
-
-function interceptdelete(HttpHelper) {
+//拦截删除按钮点击事件
+function interceptdelete(HttpHelper,MessageHelper) {
 	$(".delete").on("click", function(event) {
 		event.preventDefault(); //此处阻止提交表单
 		let _Item = $(this);
@@ -38,10 +40,11 @@ function interceptdelete(HttpHelper) {
 			if (r.ErrorCode == 0) {
 				$(_Item.parents("tr")).remove();
 			}
-			layer.msg(r.ErrorMsg);
+			MessageHelper.msg(r.ErrorMsg);
 		});
 	});
 }
+
 
 //判断字符是否为空的方法
 function IsNullOrEmpty(obj) {
@@ -53,13 +56,7 @@ function IsNullOrEmpty(obj) {
 		}
 	}
 }
-/** 
- * 获取指定的URL参数值 
- * URL:http://www.quwan.com/index?name=tyler 
- * 参数：paramName URL参数 
- * 调用方法:getParam("name") 
- * 返回值:tyler 
- */
+//获取指定的URL参数值
 function getParam(paramName) {
 	paramValue = "", isFound = !1;
 	if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {

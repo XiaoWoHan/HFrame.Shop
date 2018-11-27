@@ -9,12 +9,12 @@
                         <p class="card-category">用于首页筛选</p>
                     </div>
                     <div class="card-body">
-                        <form action="@Url.Action("Save","GoodsType")"method="post">
+                        <form action="@Url.Action("Save","GoodsType")" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">类型名称</label>
-                                        @Html.TextBoxFor(m=>m.GoodsType,new { @class= "form-control" })
+                                        @Html.TextBoxFor(m => m.GoodsType, new { @class = "form-control" })
                                     </div>
                                 </div>
                             </div>
@@ -26,9 +26,8 @@
                                     </div>
                                 </div>
                             </div>
-                            @Html.HiddenFor(m=>m.OID)
-                            <button type="submit" class="btn btn-primary pull-right">提交更改</button>
-                            <div class="clearfix"></div>
+                            @Html.HiddenFor(m => m.OID)
+                            <button type="submit" class="btn btn-primary pull-right">提交</button>
                         </form>
                     </div>
                 </div>
