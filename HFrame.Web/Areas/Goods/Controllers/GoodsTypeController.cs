@@ -31,5 +31,12 @@ namespace HFrame.Web.Areas.Goods.Controllers
             result.CallbackPage=Status?Url.Action("List"):String.Empty;
             return Json(result);
         }
+        [HttpPost]
+        public ActionResult Delete(string OID)
+        {
+            var result = this.result;
+            var Status = GoodsTypeService.DeleteGoodsType(result,OID);
+            return Json(result);
+        }
     }
 }

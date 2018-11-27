@@ -76,5 +76,29 @@ namespace HFrame.Web.Areas.Goods.Service
                 return GoodsType.Add(result);
             }
         }
+        /// <summary>
+        /// 删除商品类型
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="OID"></param>
+        /// <returns></returns>
+        public static bool DeleteGoodsType(MemberModel result, string OID)
+        {
+            if (String.IsNullOrEmpty(OID))
+            {
+                result.ErrorCode = -1;
+                result.ErrorMsg = "未找到商品类型";
+                return false;
+            }
+
+            var DbModel=Data_GoodsType.Current.GetFirst(m=>m.OID==OID);
+            if (DbModel == null)
+            {
+                result.ErrorCode = -1;
+                result.ErrorMsg = "未找到商品类型";
+                return false;
+            }
+            return DbModel.Delete();
+        }
     }
 }

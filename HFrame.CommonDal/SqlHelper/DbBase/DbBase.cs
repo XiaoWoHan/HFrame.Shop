@@ -145,7 +145,7 @@ namespace HFrame.CommonDal
         #endregion
 
         #region 删除
-        public bool Deleted()
+        public bool Delete()
         {
             DeleteSqlHelper<T> DeleteModel = new DeleteSqlHelper<T>();
             return connection.Execute(DeleteModel.GetSql(this)) > 0;

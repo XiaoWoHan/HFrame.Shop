@@ -52,27 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Data_GoodsType.cs" />
-    <Compile Include="Models\T4\Data_GoodsType.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\T4\Data_User.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\T4\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.ttinclude</DependentUpon>
-    </Compile>
-    <Compile Include="Models\T4\Models.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\T4\SummaryHelper.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SummaryHelper.ttinclude</DependentUpon>
-    </Compile>
     <Compile Include="SqlHelper\Helper\LambdaHelper\ExpressionVisitor35.cs" />
     <Compile Include="SqlHelper\Helper\LambdaHelper\Model\DataBaseType.cs" />
     <Compile Include="SqlHelper\Helper\LambdaHelper\SqlSugor.cs" />

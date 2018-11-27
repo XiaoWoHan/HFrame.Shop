@@ -9,7 +9,7 @@ var _Data = {
 function get(url, data, callback) {
 	if (!_Data.getlocker) {
 		_Data.getlocker = true;
-		$.get(url, data, function(r) {
+		ajax(url, data,'get', function(r) {
 			_Data.getlocker = false;
 			if (callback) {
 				callback(r);
@@ -24,7 +24,7 @@ function get(url, data, callback) {
 function post(url, data, callback) {
 	if (!_Data.postlocker) {
 		postlocker = true;
-		$.post(url, data, function(r) {
+		ajax(url, data,'post', function(r) {
 			_Data.postlocker = false;
 			if (callback) {
 				callback(r);
