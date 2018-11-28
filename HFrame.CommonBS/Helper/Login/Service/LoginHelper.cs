@@ -3,6 +3,7 @@ using HFrame.Common.Model;
 using HFrame.CommonBS.Cache;
 using HFrame.CommonBS.Model;
 using HFrame.CommonDal.Model;
+using System;
 
 namespace HFrame.CommonBS.Helper
 {
@@ -16,7 +17,12 @@ namespace HFrame.CommonBS.Helper
         /// 获取当前登陆状态
         /// </summary>
         /// <returns></returns>
-        protected internal static MemberModel CurrentMember => CookieHelper.Current.Get<MemberModel>(CookieName);
+        protected internal static MemberModel CurrentMember => CookieHelper.Current.Get<MemberModel>(CookieName)??new MemberModel();
+        /// <summary>
+        /// 获取当前登陆状态
+        /// </summary>
+        /// <returns></returns>
+        protected internal static bool IsLogin => LoginHelper.CurrentMember != null && !String.IsNullOrEmpty(LoginHelper.CurrentMember.MemberOID);
         /// <summary>
         /// 添加登陆状态
         /// </summary>
@@ -27,7 +33,7 @@ namespace HFrame.CommonBS.Helper
         public static bool Login(ResultModel result, LoginModel Model)
         {
             //TODO 验证当前是否允许登陆
-            if (CurrentMember != null)
+            if (IsLogin)
             {
                 result.ErrorCode = -1;
                 result.ErrorMsg = "您当前已登陆";

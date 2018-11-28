@@ -1,10 +1,10 @@
 ///内部参数
-var _Data = {
+let _Data = {
 	postlocker: false, //post锁
 	getlocker: false, //get锁
 	ajaxlocker: false, //Ajax锁
 };
-
+var Message,Load;
 ///发送get请求
 function get(url, data, callback) {
 	if (!_Data.getlocker) {
@@ -16,7 +16,7 @@ function get(url, data, callback) {
 			}
 		});
 	} else {
-		layer.msg("操作太快啦，稍后再试吧");
+		Message.warning("操作太快啦，稍后再试吧");
 	}
 }
 
@@ -31,13 +31,12 @@ function post(url, data, callback) {
 			}
 		});
 	} else {
-		layer.msg("操作太快啦，稍后再试吧");
+		Message.warning("操作太快啦，稍后再试吧");
 	}
 }
 
 ///发送Ajax请求
 function ajax(url, data, method, callback) {
-	var lod;
 	if (!_Data.ajaxlocker) {
 		$.ajax({
 			url: url,
@@ -46,28 +45,28 @@ function ajax(url, data, method, callback) {
 			async: true,
 			beforeSend: function() {
 				_Data.ajaxlocker = true;
-				lod = layer.load();
+				Load.load();
 			},
 			success: function(r) {
 				callback(r);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				layer.msg("请求出错");
+				Message.warning("请求出错");
 			},
 			complete: function() {
 				_Data.ajaxlocker = false;
-				layer.close(lod);
+				Load.close();
 			},
 			timeout: 20000
 		})
-
 	} else {
-		layer.msg("操作太快啦，稍后再试吧");
+		Message.warning("操作太快啦，稍后再试吧");
 	}
 }
 
 define(function(require, exports) {
-	require("layer");
+	Message=require("MessageHelper");
+	Load=require("LoadHelper");
 	exports.get = get;
 	exports.post = post;
 	exports.ajax = ajax;

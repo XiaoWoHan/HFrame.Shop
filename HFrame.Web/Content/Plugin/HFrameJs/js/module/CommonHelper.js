@@ -3,7 +3,6 @@ define(function(require, exports) {
 		require.async(["HttpHelper", "MessageHelper"], function(HttpHelper,MessageHelper) {
 			interceptform(HttpHelper,MessageHelper);
 			interceptdelete(HttpHelper,MessageHelper);
-			MessageHelper.msg("1a3s5d43asd4");
 		}); //拦截表单
 	}
 	exports.IsNullOrEmpty = IsNullOrEmpty;
@@ -19,10 +18,7 @@ function interceptform(HttpHelper,MessageHelper) {
 		let u = _Form.attr("action");
 		let m = _Form.attr("method");
 		HttpHelper.ajax(u, d, m, function(r) {
-			MessageHelper.msg(r.ErrorMsg, {
-				anim: 0,
-				time: 1000
-			}, function() {
+			MessageHelper.success(r.ErrorMsg, function() {
 				if (r.ErrorCode == 0 && !IsNullOrEmpty(r.CallbackPage)) {
 					location.href = r.CallbackPage;
 				}

@@ -1,4 +1,5 @@
 ﻿using HFrame.CommonBS.Helper;
+using System;
 using System.Web.Mvc;
 /// <summary>
 /// 登陆验证过滤器
@@ -12,7 +13,7 @@ namespace HFrame.CommonBS.Filter
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            if (LoginHelper.CurrentMember == null)
+            if (!LoginHelper.IsLogin)
             {
                 filterContext.HttpContext.Response.Redirect("/Default/Login");///跳转回登陆页面
             }
