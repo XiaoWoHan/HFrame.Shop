@@ -1,8 +1,8 @@
 define(function(require, exports) {
 	exports.ready = function() {
-		require.async(["HttpHelper", "MessageHelper"], function(HttpHelper,MessageHelper) {
-			interceptform(HttpHelper,MessageHelper);
-			interceptdelete(HttpHelper,MessageHelper);
+		require.async(["HttpHelper", "MessageHelper"], function(HttpHelper, MessageHelper) {
+			interceptform(HttpHelper, MessageHelper);
+			interceptdelete(HttpHelper, MessageHelper);
 		}); //拦截表单
 	}
 	exports.IsNullOrEmpty = IsNullOrEmpty;
@@ -10,7 +10,7 @@ define(function(require, exports) {
 });
 
 //拦截表单
-function interceptform(HttpHelper,MessageHelper) {
+function interceptform(HttpHelper, MessageHelper) {
 	$("form").on("submit", function(event) {
 		event.preventDefault(); //此处阻止提交表单
 		let _Form = $(this);
@@ -27,7 +27,7 @@ function interceptform(HttpHelper,MessageHelper) {
 	});
 }
 //拦截删除按钮点击事件
-function interceptdelete(HttpHelper,MessageHelper) {
+function interceptdelete(HttpHelper, MessageHelper) {
 	$(".delete").on("click", function(event) {
 		event.preventDefault(); //此处阻止提交表单
 		let _Item = $(this);
@@ -44,12 +44,10 @@ function interceptdelete(HttpHelper,MessageHelper) {
 
 //判断字符是否为空的方法
 function IsNullOrEmpty(obj) {
-	function isEmpty(obj) {
-		if (typeof obj == "undefined" || obj == null || obj == "") {
-			return true;
-		} else {
-			return false;
-		}
+	if (typeof obj == "undefined" || obj == null || obj == "") {
+		return true;
+	} else {
+		return false;
 	}
 }
 //获取指定的URL参数值

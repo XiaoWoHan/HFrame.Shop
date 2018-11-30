@@ -7,16 +7,31 @@ namespace HFrame.Web.Controllers
 {
     public class DefaultController : Controller
     {
+        #region 登陆
         [HttpGet]
         public ActionResult Login() => View();
+        /// <summary>
+        /// 提交登陆
+        /// </summary>
+        /// <param name="Model"></param>
+        /// <returns></returns>
+        [HttpPost]
         public ActionResult Login(LoginModel Model)
         {
             var result = new ResultModel();
             var Status = LoginHelper.Login(result, Model);
             return Json(result);
         }
+        #endregion
+
+        #region 注册
         [HttpGet]
         public ActionResult Register() => View();
+        /// <summary>
+        /// 提交注册
+        /// </summary>
+        /// <param name="Model"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Register(RegisterModel Model)
         {
@@ -28,5 +43,6 @@ namespace HFrame.Web.Controllers
             }
             return Json(result);
         }
+        #endregion
     }
 }
