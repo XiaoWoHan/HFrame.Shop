@@ -1,8 +1,10 @@
 define(function(require, exports) {
 	exports.ready = function() {
-		require.async(["HttpHelper", "MessageHelper"], function(HttpHelper, MessageHelper) {
+		require.async(["HttpHelper", "MessageHelper","AlertHelper"],
+		 function(HttpHelper, MessageHelper,AlertHelper) {
 			interceptform(HttpHelper, MessageHelper);
 			interceptdelete(HttpHelper, MessageHelper);
+			AlertHelper.msg();
 		}); //拦截表单
 	}
 	exports.IsNullOrEmpty = IsNullOrEmpty;

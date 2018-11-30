@@ -14,7 +14,7 @@ function load() {
 	$('#HFrameLoad').show();
 }
 define(function(require, exports) {
-	$('html').append(LoadHtml[0]);
+	$('body').append(LoadHtml[0]);
 	exports.close = close;
 	exports.load = load;
 });

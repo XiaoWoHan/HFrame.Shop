@@ -15,6 +15,7 @@ namespace HFrame.Web.Controllers
         /// 获取验证码图片
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public ActionResult ValidateCodeImg()
         {
             var Code = ValidateCodeHelper.GetRandomCode(7);
