@@ -1,0 +1,40 @@
+<div id="odiv" class="odiv">
+	<div id="sdiv" class="sdiv">
+		123
+	</div>
+</div>
+
+<script language="javascript">
+	window.onload = function() {
+		var odiv = document.getElementsByTagName('div');
+		for (var i = 0; i < odiv.length; i++) {
+			odiv[i].onmouseover = function() {
+				startOP(this, 100);
+			}
+			odiv[i].onmouseout = function() {
+				startOP(this, 30);
+			}
+			odiv[i].timer = null; //事先定义
+			odiv[i].alpha = null; //事先定义
+			//这里发现一个问题，对象的动画属性可以不定义，但是透明度属性必须定义，否则报错
+		}
+	}
+
+	function startOP(obj, utarget) {
+		clearInterval(obj.timer); //先关闭定时器
+		obj.timer = setInterval(function() {
+			var speed = 0;
+			if (obj.alpha > utarget) {
+				speed = -10;
+			} else {
+				speed = 10;
+			}
+			obj.alpha = obj.alpha + speed;
+			if (obj.alpha == utarget) {
+				clearInterval(obj.timer);
+			}
+			obj.style.filter = 'alpha(opacity:' + obj.alpha + ')'; //基于IE的
+			obj.style.opacity = parseInt(obj.alpha) / 100;
+		}, 30);
+	}
+</script>

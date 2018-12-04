@@ -1,10 +1,9 @@
 define(function(require, exports) {
 	exports.ready = function() {
-		require.async(["HttpHelper", "MessageHelper","AlertHelper"],
-		 function(HttpHelper, MessageHelper,AlertHelper) {
-			interceptform(HttpHelper, MessageHelper);
-			interceptdelete(HttpHelper, MessageHelper);
-			AlertHelper.msg();
+		require.async(["HttpHelper","AlertHelper"],
+		 function(HttpHelper, AlertHelper) {
+			interceptform(HttpHelper, AlertHelper);
+			interceptdelete(HttpHelper, AlertHelper);
 		}); //拦截表单
 	}
 	exports.IsNullOrEmpty = IsNullOrEmpty;
@@ -12,7 +11,7 @@ define(function(require, exports) {
 });
 
 //拦截表单
-function interceptform(HttpHelper, MessageHelper) {
+function interceptform(HttpHelper, AlertHelper) {
 	$("form").on("submit", function(event) {
 		event.preventDefault(); //此处阻止提交表单
 		let _Form = $(this);
@@ -20,7 +19,7 @@ function interceptform(HttpHelper, MessageHelper) {
 		let u = _Form.attr("action");
 		let m = _Form.attr("method");
 		HttpHelper.ajax(u, d, m, function(r) {
-			MessageHelper.success(r.ErrorMsg, function() {
+			AlertHelper.msg(r.ErrorMsg, function() {
 				if (r.ErrorCode == 0 && !IsNullOrEmpty(r.CallbackPage)) {
 					location.href = r.CallbackPage;
 				}
@@ -29,7 +28,7 @@ function interceptform(HttpHelper, MessageHelper) {
 	});
 }
 //拦截删除按钮点击事件
-function interceptdelete(HttpHelper, MessageHelper) {
+function interceptdelete(HttpHelper, AlertHelper) {
 	$(".delete").on("click", function(event) {
 		event.preventDefault(); //此处阻止提交表单
 		let _Item = $(this);
@@ -38,7 +37,7 @@ function interceptdelete(HttpHelper, MessageHelper) {
 			if (r.ErrorCode == 0) {
 				$(_Item.parents("tr")).remove();
 			}
-			MessageHelper.msg(r.ErrorMsg);
+			AlertHelper.msg(r.ErrorMsg);
 		});
 	});
 }
@@ -62,3 +61,11 @@ function getParam(paramName) {
 	}
 	return paramValue == "" && (paramValue = null), paramValue
 }
+//占位符
+String.prototype.Format=function()
+{
+  if(arguments.length==0) return this;
+  for(var s=this, i=0; i<arguments.length; i++)
+    s=s.replace(new RegExp("\\{"+i+"\\}","g"), arguments[i]);
+  return s;
+};

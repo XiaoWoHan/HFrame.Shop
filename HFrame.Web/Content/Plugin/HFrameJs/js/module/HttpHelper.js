@@ -16,7 +16,7 @@ function get(url, data, callback) {
 			}
 		});
 	} else {
-		Message.warning("操作太快啦，稍后再试吧");
+		Message.msg("操作太快啦，稍后再试吧");
 	}
 }
 
@@ -31,7 +31,7 @@ function post(url, data, callback) {
 			}
 		});
 	} else {
-		Message.warning("操作太快啦，稍后再试吧");
+		Message.msg("操作太快啦，稍后再试吧");
 	}
 }
 
@@ -51,7 +51,7 @@ function ajax(url, data, method, callback) {
 				callback(r);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				Message.warning("请求出错");
+				Message.msg("请求出错");
 			},
 			complete: function() {
 				_Data.ajaxlocker = false;
@@ -60,12 +60,12 @@ function ajax(url, data, method, callback) {
 			timeout: 20000
 		})
 	} else {
-		Message.warning("操作太快啦，稍后再试吧");
+		Message.msg("操作太快啦，稍后再试吧");
 	}
 }
 
 define(function(require, exports) {
-	Message=require("MessageHelper");
+	Message=require("AlertHelper");
 	Load=require("LoadHelper");
 	exports.get = get;
 	exports.post = post;

@@ -1,8 +1,5 @@
 seajs.config({  
-    base: '/Content/Plugin/HFrameJs/js/module/',  
-    alias: {
-		"notify":"/Content/Plugin/Admin/Js/bootstrap-notify.js"
-    },  
+    base: '/Content/Plugin/HFrameJs/js/module/',
     charset: 'utf-8',  
     timeout: 20000,  
     debug: false  
