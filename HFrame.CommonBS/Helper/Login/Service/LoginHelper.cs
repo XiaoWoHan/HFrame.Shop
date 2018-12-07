@@ -35,8 +35,9 @@ namespace HFrame.CommonBS.Helper
             //TODO 验证当前是否允许登陆
             if (IsLogin)
             {
-                result.ErrorCode = -1;
+                result.ErrorCode = 0;
                 result.ErrorMsg = "您当前已登陆";
+                result.CallbackPage = "Default";
                 return false;
             }
             //TODO 登陆失败次数限制

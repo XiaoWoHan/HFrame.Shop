@@ -10,6 +10,10 @@ namespace HFrame.Common.Helper
 {
     public class ImageHelper
     {
+        /// <summary>
+        /// 渐进式加载
+        /// </summary>
+        /// <param name="File"></param>
         public static void ConvertTypeToJPEG(string File)
         {
             using (Image source = Image.FromFile(File))

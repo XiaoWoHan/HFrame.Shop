@@ -1,4 +1,6 @@
-﻿using HFrame.CommonBS.Helper;
+﻿using HFrame.Common.Helper;
+using HFrame.Common.Model;
+using HFrame.CommonBS.Helper;
 using System;
 using System.Web.Mvc;
 /// <summary>
@@ -15,7 +17,15 @@ namespace HFrame.CommonBS.Filter
         {
             if (!LoginHelper.IsLogin)
             {
-                filterContext.HttpContext.Response.Redirect("/Default/Login");///跳转回登陆页面
+                if (HttpHelper.IsAjax)
+                {
+                    var Result = new ResultModel { ErrorMsg = "请登录后操作", ErrorCode = -2 };//重定向页面
+                    filterContext.Result = new JsonResult { Data = Result };
+                }
+                else
+                {
+                    filterContext.HttpContext.Response.Redirect("/Login");///跳转回登陆页面
+                }
             }
         }
     }//TODO 缺少加解密

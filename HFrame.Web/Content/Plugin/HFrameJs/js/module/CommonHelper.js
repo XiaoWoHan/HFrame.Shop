@@ -1,10 +1,11 @@
 define(function(require, exports) {
 	exports.ready = function() {
-		require.async(["HttpHelper","AlertHelper"],
-		 function(HttpHelper, AlertHelper) {
-			interceptform(HttpHelper, AlertHelper);
-			interceptdelete(HttpHelper, AlertHelper);
-		}); //拦截表单
+		require.async(["HttpHelper", "AlertHelper"],
+			function(HttpHelper, AlertHelper) {
+				interceptform(HttpHelper, AlertHelper);
+				interceptdelete(HttpHelper, AlertHelper);
+				AlertHelper.alert("删除提醒!","确认要删除么？",["确认","取消"],[function(){alert(1)}]);
+			}); //拦截表单
 	}
 	exports.IsNullOrEmpty = IsNullOrEmpty;
 	exports.getParam = getParam;
@@ -19,7 +20,10 @@ function interceptform(HttpHelper, AlertHelper) {
 		let u = _Form.attr("action");
 		let m = _Form.attr("method");
 		HttpHelper.ajax(u, d, m, function(r) {
-			AlertHelper.msg(r.ErrorMsg, function() {
+			AlertHelper.msg(r.ErrorMsg,1000, function() {
+				if (r.ErrorCode == -2) {
+					location.href = "/Login";
+				}
 				if (r.ErrorCode == 0 && !IsNullOrEmpty(r.CallbackPage)) {
 					location.href = r.CallbackPage;
 				}
@@ -31,6 +35,9 @@ function interceptform(HttpHelper, AlertHelper) {
 function interceptdelete(HttpHelper, AlertHelper) {
 	$(".delete").on("click", function(event) {
 		event.preventDefault(); //此处阻止提交表单
+		
+		AlertHelper.alert("删除提醒!","确认要删除么？",[function(){}]);
+		
 		let _Item = $(this);
 		let u = _Item.attr("href");
 		HttpHelper.post(u, {}, function(r) {
@@ -39,9 +46,9 @@ function interceptdelete(HttpHelper, AlertHelper) {
 			}
 			AlertHelper.msg(r.ErrorMsg);
 		});
+		
 	});
 }
-
 
 //判断字符是否为空的方法
 function IsNullOrEmpty(obj) {
@@ -51,6 +58,7 @@ function IsNullOrEmpty(obj) {
 		return false;
 	}
 }
+
 //获取指定的URL参数值
 function getParam(paramName) {
 	paramValue = "", isFound = !1;
@@ -61,11 +69,11 @@ function getParam(paramName) {
 	}
 	return paramValue == "" && (paramValue = null), paramValue
 }
+
 //占位符
-String.prototype.Format=function()
-{
-  if(arguments.length==0) return this;
-  for(var s=this, i=0; i<arguments.length; i++)
-    s=s.replace(new RegExp("\\{"+i+"\\}","g"), arguments[i]);
-  return s;
+String.prototype.Format = function() {
+	if (arguments.length == 0) return this;
+	for (var s = this, i = 0; i < arguments.length; i++)
+		s = s.replace(new RegExp("\\{" + i + "\\}", "g"), arguments[i]);
+	return s;
 };
