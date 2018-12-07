@@ -28,6 +28,11 @@ namespace HFrame.CommonBS.Helper
         /// </summary>
         /// <param name="Member"></param>
         private static void SetLoginStatus(MemberModel Member) => CookieHelper.Current.Add(CookieName, Member);
+        /// <summary>
+        /// 删除登陆状态
+        /// </summary>
+        /// <param name="Member"></param>
+        private static void RemoveLoginStatus() => CookieHelper.Current.Remove(CookieName);
 
         #region 登陆
         public static bool Login(ResultModel result, LoginModel Model)
@@ -37,7 +42,7 @@ namespace HFrame.CommonBS.Helper
             {
                 result.ErrorCode = 0;
                 result.ErrorMsg = "您当前已登陆";
-                result.CallbackPage = "Default";
+                result.CallbackPage = "Main";
                 return false;
             }
             //TODO 登陆失败次数限制
@@ -81,6 +86,19 @@ namespace HFrame.CommonBS.Helper
             #endregion
 
         }//UNDONE （未添加当前登陆状态验证，存储登陆状态）
+        #endregion
+
+        #region 退出
+        public static bool Logout(ResultModel result)
+        {
+            if (IsLogin)
+                RemoveLoginStatus();
+
+            result.ErrorCode = 0;
+            result.ErrorMsg = "退出成功";
+            result.CallbackPage = "/Login";
+            return true;
+        }
         #endregion
     }
 }

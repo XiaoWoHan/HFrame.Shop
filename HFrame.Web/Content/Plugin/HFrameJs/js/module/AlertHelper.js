@@ -22,12 +22,13 @@ MsgStyle[1] =
 	background: white;
 	width: 400px;
 	min-height: 200px;
-	margin: auto;
 	box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.4);
 	box-sizing: border-box;
 	z-index: 19999;
 	top: 50%;
-	left: 40%;`;
+	left: 50%;
+	margin-left:-200px;
+	margin-top:-100px;`;
 
 //渐显
 function ShowGradually(obj, time, callback) {
@@ -69,12 +70,12 @@ function msg(message = '', time = 1000, callback) {
 	ShowGradually(document.getElementById("HFrameMsg"), time, callback);
 }
 //弹窗
-function alert(setting, ...btnclick) {
+function alert(setting={}, ...btnclick) {
 	//初始化赋值
-	setting = setting || {};
 	setting.title = setting.title || "提示信息";
 	setting.content = setting.content || "确认操作";
 	setting.btn = setting.btn || ["确认", "取消"];
+	btnclick = btnclick || [];
 	//构造表单
 	let AlertHtml =
 		`<div style="${MsgStyle[1]}" id="HFrameAlert">
@@ -91,10 +92,8 @@ function alert(setting, ...btnclick) {
 	//添加事件
 	document.querySelectorAll("[class^=HFrameAlertBtn]").forEach((m, index) => {
 		m.onclick = function() {
-			if (btnclick) {
-				if (btnclick[index]) {
-					btnclick[index]();
-				}
+			if (btnclick[index]) {
+				btnclick[index]();
 			}
 			closealert();
 		}

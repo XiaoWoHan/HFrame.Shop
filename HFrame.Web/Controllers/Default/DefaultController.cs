@@ -24,6 +24,16 @@ namespace HFrame.Web.Controllers
         }
         #endregion
 
+        #region 退出
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            var result = new ResultModel();
+            var Status = LoginHelper.Logout(result);
+            return Json(result);
+        }
+        #endregion
+
         #region 注册
         [HttpGet]
         public ActionResult Register() => View();

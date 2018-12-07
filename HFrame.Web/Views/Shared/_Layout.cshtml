@@ -100,7 +100,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                     <a class="dropdown-item" href="#">设置</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">退出</a>
+                                    <a class="dropdown-item" href="#" onclick="Logout()">退出</a>
                                 </div>
                             </li>
                         </ul>
@@ -143,6 +143,14 @@
             md.initDashboardPageCharts();
 
         });
+        function Logout() {
+            post("@Url.Action("Logout", "Default")", {}, function (ref) {
+                msg(ref.ErrorMsg);
+                if (ref.ErrorCode == 0) {
+                    location.href = ref.CallbackPage;
+                }
+            });
+        }
     </script>
 </body>
 
