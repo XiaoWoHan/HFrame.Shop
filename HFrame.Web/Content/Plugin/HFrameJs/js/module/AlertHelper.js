@@ -21,7 +21,7 @@ MsgStyle[1] =
 	`padding: 10px;
 	position: absolute;
 	background: white;
-	width: 400px;
+	width: 340px;
 	min-height: 200px;
 	box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.4);
 	box-sizing: border-box;
