@@ -4,7 +4,6 @@ define(function(require, exports) {
 			function(HttpHelper, AlertHelper) {
 				interceptform(HttpHelper, AlertHelper);
 				interceptdelete(HttpHelper, AlertHelper);
-				AlertHelper.alert("删除提醒!","确认要删除么？",["确认","取消"],[function(){alert(1)}]);
 			}); //拦截表单
 	}
 	exports.IsNullOrEmpty = IsNullOrEmpty;
@@ -20,7 +19,7 @@ function interceptform(HttpHelper, AlertHelper) {
 		let u = _Form.attr("action");
 		let m = _Form.attr("method");
 		HttpHelper.ajax(u, d, m, function(r) {
-			AlertHelper.msg(r.ErrorMsg,1000, function() {
+			AlertHelper.msg(r.ErrorMsg, 1000, function() {
 				if (r.ErrorCode == -2) {
 					location.href = "/Login";
 				}
@@ -35,18 +34,19 @@ function interceptform(HttpHelper, AlertHelper) {
 function interceptdelete(HttpHelper, AlertHelper) {
 	$(".delete").on("click", function(event) {
 		event.preventDefault(); //此处阻止提交表单
-		
-		AlertHelper.alert("删除提醒!","确认要删除么？",[function(){}]);
-		
 		let _Item = $(this);
 		let u = _Item.attr("href");
-		HttpHelper.post(u, {}, function(r) {
-			if (r.ErrorCode == 0) {
-				$(_Item.parents("tr")).remove();
-			}
-			AlertHelper.msg(r.ErrorMsg);
+		AlertHelper.alert({
+			title: "删除确认!",
+			content: "您确认要删除此数据么？"
+		}, function() {
+			HttpHelper.post(u, {}, function(r) {
+				if (r.ErrorCode == 0) {
+					$(_Item.parents("tr")).remove();
+				}
+				AlertHelper.msg(r.ErrorMsg);
+			});
 		});
-		
 	});
 }
 

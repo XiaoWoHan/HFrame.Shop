@@ -69,38 +69,38 @@ function msg(message = '', time = 1000, callback) {
 	ShowGradually(document.getElementById("HFrameMsg"), time, callback);
 }
 //弹窗
-function alert(title = "提示信息", content = "确认操作", btn = ["确认", "取消"], btnclick) {
+function alert(setting,...btnclick) {
+	setting=setting||{};
+	setting.title=setting.title||"提示信息";
+	setting.content=setting.content||"确认操作";
+	setting.btn=setting.btn||["确认", "取消"];
 	let AlertHtml =
 		`<div style="${MsgStyle[1]}" id="HFrameAlert">
-			<div style="margin: 10px;font-weight: bold;font-size: 1.2em;">${title}</div>
-			<div style="margin: 10px;">${content}</div>
+			<div style="margin: 10px;font-weight: bold;font-size: 1.2em;">${setting.title}</div>
+			<div style="margin: 10px;">${setting.content}</div>
 			<div style="width: calc(100% - 20px);position: absolute;bottom: 0px;">
-				${btn.map((m,index)=>
+				${setting.btn.map((m,index)=>
 					`<div class="HFrameAlertBtn${index}" style="margin: 10px;font-weight: bold;cursor: pointer;text-align: center;float: right;text-transform: uppercase;padding: 10px;">${m}</div>`
 					).join('')
 				}
 			</div>
 		</div>`;
 	$('body').append(AlertHtml);
-	btncallback(btnclick);
-}
-//弹窗关闭事件
-function closealert() {
-	let Item = document.getElementById("HFrameAlert");
-	Item.parentNode.removeChild(Item);
-}
-//弹窗回调
-function btncallback(btnclick) {
-	document.querySelectorAll("[class^=HFrameAlertBtn]").forEach((m,index)=>{
-		m.onclick=function(){
-			if(btnclick){
-				if(btnclick[index]){
+	document.querySelectorAll("[class^=HFrameAlertBtn]").forEach((m, index) => {
+		m.onclick = function() {
+			if (btnclick) {
+				if (btnclick[index]) {
 					btnclick[index]();
 				}
 			}
 			closealert();
 		}
 	});
+}
+//弹窗关闭事件
+function closealert() {
+	let Item = document.getElementById("HFrameAlert");
+	Item.parentNode.removeChild(Item);
 }
 define(function(require, exports) {
 	exports.msg = msg;
