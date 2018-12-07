@@ -11,9 +11,10 @@ MsgStyle[0] =
 	max-width:200px;
 	margin:auto;
 	top: 50%;
-	left: 48%;
+	left: 50%;
 	position:absolute;
-	border-radius: 8px;`;
+	border-radius: 8px;
+	transform: translate(-50%,-50%);`;
 
 //弹窗样式
 MsgStyle[1] =
@@ -27,8 +28,7 @@ MsgStyle[1] =
 	z-index: 19999;
 	top: 50%;
 	left: 50%;
-	margin-left:-200px;
-	margin-top:-100px;`;
+	transform: translate(-50%,-50%);`;
 
 //渐显
 function ShowGradually(obj, time, callback) {
