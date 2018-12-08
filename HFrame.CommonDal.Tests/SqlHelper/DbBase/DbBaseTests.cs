@@ -16,7 +16,7 @@ namespace HFrame.CommonDal.Tests
         [TestMethod()]
         public void GetListTest()
         {
-            DbBase<Data_User> dbBase = new DbBase<Data_User>();
+            DbBase<Data_SysUser> dbBase = new DbBase<Data_SysUser>();
             var aaa = dbBase.GetList(m => m.IsDeleted != true, m => m.IsDeleted);
             var bbb = dbBase.GetList(m => m.IsDeleted != true, m => m.OID);
         }

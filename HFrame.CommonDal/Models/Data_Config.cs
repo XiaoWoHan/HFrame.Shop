@@ -8,7 +8,7 @@
 /// </summary>
 namespace HFrame.CommonDal.Model
 {     
-    public class Data_GoodsType:DbBase<Data_GoodsType>                
+    public class Data_Config:DbBase<Data_Config>                
     {    
          
         /// <summary>
@@ -26,19 +26,26 @@ namespace HFrame.CommonDal.Model
         public String OID { get; set; }
         
         /// <summary>
-        /// 类型名称
+        /// 命名空间
         /// </summary>
         [Key]
-        [Required(ErrorMessage="类型名称不能为空")]
-        [MaxLength(255, ErrorMessage = "类型名称长度不得超过255")]
-        public String TypeName { get; set; }
+        [MaxLength(2147483647, ErrorMessage = "命名空间长度不得超过2147483647")]
+        public String Namespace { get; set; }
         
         /// <summary>
-        /// 排序
+        /// 描述
         /// </summary>
         [Key]
-        [Required(ErrorMessage="排序不能为空")]
-        public Int32 Sort { get; set; }
+        [MaxLength(2147483647, ErrorMessage = "描述长度不得超过2147483647")]
+        public String Description { get; set; }
+        
+        /// <summary>
+        /// 配置内容
+        /// </summary>
+        [Key]
+        [Required(ErrorMessage="配置内容不能为空")]
+        [MaxLength(2147483647, ErrorMessage = "配置内容长度不得超过2147483647")]
+        public String Config { get; set; }
         
         /// <summary>
         /// 
@@ -46,20 +53,6 @@ namespace HFrame.CommonDal.Model
         [Key]
         [Required(ErrorMessage="CreateTime不能为空")]
         public DateTime CreateTime { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        [Key]
-        [MaxLength(50, ErrorMessage = "CreateUserOID长度不得超过50")]
-        public String CreateUserOID { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        [Key]
-        [MaxLength(255, ErrorMessage = "CreateUserName长度不得超过255")]
-        public String CreateUserName { get; set; }
                  
     }
 }

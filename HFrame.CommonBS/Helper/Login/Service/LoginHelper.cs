@@ -47,7 +47,7 @@ namespace HFrame.CommonBS.Helper
             }
             //TODO 登陆失败次数限制
 
-            var User = Data_User.Current.GetFirst(m => m.UserName == Model.UserName && m.IsDeleted!=true);//根据用户名获取当前用户
+            var User = Data_SysUser.Current.GetFirst(m => m.UserName == Model.UserName && m.IsDeleted!=true);//根据用户名获取当前用户
             if (User == null)
             {
                 result.ErrorCode = -1;

@@ -8,7 +8,7 @@
 /// </summary>
 namespace HFrame.CommonDal.Model
 {     
-    public class Data_GoodsType:DbBase<Data_GoodsType>                
+    public class Date_Role:DbBase<Date_Role>                
     {    
          
         /// <summary>
@@ -26,25 +26,32 @@ namespace HFrame.CommonDal.Model
         public String OID { get; set; }
         
         /// <summary>
-        /// 类型名称
+        /// 父代标识
         /// </summary>
         [Key]
-        [Required(ErrorMessage="类型名称不能为空")]
-        [MaxLength(255, ErrorMessage = "类型名称长度不得超过255")]
-        public String TypeName { get; set; }
+        [MaxLength(50, ErrorMessage = "父代标识长度不得超过50")]
+        public String ParentOID { get; set; }
         
         /// <summary>
-        /// 排序
+        /// 角色名称
         /// </summary>
         [Key]
-        [Required(ErrorMessage="排序不能为空")]
-        public Int32 Sort { get; set; }
+        [Required(ErrorMessage="角色名称不能为空")]
+        [MaxLength(255, ErrorMessage = "角色名称长度不得超过255")]
+        public String RoleName { get; set; }
         
         /// <summary>
-        /// 
+        /// 角色描述
         /// </summary>
         [Key]
-        [Required(ErrorMessage="CreateTime不能为空")]
+        [MaxLength(2147483647, ErrorMessage = "角色描述长度不得超过2147483647")]
+        public String Dscription { get; set; }
+        
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        [Key]
+        [Required(ErrorMessage="创建时间不能为空")]
         public DateTime CreateTime { get; set; }
         
         /// <summary>

@@ -70,8 +70,7 @@ namespace HFrame.Web.Areas.Goods.Service
                     Sort = Model.Sort,
                     CreateTime = DateTime.Now,
                     CreateUserOID = result.MemberOID,
-                    CreateUserName = result.MemberName,
-                    ParentOID = ""
+                    CreateUserName = result.MemberName
                 };
                 return GoodsType.Add(result);
             }

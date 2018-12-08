@@ -27,14 +27,14 @@ namespace HFrame.CommonBS.Helper
             }
             ValidateCodeHelper.DeleteCodeString();//清除验证码
             #endregion
-            var SameUser = Data_User.Current.GetFirst(m => m.IsDeleted!=true && m.Name.Equals(Model.UserName));
+            var SameUser = Data_SysUser.Current.GetFirst(m => m.IsDeleted!=true && m.Name.Equals(Model.UserName));
             if (SameUser != null)
             {
                 result.ErrorCode = -1;
                 result.ErrorMsg = $"注册失败 用户名已注册";
                 return false;
             }
-            var SameTelephone = Data_User.Current.GetFirst(m=>m.IsDeleted!=true&&m.Telephone.Equals(Model.Telephone));
+            var SameTelephone = Data_SysUser.Current.GetFirst(m=>m.IsDeleted!=true&&m.Telephone.Equals(Model.Telephone));
             if (SameTelephone != null)
             {
                 result.ErrorCode = -1;
@@ -44,7 +44,7 @@ namespace HFrame.CommonBS.Helper
 
             #region 注册方法
             var UserOID = Guid.NewGuid().ToString();
-            var UserModel = new Data_User()
+            var UserModel = new Data_SysUser()
             {
                 OID = UserOID,
                 Name = Model.UserName,
