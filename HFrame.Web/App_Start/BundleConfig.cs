@@ -37,7 +37,7 @@ namespace HFrame.Web
                 "~/Content/Plugin/Admin/css/material-dashboard.css"
                 ));
             #endregion
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }
