@@ -327,37 +327,19 @@ namespace HFrame.Common.Helper
         /// DES 加密
         /// </summary>
         /// <param name="input"> 待加密的字符串 </param>
-        /// <param name="key"> 密钥（8位） </param>
+        /// <param name="key"> 密钥 </param>
         /// <returns></returns>
         public static string DESEncrypt(string input, string key)
         {
-            try
-            {
-                var keyBytes = Encoding.UTF8.GetBytes(key);
-                //var ivBytes = Encoding.UTF8.GetBytes(iv);
-
-                var des = DES.Create();
-                des.Mode = CipherMode.ECB; //兼容其他语言的 Des 加密算法
-                des.Padding = PaddingMode.Zeros; //自动补 0
-
-                using (var ms = new MemoryStream())
-                {
-                    var data = Encoding.UTF8.GetBytes(input);
-
-                    using (var cs = new CryptoStream(ms, des.CreateEncryptor(keyBytes, IvBytes), CryptoStreamMode.Write)
-                        )
-                    {
-                        cs.Write(data, 0, data.Length);
-                        cs.FlushFinalBlock();
-                    }
-
-                    return Convert.ToBase64String(ms.ToArray());
-                }
-            }
-            catch
-            {
-                return input;
-            }
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key.Substring(0, 8));
+            byte[] keyIV = keyBytes;
+            byte[] inputByteArray = Encoding.UTF8.GetBytes(input);
+            DESCryptoServiceProvider provider = new DESCryptoServiceProvider();
+            MemoryStream mStream = new MemoryStream();
+            CryptoStream cStream = new CryptoStream(mStream, provider.CreateEncryptor(keyBytes, keyIV), CryptoStreamMode.Write);
+            cStream.Write(inputByteArray, 0, inputByteArray.Length);
+            cStream.FlushFinalBlock();
+            return Convert.ToBase64String(mStream.ToArray());
         }
 
         /// <summary>
@@ -368,34 +350,15 @@ namespace HFrame.Common.Helper
         /// <returns></returns>
         public static string DESDecrypt(string input, string key)
         {
-            try
-            {
-                var keyBytes = Encoding.UTF8.GetBytes(key);
-                //var ivBytes = Encoding.UTF8.GetBytes(iv);
-
-                var des = DES.Create();
-                des.Mode = CipherMode.ECB; //兼容其他语言的Des加密算法
-                des.Padding = PaddingMode.Zeros; //自动补0
-
-                using (var ms = new MemoryStream())
-                {
-                    var data = Convert.FromBase64String(input);
-
-                    using (var cs = new CryptoStream(ms, des.CreateDecryptor(keyBytes, IvBytes), CryptoStreamMode.Write)
-                        )
-                    {
-                        cs.Write(data, 0, data.Length);
-
-                        cs.FlushFinalBlock();
-                    }
-
-                    return Encoding.UTF8.GetString(ms.ToArray());
-                }
-            }
-            catch
-            {
-                return input;
-            }
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key.Substring(0, 8));
+            byte[] keyIV = keyBytes;
+            byte[] inputByteArray = Convert.FromBase64String(input);
+            DESCryptoServiceProvider provider = new DESCryptoServiceProvider();
+            MemoryStream mStream = new MemoryStream();
+            CryptoStream cStream = new CryptoStream(mStream, provider.CreateDecryptor(keyBytes, keyIV), CryptoStreamMode.Write);
+            cStream.Write(inputByteArray, 0, inputByteArray.Length);
+            cStream.FlushFinalBlock();
+            return Encoding.UTF8.GetString(mStream.ToArray());
         }
 
         #endregion Des 加解密

@@ -17,7 +17,7 @@ namespace HFrame.CommonBS.Helper
         /// 获取当前登陆状态
         /// </summary>
         /// <returns></returns>
-        protected internal static MemberModel CurrentMember => CookieHelper.Current.Get<MemberModel>(CookieName)??new MemberModel();
+        protected internal static ResultModel CurrentMember => CookieHelper.Current.Get<ResultModel>(CookieName)??new ResultModel();
         /// <summary>
         /// 获取当前登陆状态
         /// </summary>
@@ -27,7 +27,7 @@ namespace HFrame.CommonBS.Helper
         /// 添加登陆状态
         /// </summary>
         /// <param name="Member"></param>
-        private static void SetLoginStatus(MemberModel Member) => CookieHelper.Current.Add(CookieName, Member);
+        private static void SetLoginStatus(ResultModel Member) => CookieHelper.Current.Add(CookieName, Member);
         /// <summary>
         /// 删除登陆状态
         /// </summary>
@@ -70,14 +70,14 @@ namespace HFrame.CommonBS.Helper
             }
 
             #region 添加登陆状态
-            var Member = new MemberModel
+            var Result = new ResultModel
             {
                 MemberOID = User.OID,
                 MemberName = User.UserName,
                 MemberNickName = User.Name,
                 LoginType = Common.Model.Enum.EnumLoginType.Account
             };
-            LoginHelper.SetLoginStatus(Member);//添加登陆状态
+            LoginHelper.SetLoginStatus(Result);//添加登陆状态
 
             result.ErrorCode = 0;
             result.ErrorMsg = $"登陆成功";

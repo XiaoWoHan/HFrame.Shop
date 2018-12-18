@@ -17,7 +17,7 @@ namespace HFrame.CommonBS.Filter
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (HttpHelper.IsAjax)
+            if (HttpHelper.IsPost)
             {
                 foreach (var item in filterContext.ActionParameters)
                 {

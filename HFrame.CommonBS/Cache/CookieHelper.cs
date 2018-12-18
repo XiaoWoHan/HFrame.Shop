@@ -14,6 +14,7 @@ namespace HFrame.CommonBS.Cache
     /// </summary>
     public class CookieHelper : CacheModel<CookieHelper>
     {
+        private const string CookieKey = "_HFrame_Cookie_Key_2018_12_18_";
         /// <summary>
         /// 添加Cookie
         /// </summary>
@@ -23,11 +24,13 @@ namespace HFrame.CommonBS.Cache
         /// <returns></returns>
         public bool Add(string key, object data, int SaveMinutes = 20)
         {
-            HttpCookie Hc = new HttpCookie(key);
+            var Encryptionkey = EncryptionHelper.MD5Encrypt(key,Encoding.ASCII);
+            HttpCookie Hc = new HttpCookie(Encryptionkey);
             if (data == null) return false;
-            var DataJson = data.ToJson();
             Hc.Expires = DateTime.Now.AddMinutes(SaveMinutes);
-            Hc.Value = DataJson;
+            var DataJson = data.ToJson();
+            var EncryptionData = EncryptionHelper.DESEncrypt(DataJson, CookieKey);
+            Hc.Value = EncryptionData;
             HttpContext.Current.Response.Cookies.Add(Hc);
             return Exists(key);
         }
@@ -49,15 +52,21 @@ namespace HFrame.CommonBS.Cache
 
         public override object Get(string key)
         {
-            if (String.IsNullOrEmpty(key)) return null;
-            if (!Exists(key)) return null;
-            return HttpContext.Current.Request.Cookies[key].Value.ParseJson<object>();
+            var Encryptionkey = EncryptionHelper.MD5Encrypt(key, Encoding.ASCII);
+            if (String.IsNullOrEmpty(Encryptionkey)) return null;
+            if (!Exists(Encryptionkey)) return null;
+            var EncryptionData = HttpContext.Current.Request.Cookies[Encryptionkey].Value;
+            var Data = EncryptionHelper.DESDecrypt(EncryptionData, CookieKey);
+            return Data.ParseJson<object>();
         }
         public override T1 Get<T1>(string key)
         {
-            if (String.IsNullOrEmpty(key)) return null;
-            if (!Exists(key)) return null;
-            return HttpContext.Current.Request.Cookies[key].Value.ParseJson<T1>();
+            var Encryptionkey = EncryptionHelper.MD5Encrypt(key, Encoding.ASCII);
+            if (String.IsNullOrEmpty(Encryptionkey)) return null;
+            if (!Exists(Encryptionkey)) return null;
+            var EncryptionData = HttpContext.Current.Request.Cookies[Encryptionkey].Value;
+            var Data = EncryptionHelper.DESDecrypt(EncryptionData, CookieKey);
+            return Data.ParseJson<T1>();
         }
         public override bool Remove(string key)
         {

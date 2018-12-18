@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HFrame.Common.Model
 {
-    public class ResultModel
+    public class ResultModel: MemberModel
     {
         #region 属性
         /// <summary>

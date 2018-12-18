@@ -43,7 +43,7 @@ namespace HFrame.Web.Areas.Goods.Service
         /// 更新/保存商品类型
         /// </summary>
         /// <returns></returns>
-        public static bool SaveGoodsType(MemberModel result,UIGoodsType Model)
+        public static bool SaveGoodsType(ResultModel result,UIGoodsType Model)
         {
             if (!String.IsNullOrEmpty(Model.OID))
             {
@@ -81,7 +81,7 @@ namespace HFrame.Web.Areas.Goods.Service
         /// <param name="result"></param>
         /// <param name="OID"></param>
         /// <returns></returns>
-        public static bool DeleteGoodsType(MemberModel result, string OID)
+        public static bool DeleteGoodsType(ResultModel result, string OID)
         {
             if (String.IsNullOrEmpty(OID))
             {

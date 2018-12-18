@@ -13,11 +13,11 @@ namespace HFrame.CommonBS.Filter
     /// </summary>
     public class CheckLoginAttribute: ActionFilterAttribute
     {
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (!LoginHelper.IsLogin)
             {
-                if (HttpHelper.IsAjax)
+                if (HttpHelper.IsPost)
                 {
                     var Result = new ResultModel { ErrorMsg = "请登录后操作", ErrorCode = -2 };//重定向页面
                     filterContext.Result = new JsonResult { Data = Result };

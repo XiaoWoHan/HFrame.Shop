@@ -10,6 +10,6 @@ namespace HFrame.CommonBS.Controllers
     [CheckLogin]//验证登陆
     public class BaseController : Controller
     {
-        public MemberModel result => LoginHelper.CurrentMember;
+        public ResultModel result => LoginHelper.CurrentMember;
     }//TODO 缺少验证
 }

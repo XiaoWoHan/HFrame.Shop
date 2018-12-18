@@ -13,8 +13,7 @@ namespace HFrame.Web
                 "~/Content/Plugin/Jquery/jquery-{version}.js",
                 "~/Content/Plugin/popper/popper.js",
                 "~/Content/Plugin/Bootstrap/js/bootstrap.js",
-                "~/Content/Plugin/SeaJs/sea.js",
-                "~/Content/Plugin/HFrameJS/js/CommonJS.js"));
+                "~/Content/Plugin/HFrameJS/test/js/CommonJS.js"));
 
             bundles.Add(new StyleBundle("~/Css/Common").Include(
                 "~/Content/Plugin/HFrameJS/css/public.css",
@@ -30,8 +29,7 @@ namespace HFrame.Web
                 "~/Content/Plugin/Admin/Js/perfect-scrollbar.jquery.min.js",
                 "~/Content/Plugin/Admin/Js/bootstrap-notify.js",
                 "~/Content/Plugin/Admin/Js/material-dashboard.js",
-                "~/Content/Plugin/SeaJs/sea.js",
-                "~/Content/Plugin/HFrameJS/js/CommonJS.js"
+                "~/Content/Plugin/HFrameJS/test/js/CommonJS.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Css/Main").Include(

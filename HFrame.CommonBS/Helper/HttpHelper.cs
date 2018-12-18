@@ -117,6 +117,6 @@ namespace HFrame.Common.Helper
         /// 是否是Ajax请求
         /// </summary>
         /// <returns></returns>
-        public static bool IsAjax => HttpContext.Current.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+        public static bool IsPost => HttpContext.Current.Request.HttpMethod.ToUpper()=="POST";
     }
 }

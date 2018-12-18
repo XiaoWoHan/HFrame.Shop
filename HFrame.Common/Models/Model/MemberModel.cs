@@ -2,7 +2,7 @@
 
 namespace HFrame.Common.Model
 {
-    public class MemberModel:ResultModel
+    public class MemberModel
     {
         /// <summary>
         /// 用户标识
