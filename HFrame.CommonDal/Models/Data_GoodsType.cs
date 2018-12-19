@@ -3,7 +3,7 @@
  using System.ComponentModel.DataAnnotations;
 /// <summary>
 /// 此模板为T4自动生成
-/// 生成时间为2018-12-08 15:27:12
+/// 生成时间为2018-12-19 13:42:15
 /// 请勿随意改动该模板 FROM HAN
 /// </summary>
 namespace HFrame.CommonDal.Model

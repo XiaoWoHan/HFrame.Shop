@@ -4,6 +4,7 @@
     [OID] VARCHAR(50) NOT NULL, 
     [ParentOID] VARCHAR(50) NULL, 
     [Layer] INT NOT NULL DEFAULT 0, 
+    [Icon] VARCHAR(200) NULL, 
     [Title] NVARCHAR(255) NOT NULL, 
     [LinkHref] NVARCHAR(MAX) NOT NULL DEFAULT '#', 
     [CreateTime] DATETIME NOT NULL DEFAULT GetDate(), 

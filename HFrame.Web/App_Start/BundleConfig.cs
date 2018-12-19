@@ -13,7 +13,7 @@ namespace HFrame.Web
                 "~/Content/Plugin/Jquery/jquery-{version}.js",
                 "~/Content/Plugin/popper/popper.js",
                 "~/Content/Plugin/Bootstrap/js/bootstrap.js",
-                "~/Content/Plugin/HFrameJS/test/js/CommonJS.js"));
+                "~/Content/Plugin/HFrameJS/js/CommonJS.js"));
 
             bundles.Add(new StyleBundle("~/Css/Common").Include(
                 "~/Content/Plugin/HFrameJS/css/public.css",
@@ -29,7 +29,7 @@ namespace HFrame.Web
                 "~/Content/Plugin/Admin/Js/perfect-scrollbar.jquery.min.js",
                 "~/Content/Plugin/Admin/Js/bootstrap-notify.js",
                 "~/Content/Plugin/Admin/Js/material-dashboard.js",
-                "~/Content/Plugin/HFrameJS/test/js/CommonJS.js"
+                "~/Content/Plugin/HFrameJS/js/CommonJS.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Css/Main").Include(
@@ -37,7 +37,8 @@ namespace HFrame.Web
                 "~/Content/Plugin/Admin/css/material-dashboard.css"
                 ));
             #endregion
-            BundleTable.EnableOptimizations = false;
+            //启用压缩
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

@@ -150,6 +150,9 @@
     <Compile Include="Areas\Goods\GoodsAreaRegistration.cs" />
     <Compile Include="Areas\Goods\Models\UIGoodsType.cs" />
     <Compile Include="Areas\Goods\Service\GoodsTypeService.cs" />
+    <Compile Include="Areas\Manage\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
+    <Compile Include="Areas\Manage\Models\UIMenu.cs" />
     <Compile Include="Controllers\Default\CommonController.cs" />
     <Compile Include="Controllers\Default\DefaultController.cs" />
     <Compile Include="Controllers\Main\MainController.cs" />
@@ -212,6 +215,10 @@
     <Content Include="Content\Plugin\Admin\css\material-dashboard.css.map" />
     <Content Include="Content\Plugin\Admin\js\material-dashboard.js.map" />
     <Content Include="Content\Plugin\HFrameJs\READEME.md" />
+    <Content Include="Areas\Manage\Views\web.config" />
+    <Content Include="Areas\Manage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Manage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Manage\Views\Menu\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Default\Login.cshtml" />
     <Content Include="Views\Default\Register.cshtml" />

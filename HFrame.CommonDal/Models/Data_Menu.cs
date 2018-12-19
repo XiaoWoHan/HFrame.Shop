@@ -3,7 +3,7 @@
  using System.ComponentModel.DataAnnotations;
 /// <summary>
 /// 此模板为T4自动生成
-/// 生成时间为2018-12-08 15:27:12
+/// 生成时间为2018-12-19 13:42:16
 /// 请勿随意改动该模板 FROM HAN
 /// </summary>
 namespace HFrame.CommonDal.Model
@@ -38,6 +38,13 @@ namespace HFrame.CommonDal.Model
         [Key]
         [Required(ErrorMessage="等级不能为空")]
         public Int32 Layer { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [Key]
+        [MaxLength(200, ErrorMessage = "Icon长度不得超过200")]
+        public String Icon { get; set; }
         
         /// <summary>
         /// 标题
@@ -78,4 +85,4 @@ namespace HFrame.CommonDal.Model
                  
     }
 }
-
+                
