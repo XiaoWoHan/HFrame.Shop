@@ -14,7 +14,7 @@ namespace HFrame.Web.Areas.Goods.Service
         /// 查询商品类型
         /// </summary>
         /// <returns></returns>
-        public static UIGoodsType GetPageGoodsType(string OID)
+        public static UIGoodsType GetGoodsType(string OID)
         {
             var GoodsTypes = Data_GoodsType.Current.GetFirst(m=>m.OID==OID);
             var UIModel = new UIGoodsType {

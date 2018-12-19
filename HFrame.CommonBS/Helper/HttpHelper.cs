@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 
-namespace HFrame.Common.Helper
+namespace HFrame.CommonBS.Helper
 {
     /// <summary>
     /// Http Get Post Put Delete 请求帮助类

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex,nofollow">
+    <title>404 - 页面找不到了</title>
+    <style>
+        body {
+            background-color: #FFF;
+        }
+
+        img {
+            margin: auto;
+            top: 40%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+
+        .text {
+            margin: auto;
+            top: 71%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .header {
+            font-size: 30px;
+            font-weight: 900;
+        }
+        .explanation{
+            font-size: 21px;
+            font-weight: 100;
+        }
+        .back{
+            color:#FFF;
+            border:none;
+            border-radius: 8px;
+            background-color: #218adc;
+            width:100px;
+            height: 28px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap" align="center">
+        <div class="row"></div>
+        <img src="/Content/Image/error.jpg">
+        <div class="text">
+            <span class="header">出错了&gt;&#95;&lt;</span>
+            <span class="explanation">可能遇到了不可抗拒的魔力，返回再试试吧</span>
+            <button class="back" onclick="javascript:window.history.back(-1);">返回</button>
+        </div>
+    </div>
+</body>
+
+</html>

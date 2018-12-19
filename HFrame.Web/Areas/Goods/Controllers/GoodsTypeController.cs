@@ -20,7 +20,7 @@ namespace HFrame.Web.Areas.Goods.Controllers
         [HttpGet]
         public ActionResult Edit(string OID=null)
         {
-            var Model = GoodsTypeService.GetPageGoodsType(OID);
+            var Model = GoodsTypeService.GetGoodsType(OID);
             return View(Model);
         }
         [HttpPost]

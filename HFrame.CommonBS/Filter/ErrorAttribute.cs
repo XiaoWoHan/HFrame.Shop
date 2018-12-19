@@ -1,10 +1,7 @@
 ﻿using HFrame.Common.Helper;
 using HFrame.Common.Model;
+using HFrame.CommonBS.Helper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace HFrame.CommonBS.Filter
@@ -21,6 +18,7 @@ namespace HFrame.CommonBS.Filter
             var ErrorMsg = String.Format("{0}/{1}在{2}抛出异常{3}", controllerName, actionName, DateTime.Now, exception);
             LogHelper.LogError(ErrorMsg);
             #endregion
+#if RELEASE
             if (HttpHelper.IsPost)
             {
                 var Result = new ResultModel { ErrorMsg = "系统错误，请联系管理员", ErrorCode = -1 };//重定向页面
@@ -29,8 +27,9 @@ namespace HFrame.CommonBS.Filter
             }
             else
             {
-                filterContext.HttpContext.Response.Redirect("/Shared/Error");
+                filterContext.HttpContext.Response.Redirect("~/Content/Html/Error.html");//TODO 更改为配置项内容
             }
+#endif
         }
     }
 }

@@ -1,12 +1,8 @@
-﻿using HFrame.Common.Helper;
-using HFrame.Common.Model;
-using System;
+﻿using HFrame.Common.Model;
+using HFrame.CommonBS.Helper;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 /// <summary>
 /// 表单验证过滤器

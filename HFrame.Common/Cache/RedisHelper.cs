@@ -49,6 +49,15 @@ namespace HFrame.Common.Cache
             }
             return null;
         }
+        public override T1 Get<T1>(string key)
+        {
+            var cacheValue = DataBase.StringGet(key);
+            if (!cacheValue.IsNull && cacheValue.HasValue)
+            {
+                return JsonHelper.ParseJson<T1>(cacheValue.ToString());
+            }
+            return null;
+        }
         #endregion
 
         #region 添加

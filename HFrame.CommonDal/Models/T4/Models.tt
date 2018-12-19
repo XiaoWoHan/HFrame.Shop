@@ -57,7 +57,7 @@ namespace HFrame.CommonDal.Model
         /// <summary>
         /// <#=SummaryModel.GetSummary(dc.ColumnName)#>
         /// </summary>
-<#if(!dc.Unique){#>
+<#if(dc.Unique){#>
         [Key]
 <#}#>
 <#if(!dc.AllowDBNull){#>

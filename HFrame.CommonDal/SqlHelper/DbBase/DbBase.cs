@@ -15,7 +15,7 @@ namespace HFrame.CommonDal
     /// 实体类基类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DbBase<T> :DBTablePropertie<T> where T : class,new()
+    public partial class DbBase<T> :DBTablePropertie<T> where T : class,new()
     {
         #region 属性
         private static IDbConnection connection = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=HFrameDB;Integrated Security=True;MultipleActiveResultSets=True");
@@ -151,6 +151,22 @@ namespace HFrame.CommonDal
             return connection.Execute(DeleteModel.GetSql(this)) > 0;
         }
         #endregion
+        #endregion
+    }
+    public partial class DbBase<T>
+    {
+        #region 转换类型
+        public T1 Conversion<T1>()
+            where T1:class,new()
+        {
+            var result = new T1();
+            var PropInfo = typeof(T).GetProperties();
+            foreach (var item in PropInfo)
+            {
+                typeof(T1).GetProperty(item.Name).SetValue(result,item.GetValue(this));
+            }
+            return result;
+        }
         #endregion
     }
 }

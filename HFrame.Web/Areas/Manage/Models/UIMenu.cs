@@ -12,11 +12,15 @@ namespace HFrame.Web.Areas.Manage.Models
         /// </summary>
         public string OID { get; set; }
         /// <summary>
+        /// 图标
+        /// </summary>
+        public string Icon { get; set; }
+        /// <summary>
         /// 按钮
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// 排序
+        /// 等级
         /// </summary>
         public int Layer { get; set; }
         /// <summary>
