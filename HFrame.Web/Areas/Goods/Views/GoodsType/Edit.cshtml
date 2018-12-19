@@ -1,38 +1,51 @@
 ﻿@model UIGoodsType
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title">添加/编辑商品类型</h4>
-                        <p class="card-category">用于首页筛选</p>
-                    </div>
-                    <div class="card-body">
-                        <form action="@Url.Action("Save","GoodsType")" method="post">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">类型名称</label>
-                                        @Html.TextBoxFor(m => m.GoodsType, new { @class = "form-control" })
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HFrame</title>
+    @Styles.Render("~/Css/Main")
+    @Scripts.Render("~/Js/Main")
+</head>
+<body>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">添加/编辑商品类型</h4>
+                            <p class="card-category">用于首页筛选</p>
+                        </div>
+                        <div class="card-body">
+                            <form action="@Url.Action("Save","GoodsType")" method="post">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">类型名称</label>
+                                            @Html.TextBoxFor(m => m.GoodsType, new { @class = "form-control" })
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating">类型排序</label>
-                                        @Html.TextBoxFor(m => m.Sort, new { @class = "form-control" })
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">类型排序</label>
+                                            @Html.TextBoxFor(m => m.Sort, new { @class = "form-control" })
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            @Html.HiddenFor(m => m.OID)
-                            <button type="submit" class="btn btn-primary pull-right">提交</button>
-                            <button type="button" class="btn btn-info pull-right" onclick="javascript:window.history.back(-1);">返回</button>
-                        </form>
+                                @Html.HiddenFor(m => m.OID)
+                                <button type="submit" class="btn btn-primary pull-right">提交</button>
+                                <button type="button" class="btn btn-info pull-right" onclick="javascript:window.history.back(-1);">返回</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </body>
+</html>

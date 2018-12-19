@@ -5,7 +5,7 @@
 		version: '0.0.1',
 		config: {
 			Path: "./js/module/",
-			modulePath:"/Content/Plugin/HFrameJs/test/js"
+			modulePath:"/Content/Plugin/HFrameJs/js"
 		}
 	}
 	/**
