@@ -20,11 +20,15 @@
                             <p class="card-category">用于后台管理菜单</p>
                         </div>
                         <div class="card-body">
+
+                            <a href="https://materializecss.com/icons.html#" target="_blank"><p class="text-info">更多图标请浏览</p></a>
                             <form action="@Url.Action("Save","Menu")" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">按钮图标</label>
+                                            <label class="bmd-label-floating">
+                                                按钮图标
+                                            </label>
                                             @Html.TextBoxFor(m => m.Icon, new { @class = "form-control" })
                                         </div>
                                     </div>
