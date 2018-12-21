@@ -110,6 +110,10 @@ namespace HFrame.CommonDal
         //TODO 根据Dapper语法写出查询
         #endregion
 
+        #region 分页查询
+
+        #endregion
+
         #region 添加
         /// <summary>
         /// 添加
