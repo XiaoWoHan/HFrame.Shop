@@ -66,6 +66,7 @@
     <Compile Include="SqlHelper\Helper\Model\SqlModel.cs" />
     <Compile Include="SqlHelper\Helper\Sql\DeleteSqlHelper.cs" />
     <Compile Include="SqlHelper\Helper\Sql\InsertSqlHelper.cs" />
+    <Compile Include="SqlHelper\Helper\Sql\PageSqlHelper.cs" />
     <Compile Include="SqlHelper\Helper\Sql\SelectSqlHelper.cs" />
     <Compile Include="SqlHelper\Helper\Sql\UpDateSqlHelper.cs" />
   </ItemGroup>

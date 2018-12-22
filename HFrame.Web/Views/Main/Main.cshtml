@@ -1,4 +1,5 @@
-﻿<!-- 首页 -->
+﻿@model List<MenuTree>
+<!-- 首页 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,24 +27,18 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="nav-item active  ">
-                        <a class="nav-link HFrameMenu" href="@Url.Action("List","GoodsType",new { Area="Goods"})">
-                            <i class="material-icons">dashboard</i>
-                            <p>商品类型管理</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link HFrameMenu" href="#">
-                            <i class="material-icons">dashboard</i>
-                            <p>商品管理</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link HFrameMenu" href="@Url.Action("Index","Menu",new { Area="Manage"})">
-                            <i class="material-icons">bubble_chart</i>
-                            <p>按钮管理</p>
-                        </a>
-                    </li>
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <li class="nav-item HFrameMenu" data-href="@item.Link">
+                                <a class="nav-link" href="#">
+                                    <i class="material-icons">@item.Icon</i>
+                                    <p>@item.Title</p>
+                                </a>
+                            </li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
@@ -149,7 +144,9 @@
             for (var item of _menus) {
                 item.addEventListener("click", function (event) {
                     event.preventDefault();
-                    let url = this.href;
+                    _menus.forEach((that) => { that.classList.remove("active") })
+                    this.classList.add("active");
+                    let url = this.getAttribute("data-href");
                     if (url)
                         document.querySelector(".MainIframe").src = url;
                 })

@@ -70,13 +70,13 @@ namespace HFrame.CommonBS.Cache
         }
         public override bool Remove(string key)
         {
-            if (String.IsNullOrEmpty(key)) return false;
-            HttpCookie Hc = HttpContext.Current.Request.Cookies[key];
+            var Encryptionkey = EncryptionHelper.MD5Encrypt(key, Encoding.ASCII);
+            if (String.IsNullOrEmpty(Encryptionkey)) return false;
+            HttpCookie Hc = HttpContext.Current.Request.Cookies[Encryptionkey];
             if (Hc == null) return false;
-            var EndTimeSpan = -(Hc.Expires - DateTime.Now);//反剩余结束时间
-            Hc.Expires = DateTime.Now.Add(EndTimeSpan);
+            Hc.Expires = DateTime.Now.AddDays(-1);
             HttpContext.Current.Response.AppendCookie(Hc);
-            return !Exists(key);
+            return !Exists(Encryptionkey);
         }
     }
 }

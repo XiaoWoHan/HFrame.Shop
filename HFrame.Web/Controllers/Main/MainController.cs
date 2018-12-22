@@ -1,4 +1,5 @@
 ﻿using HFrame.CommonBS.Controllers;
+using HFrame.Web.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace HFrame.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Main() => View();
+        public ActionResult Main() => View(CommonService.GetMenus());
     }
 }

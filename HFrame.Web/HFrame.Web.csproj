@@ -160,22 +160,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MenuTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CommonService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Html\Error.html" />
+    <Content Include="Content\Image\Error.jpg" />
     <Content Include="Content\Image\login.jpg" />
+    <Content Include="Content\Image\main.jpg" />
     <Content Include="Content\Plugin\Admin\css\icon.css" />
     <Content Include="Content\Plugin\Admin\css\material-dashboard-rtl.css" />
     <Content Include="Content\Plugin\Admin\css\material-dashboard.css" />
     <Content Include="Content\Plugin\Admin\css\material-dashboard.min.css" />
     <Content Include="Content\Plugin\Admin\js\bootstrap-material-design.min.js" />
+    <Content Include="Content\Plugin\Admin\js\bootstrap-notify.js" />
     <Content Include="Content\Plugin\Admin\js\material-dashboard.js" />
     <Content Include="Content\Plugin\Admin\js\material-dashboard.min.js" />
     <Content Include="Content\Plugin\Admin\js\perfect-scrollbar.jquery.min.js" />
-    <Content Include="Content\Plugin\css\font-awesome.min.css" />
-    <Content Include="Content\Plugin\css\font-css.css" />
     <Content Include="Content\Plugin\HFrameJs\css\public.css" />
     <Content Include="Content\Plugin\HFrameJs\js\CommonJS.js" />
+    <Content Include="Content\Plugin\HFrameJs\js\module\AlertHelper.js" />
     <Content Include="Content\Plugin\HFrameJs\js\module\CommonHelper.js" />
     <Content Include="Content\Plugin\HFrameJs\js\module\HttpHelper.js" />
     <Content Include="Content\Plugin\HFrameJs\js\module\ValidateHelper.js" />
@@ -205,8 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Html\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Goods\Views\web.config" />
@@ -220,6 +223,11 @@
     <Content Include="Areas\Manage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Manage\Views\Menu\Index.cshtml" />
     <Content Include="Areas\Manage\Views\Menu\Edit.cshtml" />
+    <Content Include="Content\Font\flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2" />
+    <Content Include="Content\Font\KFOlCnqEu92Fr1MmEU9fBBc4.woff2" />
+    <Content Include="Content\Font\KFOlCnqEu92Fr1MmSU5fBBc4.woff2" />
+    <Content Include="Content\Font\KFOlCnqEu92Fr1MmWUlfBBc4.woff2" />
+    <Content Include="Content\Font\KFOmCnqEu92Fr1Mu4mxK.woff2" />
     <None Include="packages.config" />
     <Content Include="Views\Default\Login.cshtml" />
     <Content Include="Views\Default\Register.cshtml" />
