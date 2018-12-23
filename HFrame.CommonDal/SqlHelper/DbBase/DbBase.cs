@@ -42,7 +42,7 @@ namespace HFrame.CommonDal
         #endregion
 
         #region 方法
-        #region 查询
+         #region 查询
         /// <summary>
         /// 获取
         /// </summary>
@@ -111,7 +111,11 @@ namespace HFrame.CommonDal
         #endregion
 
         #region 分页查询
-
+        public PageModel<T> GetPage(int pageIndex,int PageSize)
+        {
+            PageSqlHelper<T> Page = new PageSqlHelper<T>(pageIndex,PageSize);
+            return connection.Query(Page.GetSql(this)) as PageModel<T>;
+        }
         #endregion
 
         #region 添加

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HFrame.CommonBS.Helper
+namespace HFrame.Common.Model
 {
     public class PageModel<T> : List<T>
     {
@@ -24,19 +24,5 @@ namespace HFrame.CommonBS.Helper
         /// 当前元素
         /// </summary>
         public List<T> Page { get; set; }
-    }
-    public static class PageHelper
-    {
-        public static PageModel<T> GetPage<T>(this List<T> Model, int pageIndex = 1, int pageSize = 20)
-        {
-            var result = new PageModel<T>
-            {
-                pageIndex = pageIndex,
-                pageSize = pageSize,
-                pageTotal = Model.Count,
-                Page = Model.Skip(pageIndex * pageSize).Take(pageSize).ToList()
-            };
-            return result;
-        }
     }
 }

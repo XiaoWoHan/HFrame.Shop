@@ -56,7 +56,6 @@
     <Compile Include="Helper\Login\Service\RegisterHelper.cs" />
     <Compile Include="Helper\Login\Service\LoginHelper.cs" />
     <Compile Include="Cache\SessionHelper.cs" />
-    <Compile Include="Helper\PageHelper.cs" />
     <Compile Include="Helper\ValidateCodeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Filter\FormValidationAttribute.cs" />

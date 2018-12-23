@@ -35,6 +35,7 @@ namespace HFrame.CommonDal.Sql
 
         internal const string UPDATE = "   UPDATE    ";//更新
         internal const string SET = "   SET    ";//集
+        internal const string AS = " AS  ";
     }
     internal enum EnumSortingType
     {

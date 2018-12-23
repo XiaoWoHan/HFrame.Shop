@@ -30,7 +30,7 @@ namespace HFrame.Web.Areas.Goods.Service
         /// <returns></returns>
         public static List<UIGoodsType> GetPageGoodsType()
         {
-            var GoodsTypes = Data_GoodsType.Current.GetList();
+            var GoodsTypes = Data_GoodsType.Current.GetPage(1,20);
             var UITypeList = GoodsTypes.Select(m => new UIGoodsType {
                 OID=m.OID,
                 GoodsType=m.TypeName,

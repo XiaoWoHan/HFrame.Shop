@@ -90,12 +90,14 @@
     <Compile Include="Helper\LambdaHelper.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Cache\RedisHelper.cs" />
+    <Compile Include="Helper\PageHelper.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="Helper\TypeHelper.cs" />
     <Compile Include="Helper\ValidateHelper.cs" />
     <Compile Include="Helper\XMLHelper.cs" />
     <Compile Include="Models\Enum\EnumLoginType.cs" />
     <Compile Include="Models\Model\MemberModel.cs" />
+    <Compile Include="Models\Model\PageModel.cs" />
     <Compile Include="Models\Model\ResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

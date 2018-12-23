@@ -28,12 +28,41 @@ namespace HFrame.CommonDal.Sql
     public class PageSqlHelper<T>: SelectSqlHelper<T> , IDBSqlHelper<T>
         where T : class
     {
+        public PageSqlHelper(int pageIndex, int pageSize)
+        {
+            _PAGESIZE = pageSize;
+            _PAGEINDEX = pageIndex;
+        }
+        #region 属性
+        #region 私有属性
+        private static readonly object _PageSqlLocker = new object();
+        #endregion
+        private int _PAGESIZE;//条数
+        private int _PAGEINDEX;//页数
+        private const string _TableName= " DateTable   ";
+        #endregion
         public new string GetSql(DBTablePropertie<T> Entity)
         {
-            base.SetSelectColumn("ROW_NUMBER() OVER (ORDER BY CreateTime) AS row, COUNT(*) OVER() AS TOTAL,")
-            var SelectSql=base.GetSql(Entity);
+            lock (_PageSqlLocker)
+            {
+                base.SetSelectColumn("ROW_NUMBER() OVER (ORDER BY CreateTime) AS ROW, COUNT(*) OVER() AS TOTAL,*");
+                var DBSelectSql = base.GetSql(Entity);//查询语句
 
-            return String.Empty;
+                StringBuilder PageSql = new StringBuilder();
+                PageSql.Append(SqlModel.SELECT);
+                PageSql.Append(SqlModel.TOP);
+                PageSql.Append($"   ({_PAGESIZE})   ");
+                PageSql.Append("    *   ");
+                PageSql.Append(SqlModel.FROM);
+                PageSql.Append($"   ({DBSelectSql}) ");
+                PageSql.Append(SqlModel.AS);
+                PageSql.Append(_TableName);
+                PageSql.Append(SqlModel.WHERE);
+                PageSql.Append($"   {_TableName}.ROW    >   ({_PAGESIZE * (_PAGEINDEX - 1)})");
+                PageSql.Append(SqlModel.ORDERBY);
+                PageSql.Append($"   {_TableName}.ROW    ");
+                return PageSql.ToString();
+            }
         }
     }
 }
