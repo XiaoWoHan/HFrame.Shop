@@ -62,7 +62,7 @@ namespace HFrame.CommonDal.Sql
             {
                 _SELECTColumn = Column; return;
             }
-            _SELECTColumn = $"{_SELECTColumn}    {(Column.Trim().StartsWith(",") ? String.Empty : ",")}   {Column}";
+            _SELECTColumn = $"{_SELECTColumn}    {(Column.Trim().StartsWith(",") ? String.Empty : ",")}   {Column}  {(Column.Trim().EndsWith(",") ? String.Empty : ",")}";
         }
         /// <summary>
         /// Lambda添加查询字段

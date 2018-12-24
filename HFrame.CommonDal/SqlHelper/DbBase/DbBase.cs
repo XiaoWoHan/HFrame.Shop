@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using HFrame.Common.Helper;
 using HFrame.Common.Model;
 using HFrame.CommonDal.Sql;
 using System;
@@ -114,7 +115,17 @@ namespace HFrame.CommonDal
         public PageModel<T> GetPage(int pageIndex,int PageSize)
         {
             PageSqlHelper<T> Page = new PageSqlHelper<T>(pageIndex,PageSize);
-            return connection.Query(Page.GetSql(this)) as PageModel<T>;
+            var ListModel=connection.Query(Page.GetSql(this)).ToList();
+            var Total = ListModel.FirstOrDefault()?.TotalNum ?? 0;//总条数
+
+            var PagedList=JsonHelper.ParseJson<List<T>>(ListModel.ToJson());
+            return new PageModel<T>()
+            {
+                pageIndex = pageIndex,
+                pageSize = PageSize,
+                Total = Total,
+                Page = PagedList
+            };
         }
         #endregion
 

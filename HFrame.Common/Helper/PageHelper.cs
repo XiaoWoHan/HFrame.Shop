@@ -15,7 +15,7 @@ namespace HFrame.Common.Helper
             {
                 pageIndex = pageIndex,
                 pageSize = pageSize,
-                pageTotal = Model.Count,
+                Total = Model.Count,
                 Page = Model.Skip(pageIndex * pageSize).Take(pageSize).ToList()
             }; 
             return result;

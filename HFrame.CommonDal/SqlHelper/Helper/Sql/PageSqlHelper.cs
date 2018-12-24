@@ -45,7 +45,7 @@ namespace HFrame.CommonDal.Sql
         {
             lock (_PageSqlLocker)
             {
-                base.SetSelectColumn("ROW_NUMBER() OVER (ORDER BY CreateTime) AS ROW, COUNT(*) OVER() AS TOTAL,*");
+                base.SetSelectColumn("ROW_NUMBER() OVER (ORDER BY CreateTime) AS ROW, COUNT(*) OVER() AS TotalNum,*");
                 var DBSelectSql = base.GetSql(Entity);//查询语句
 
                 StringBuilder PageSql = new StringBuilder();
