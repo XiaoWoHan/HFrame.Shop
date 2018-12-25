@@ -10,6 +10,7 @@ namespace HFrame.Common.Model
 {
     public class PageModel<T>: IEnumerable
     {
+        #region 属性
         /// <summary>
         /// 当前页
         /// </summary>
@@ -22,29 +23,32 @@ namespace HFrame.Common.Model
         /// 总条数
         /// </summary>
         public int Total { get; set; }
+        #endregion
+
         #region 计算属性
         /// <summary>
         /// 总页数
         /// </summary>
         public int pageTotal => (int)Math.Ceiling((decimal)Total / pageSize > 0 ? (decimal)pageSize : throw new Exception("pageSize必须大于0"));
         #endregion
-        /// <summary>
-        /// 结果集
-        /// </summary>
-        public List<T> Page { get; set; } = new List<T>();
+
+        #region 集合属性
         /// <summary>
         /// 扩展this
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public T this[int index]=>Page[index];
+        public T this[int index] => Page[index];
         /// <summary>
-        /// 
+        /// 循环
         /// </summary>
         /// <returns></returns>
-        public IEnumerator GetEnumerator()
-        {
-            return Page.GetEnumerator();
-        }
+        public IEnumerator GetEnumerator()=> Page.GetEnumerator();
+        #endregion
+
+        /// <summary>
+        /// 结果集
+        /// </summary>
+        public List<T> Page { get; set; } = new List<T>();
     }
 }

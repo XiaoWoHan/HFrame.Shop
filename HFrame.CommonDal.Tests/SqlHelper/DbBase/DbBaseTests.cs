@@ -19,6 +19,7 @@ namespace HFrame.CommonDal.Tests
             DbBase<Data_SysUser> dbBase = new DbBase<Data_SysUser>();
             var aaa = dbBase.GetList(m => m.IsDeleted != true, m => m.IsDeleted);
             var bbb = dbBase.GetList(m => m.IsDeleted != true, m => m.OID);
+            Assert.IsNull(aaa);
         }
 
         [TestMethod()]

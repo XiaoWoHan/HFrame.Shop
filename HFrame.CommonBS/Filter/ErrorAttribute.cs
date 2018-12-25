@@ -18,7 +18,7 @@ namespace HFrame.CommonBS.Filter
             var ErrorMsg = String.Format("{0}/{1}在{2}抛出异常{3}", controllerName, actionName, DateTime.Now, exception);
             LogHelper.LogError(ErrorMsg);
             #endregion
-#if RELEASE
+#if !Debug
             if (HttpHelper.IsPost)
             {
                 var Result = new ResultModel { ErrorMsg = "系统错误，请联系管理员", ErrorCode = -1 };//重定向页面

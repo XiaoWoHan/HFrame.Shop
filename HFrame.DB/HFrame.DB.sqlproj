@@ -64,8 +64,6 @@
     <Build Include="Data_Menu.sql" />
     <Build Include="Date_Role.sql" />
     <Build Include="Data_Config.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="HFrame.DB.refactorlog" />
+    <Build Include="Data_Column.sql" />
   </ItemGroup>
 </Project>

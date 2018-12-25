@@ -56,6 +56,11 @@
     <Compile Include="Models\Data_Menu.cs" />
     <Compile Include="Models\Data_SysUser.cs" />
     <Compile Include="Models\Date_Role.cs" />
+    <Compile Include="SqlHelper\DbBase\DbBaseDelete.cs" />
+    <Compile Include="SqlHelper\DbBase\DbBaseInsert.cs" />
+    <Compile Include="SqlHelper\DbBase\DbBasePage.cs" />
+    <Compile Include="SqlHelper\DbBase\DbBaseSelect.cs" />
+    <Compile Include="SqlHelper\DbBase\DbBaseUpdate.cs" />
     <Compile Include="SqlHelper\Helper\LambdaHelper\ExpressionVisitor35.cs" />
     <Compile Include="SqlHelper\Helper\LambdaHelper\Model\DataBaseType.cs" />
     <Compile Include="SqlHelper\Helper\LambdaHelper\SqlSugor.cs" />
