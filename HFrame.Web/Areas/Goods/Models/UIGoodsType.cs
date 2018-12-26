@@ -23,7 +23,7 @@ namespace HFrame.Web.Areas.Goods.Models
         /// </summary>
         public int Sort { get; set; }
         /// <summary>
-        /// 商品类型名称
+        /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }
     }

@@ -55,10 +55,6 @@ namespace HFrame.CommonDal
                 return PropInfo.Where(m => m.GetCustomAttributes(false).Any(x => x is KeyAttribute)).FirstOrDefault()?.Name;
             }
         }
-        /// <summary>
-        /// 搜索条件
-        /// </summary>
-        protected internal string WHERE { get; set; }
         #endregion
 
         #region 内部方法

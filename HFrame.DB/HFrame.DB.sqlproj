@@ -64,6 +64,5 @@
     <Build Include="Data_Menu.sql" />
     <Build Include="Date_Role.sql" />
     <Build Include="Data_Config.sql" />
-    <Build Include="Data_Column.sql" />
   </ItemGroup>
 </Project>
