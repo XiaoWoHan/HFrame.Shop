@@ -4,19 +4,18 @@
 	{
 		version: '0.0.1',
 		config: {
-			Path: "./js/module/",
-			modulePath:"/Content/Plugin/HFrameJs/js"
+			Path: './js/module/',
+			modulePath:'/Content/Plugin/HFrameJs/js'
 		}
 	}
 	/**
 	 * 私有变量
 	 */
 	let modules = {
-
-		"Common":"module/CommonHelper.js",
-		"Validate": "module/ValidateHelper.js",
-		"Alert":"module/AlertHelper.js",
-		"Http":"module/HttpHelper.js"
+		'Common':'module/CommonHelper.js',
+		'Validate': 'module/ValidateHelper.js',
+		'Alert':'module/AlertHelper.js',
+		'Http':'module/HttpHelper.js'
 	}
 	/**
 	 * 引用模块
@@ -24,7 +23,7 @@
 	 * @param {回调} Callback
 	 */
 	HFrame.use = function (ModuleName, Callback = undefined) {
-		ModuleName = typeof ModuleName == "string" ? [ModuleName] : ModuleName;
+		ModuleName = typeof ModuleName == 'string' ? [ModuleName] : ModuleName;
 		for (let [index, itemModule] of new Map(ModuleName.map((item, i) => [i, item]))) {
 			_loadJS(itemModule, index + 1 == ModuleName.length ? Callback : undefined);
 		}

@@ -1,5 +1,5 @@
 ; !function (HFrame) {
-	var MsgStyle = [];
+	let MsgStyle = [];
 	//透明黑色弹窗
 	MsgStyle[0] =
 		`background-color:rgba(0,0,0,.6);
@@ -72,9 +72,9 @@
 	}
 	//弹窗
 	HFrame.alert = function ({
-		title = "提示信息",
-		content = "确认操作",
-		btn = ["确认", "取消"]
+		title = '提示信息',
+		content = '确认操作',
+		btn = ['确认', '取消']
 	} = {}, ...btnclick) {
 		//构造页面元素
 		let AlertHtml =
@@ -114,10 +114,10 @@
 		</div>`;
 	//加载动画
 	HFrame.load = function (index = 0) {
-		var load = document.createElement("div");
+		let load = document.createElement('div');
 		load.innerHTML = LoadHtml[index];
 
-		var _body = document.querySelector("body");
+		let _body = document.querySelector('body');
 		_body.appendChild(load);
 		return load;
 	}

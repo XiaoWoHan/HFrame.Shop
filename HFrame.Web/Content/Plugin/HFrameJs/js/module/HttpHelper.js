@@ -1,6 +1,6 @@
 ; !function (HFrame) {
 	///发送get请求
-	var _getlocker = false;
+	let _getlocker = false;
 	HFrame.get = function (url, data, callback) {
 		HFrame.use("Alert", function () {
 			if (!_getlocker) {
@@ -18,7 +18,7 @@
 	}
 
 	///发送post请求
-	var _postlocker = false;
+	let _postlocker = false;
 	HFrame.post = function (url, data, callback) {
 		HFrame.use("Alert", function () {
 			if (!_postlocker) {
@@ -42,7 +42,7 @@
 	 * cache：关于缓存的一些设置；
 	 * body：要发送到后台的参数，可以为ArrayBuffer，String，FormData等类型；
 	 */
-	var _ajaxlocker = false;
+	let _ajaxlocker = false;
 	HFrame.ajax = function (url, data, method, callback) {
 		HFrame.use("Alert", function () {
 			let bodyParam=[];
@@ -52,7 +52,7 @@
 			}
 			if (!_ajaxlocker) {
 				_ajaxlocker = true;
-				var loader = HFrame.load();
+				let loader = HFrame.load();
 				fetch(url,
 					{
 						method: method

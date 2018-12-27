@@ -2,9 +2,9 @@
 	//拦截表单
 	let _form = document.querySelectorAll("form");
 	if (_form && _form.length > 0) {
-		HFrame.use(["Alert", "Http"], function () {
-			for (var item of _form) {
-				item.addEventListener("submit", function (event) {
+		HFrame.use(['Alert', 'Http'], function () {
+			for (let item of _form) {
+				item.addEventListener('submit', function (event) {
 					event.preventDefault(); //阻止提交表单
 					let _That = this;
 					let _Url = _That.action;
@@ -13,7 +13,7 @@
 					HFrame.ajax(_Url, _Data, _Method, function (r) {
 						HFrame.msg(r.ErrorMsg, 1000, function () {
 							if (r.ErrorCode == -2) {
-								location.href = "/Login";
+								location.href = '/Login';
 							}
 							if (r.ErrorCode == 0 && !HFrame.IsNullOrEmpty(r.CallbackPage)) {
 								location.href = r.CallbackPage;
@@ -27,18 +27,18 @@
 	}
 
 	//拦截删除按钮点击事件
-	let _delete = document.querySelectorAll(".delete");
+	let _delete = document.querySelectorAll('.delete');
 	if (_delete && _delete.length > 0) {
-		HFrame.use(["Alert", "Http"], function () {
-			for (var item of _delete) {
+		HFrame.use(['Alert', 'Http'], function () {
+			for (let item of _delete) {
 				item.addEventListener("click", function (event) {
 					event.preventDefault();
 					let _That = this;
 					let u = _That.href;
 					HFrame.alert(
 						{
-							title: "删除确认!",
-							content: "您确认要删除此数据么？"
+							title: '删除确认!',
+							content: '您确认要删除此数据么？'
 						}, function () {
 							HFrame.post(u, {}, function (r) {
 								if (r.ErrorCode == 0) {
@@ -46,7 +46,7 @@
 								}
 								HFrame.msg(r.ErrorMsg, 1000, function () {
 									if (r.ErrorCode == -2) {
-										location.href = "/Login";
+										location.href = '/Login';
 									}
 								});
 							});
@@ -85,7 +85,7 @@
 	 */
 	String.prototype.Format = function () {
 		if (arguments.length == 0) return this;
-		for (var s = this, i = 0; i < arguments.length; i++)
+		for (let s = this, i = 0; i < arguments.length; i++)
 			s = s.replace(new RegExp("\\{" + i + "\\}", "g"), arguments[i]);
 		return s;
 	};
@@ -93,7 +93,7 @@
 	 * 获取表单数据
 	 */
 	function GetFormData(_formData) {
-		var res = {}, //存放结果的数组 
+		let res = {}, //存放结果的数组 
 			current = null, //当前循环内的表单控件 
 			i, //表单NodeList的索引 
 			len, //表单NodeList的长度 
