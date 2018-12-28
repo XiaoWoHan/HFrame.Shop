@@ -9,7 +9,7 @@ namespace HFrame.Common.Helper
     /// <summary>
     /// 类型帮助类
     /// </summary>
-    class TypeHelper
+    public static class TypeHelper
     {
         #region 转换时间型
         /// <summary>
@@ -34,11 +34,31 @@ namespace HFrame.Common.Helper
         /// </summary>
         /// <param name="s">目标字符串</param>
         /// <returns></returns>
-        public static DateTime StringToDateTime(string s)
-        {
+        public static DateTime StringToDateTime(string s)=> StringToDateTime(s, DateTime.Now);
+        #endregion
 
-            return StringToDateTime(s, DateTime.Now);
+        #region 泛型帮助
+        /// <summary>
+        /// 转换类型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="TModel"></param>
+        /// <returns></returns>
+        public static TResult Conversion<T, TResult>(this T TModel)
+            where T : class
+            where TResult : class, new()
+        {
+            if (TModel == null) return null;
+            var result = new TResult();
+            var Propetys = typeof(T).GetProperties();
+            foreach (var item in Propetys)
+            {
+                typeof(T).GetProperty(item.Name).SetValue(result, item.GetValue(TModel));
+            }
+            return result;
         }
+
         #endregion
     }
 }
