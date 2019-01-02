@@ -302,7 +302,6 @@ namespace HFrame.Common.Helper
             return "0";
         }
         #endregion
-
         #endregion
     }
 }
