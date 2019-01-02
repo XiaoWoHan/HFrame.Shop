@@ -75,7 +75,7 @@ namespace HFrame.Common.Helper
                                                              -10832, -10815, -10800, -10790, -10780, -10764, -10587,
                                                              -10544, -10533, -10519, -10331, -10329, -10328, -10322,
                                                              -10315, -10309, -10307, -10296, -10281, -10274, -10270,
-                                                             -10262, -10260, -10256, -10254, -0
+                                                             -10262, -10260, -10256, -10254, -10250
                                                          };
 
 
@@ -151,13 +151,10 @@ namespace HFrame.Common.Helper
                                                                "zhuo", "zi",
                                                                "zong", "zou", "zu", "zuan", "zui", "zun", "zuo","Null"
                                                            };
-
-        private static Hashtable _phraseSpecial;
-
         #endregion
 
         #region 公有方法
-
+        #region 转换为拼音
         /// <summary>
         /// 将指定中文字符串转换为拼音形式
         /// </summary>
@@ -165,12 +162,12 @@ namespace HFrame.Common.Helper
         /// <param name="separator">连接拼音之间的分隔符</param>
         /// <param name="initialCap">指定是否将首字母大写</param>
         /// <returns>包含中文字符串的拼音的字符串</returns>
-        public static string CHSToPinyin(string chs, string separator="", bool initialCap=false)
+        public static string GetPinyin(string chs, string separator="", bool initialCap=false)
         {
             if (String.IsNullOrEmpty(chs)) return "";
 
-            // 例外词组
-            chs = CHSPhraseSpecial.Cast<DictionaryEntry>().Aggregate(chs, (current, de) => current.Replace(de.Key.ToString(), String.Format("\r\r\r{0}\r\r\r", de.Value.ToString().Replace(" ", separator))));
+            // 例外词组，缓存替换
+            //chs = CHSPhraseSpecial.Cast<DictionaryEntry>().Aggregate(chs, (current, de) => current.Replace(de.Key.ToString(), String.Format("{0}", de.Value.ToString().Replace(" ", separator))));
 
             List<String> Results = new List<String>();//返回字符串
             foreach(var item in chs)
@@ -191,12 +188,15 @@ namespace HFrame.Common.Helper
             }
             return String.Join(separator, Results);
         }
+        #endregion
+
+        #region 提取首字母。兼容中英文
         /// <summary>
         /// 提取首字母。兼容中英文
         /// </summary>
         /// <param name="chsStr">单个汉字或字母</param>
         /// <returns>返回值</returns>
-        public static string GetFirstPY(string chsStr)
+        public static string GetFirstPinyin(string chsStr)
         {
             if (chsStr.CompareTo("吖") < 0)
             {
@@ -301,23 +301,7 @@ namespace HFrame.Common.Helper
             }
             return "0";
         }
-
         #endregion
-
-        #region 公有属性
-
-        /// <summary>
-        /// 设置或获取包含例外词组读音的键/值对的组合
-        /// </summary>
-        public static Hashtable CHSPhraseSpecial
-        {
-            get
-            {
-                return _phraseSpecial ??
-                       (_phraseSpecial = new Hashtable { { "重庆", "Chong Qing" }, { "深圳", "Shen Zhen" }, { "什么", "Shen Me" } });
-            }
-            set { _phraseSpecial = value; }
-        }
 
         #endregion
     }
