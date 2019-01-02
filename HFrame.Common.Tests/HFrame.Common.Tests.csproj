@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Cache\CacheModelTests.cs" />
+    <Compile Include="Helper\PinyinHelperTests.cs" />
     <Compile Include="Helper\StringHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

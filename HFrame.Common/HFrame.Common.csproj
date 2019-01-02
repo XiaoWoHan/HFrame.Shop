@@ -91,6 +91,7 @@
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Cache\RedisHelper.cs" />
     <Compile Include="Helper\ListHelper.cs" />
+    <Compile Include="Helper\PinyinHelper.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="Helper\TestHelper.cs" />
     <Compile Include="Helper\TypeHelper.cs" />

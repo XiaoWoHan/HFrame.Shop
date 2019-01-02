@@ -26,52 +26,34 @@ namespace HFrame.Common.Helper
         private static Regex _numericregex = new Regex(@"^[-]?[0-9]+(\.[0-9]+)?$");
         //邮政编码正则表达式
         private static Regex _zipcoderegex = new Regex(@"^\d{6}$");
+        //汉字正则表达式
+        private static Regex _chinese = new Regex("^[\u4e00-\u9fa5]$");
 
         /// <summary>
         /// 是否为邮箱名
         /// </summary>
-        public static bool IsEmail(string s)
-        {
-            if (string.IsNullOrEmpty(s))
-                return true;
-            return _emailregex.IsMatch(s);
-        }
+        public static bool IsEmail(string s) => _emailregex.IsMatch(s);
 
         /// <summary>
         /// 是否为手机号
         /// </summary>
-        public static bool IsMobile(string s)
-        {
-            if (string.IsNullOrEmpty(s))
-                return true;
-            return _mobileregex.IsMatch(s);
-        }
+        public static bool IsMobile(string s)=> _mobileregex.IsMatch(s);
 
         /// <summary>
         /// 是否为固话号
         /// </summary>
-        public static bool IsPhone(string s)
-        {
-            if (string.IsNullOrEmpty(s))
-                return true;
-            return _phoneregex.IsMatch(s);
-        }
+        public static bool IsPhone(string s)=> _phoneregex.IsMatch(s);
 
         /// <summary>
         /// 是否为IP
         /// </summary>
-        public static bool IsIP(string s)
-        {
-            return _ipregex.IsMatch(s);
-        }
+        public static bool IsIP(string s)=> _ipregex.IsMatch(s);
 
         /// <summary>
         /// 是否是身份证号
         /// </summary>
         public static bool IsIdCard(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                return true;
             if (id.Length == 18)
                 return CheckIDCard18(id);
             else if (id.Length == 15)
@@ -137,29 +119,21 @@ namespace HFrame.Common.Helper
         /// <summary>
         /// 是否为日期
         /// </summary>
-        public static bool IsDate(string s)
-        {
-            return _dateregex.IsMatch(s);
-        }
+        public static bool IsDate(string s)=> _dateregex.IsMatch(s);
 
         /// <summary>
         /// 是否是数值(包括整数和小数)
         /// </summary>
-        public static bool IsNumeric(string numericStr)
-        {
-            return _numericregex.IsMatch(numericStr);
-        }
+        public static bool IsNumeric(string numericStr) => _numericregex.IsMatch(numericStr);
 
         /// <summary>
         /// 是否为邮政编码
         /// </summary>
-        public static bool IsZipCode(string s)
-        {
-            if (string.IsNullOrEmpty(s))
-                return true;
-            return _zipcoderegex.IsMatch(s);
-        }
-
+        public static bool IsZipCode(string s)=> _zipcoderegex.IsMatch(s);
+        /// <summary>
+        /// 是否为汉字
+        /// </summary>
+        public static bool IsChinese(string s)=>_chinese.IsMatch(s);
         /// <summary>
         /// 是否是图片文件名
         /// </summary>
