@@ -38,7 +38,7 @@ namespace HFrame.Web
                 ));
             #endregion
             //启用压缩
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
