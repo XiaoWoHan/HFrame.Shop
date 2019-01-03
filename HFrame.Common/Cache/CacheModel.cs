@@ -34,7 +34,7 @@ namespace HFrame.Common.Cache
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public abstract object Get(string key);
+        public abstract T1 Get<T1>(string key) where T1 : class;
         /// <summary>
         /// 插入对象
         /// </summary>
@@ -75,14 +75,9 @@ namespace HFrame.Common.Cache
                 }
             }
         }
-        /// <summary>
-        /// 获取对象
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public virtual T1 Get<T1>(string key) where T1 : class
+        public virtual object Get(string key)
         {
-            return Get(key) as T1;
+            return Get<object>(key);
         }
         #endregion
     }

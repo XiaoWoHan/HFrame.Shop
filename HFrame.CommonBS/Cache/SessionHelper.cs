@@ -21,10 +21,10 @@ namespace HFrame.CommonBS.Cache
             return HttpContext.Current.Session[key]!=null;
         }
 
-        public override object Get(string key)
+        public override T1 Get<T1>(string key)
         {
             if (String.IsNullOrEmpty(key)) return null;
-            return HttpContext.Current.Session[key];
+            return HttpContext.Current.Session[key] as T1;
         }
 
         public override bool Remove(string key)

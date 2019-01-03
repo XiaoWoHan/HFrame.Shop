@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\SysCacheHelper.cs" />
     <Compile Include="Filter\CheckLoginAttribute.cs" />
     <Compile Include="Cache\CookieHelper.cs" />
     <Compile Include="BaseController.cs" />

@@ -49,16 +49,6 @@ namespace HFrame.CommonBS.Cache
         {
             return HttpContext.Current.Request.Cookies[key] != null;
         }
-
-        public override object Get(string key)
-        {
-            var Encryptionkey = EncryptionHelper.MD5Encrypt(key, Encoding.ASCII);
-            if (String.IsNullOrEmpty(Encryptionkey)) return null;
-            if (!Exists(Encryptionkey)) return null;
-            var EncryptionData = HttpContext.Current.Request.Cookies[Encryptionkey].Value;
-            var Data = EncryptionHelper.DESDecrypt(EncryptionData, CookieKey);
-            return Data.ParseJson<object>();
-        }
         public override T1 Get<T1>(string key)
         {
             var Encryptionkey = EncryptionHelper.MD5Encrypt(key, Encoding.ASCII);

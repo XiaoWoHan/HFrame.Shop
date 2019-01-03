@@ -26,10 +26,10 @@ namespace HFrame.Common.Cache
             return _cachemodel.ContainsKey(key);
         }
 
-        public override object Get(string key)
+        public override T1 Get<T1>(string key)
         {
             if (_cachemodel != null && Exists(key))
-                return _cachemodel[key];
+                return _cachemodel[key] as T1;
             else
                 return null;
         }

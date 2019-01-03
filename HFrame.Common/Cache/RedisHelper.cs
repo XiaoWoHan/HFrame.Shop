@@ -35,20 +35,6 @@ namespace HFrame.Common.Cache
 
         #region 方法
         #region 获取
-        /// <summary>
-        /// 获取对象
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public override object Get(string key)
-        {
-            var cacheValue = DataBase.StringGet(key);
-            if (!cacheValue.IsNull && cacheValue.HasValue)
-            {
-                return JsonHelper.ParseJson(cacheValue.ToString());
-            }
-            return null;
-        }
         public override T1 Get<T1>(string key)
         {
             var cacheValue = DataBase.StringGet(key);
