@@ -11,5 +11,5 @@ namespace HFrame.CommonBS.Controllers
     public class BaseController : Controller
     {
         public ResultModel result => LoginHelper.CurrentMember;
-    }//TODO 缺少验证
+    }
 }
