@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace HFrame.Common.Model
 {
-    public class ResultModel: MemberModel
+    public class ResultModel : MemberModel
     {
         #region 属性
         /// <summary>
@@ -23,7 +24,21 @@ namespace HFrame.Common.Model
         /// 跳转页面
         /// </summary>
         public string CallbackPage { get; set; }
+        /// <summary>
+        /// 响应时间
+        /// </summary>
+        public long ResponseTime
+        {
+            get
+            {
+                return Timer.ElapsedMilliseconds;
+            }
+        }
         #region 私有属性
+        /// <summary>
+        /// 计时器
+        /// </summary>
+        private Stopwatch Timer { get; set; }
         /// <summary>
         /// 是否成功
         /// </summary>
@@ -40,22 +55,30 @@ namespace HFrame.Common.Model
         #region 构造函数
         public ResultModel()
         {
-
+            Timer = new Stopwatch();
+            Timer.Start();
         }
         public ResultModel(string ErrorMsg)
+            : this()
         {
             this.ErrorMsg = ErrorMsg;
         }
-        public ResultModel(string ErrorMsg,int ErrorCode)
+        public ResultModel(string ErrorMsg, int ErrorCode)
+            : this(ErrorMsg)
         {
-            this.ErrorMsg = ErrorMsg;
             this.ErrorCode = ErrorCode;
         }
         public ResultModel(string ErrorMsg, int ErrorCode, Dictionary<string, object> Data)
+            : this(ErrorMsg, ErrorCode)
         {
-            this.ErrorMsg = ErrorMsg;
-            this.ErrorCode = ErrorCode;
             this.Data = Data;
+        }
+        #endregion
+
+        #region 析构函数
+        ~ResultModel()
+        {
+            Timer.Stop();
         }
         #endregion
     }
