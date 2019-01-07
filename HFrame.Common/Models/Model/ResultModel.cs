@@ -38,7 +38,7 @@ namespace HFrame.Common.Model
         /// <summary>
         /// 计时器
         /// </summary>
-        private Stopwatch Timer { get; set; }
+        private Stopwatch Timer { get; set; } = new Stopwatch();
         /// <summary>
         /// 是否成功
         /// </summary>
@@ -55,7 +55,6 @@ namespace HFrame.Common.Model
         #region 构造函数
         public ResultModel()
         {
-            Timer = new Stopwatch();
             Timer.Start();
         }
         public ResultModel(string ErrorMsg)

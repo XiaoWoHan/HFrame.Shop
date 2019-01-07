@@ -10,11 +10,11 @@ namespace HFrame.Common.Helper
         /// <summary>
         /// 默认日志Key
         /// </summary>
-        private const string LOG = "HFrame.Redis.Log";
+        private const string LOG = "HFrame_Redis_Log";
         /// <summary>
         /// 默认错误Key
         /// </summary>
-        private const string ERROR = "HFrame.Redis.Log.Error";
+        private const string ERROR = "HFrame_Redis_Log_Error";
         /// <summary>
         /// 当天默认错误Key
         /// </summary>
